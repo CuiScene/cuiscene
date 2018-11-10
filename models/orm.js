@@ -16,3 +16,5 @@ const orm = {
     connection.query(queryString, [table, whereCol, whereVal], cb)
   }
 }
+
+module.exports = orm
