@@ -14,7 +14,13 @@ const orm = {
   selectAllFromTableWhere: (table, whereCol, whereVal, cb) => {
     const queryString = 'SELECT * FROM ?? WHERE ?? = ?'
     connection.query(queryString, [table, whereCol, whereVal], cb)
+  },
+
+  updateOne: (table, updateCol, updateVal, whereCol, whereVal, cb) => {
+    const queryString = 'UPDATE ?? SET ?? = ? WHERE ?? = ?'
+    connection.query(queryString, [table, updateCol, updateVal, whereCol, whereVal], cb)
   }
+
 }
 
 module.exports = orm
