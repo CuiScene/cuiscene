@@ -1,5 +1,4 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 // const routes = require('./controllers/restaurants_controller.js')
 
@@ -11,10 +10,10 @@ const app = express()
 app.use(express.static('assets'))
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(express.json())
 
 // Set Handlebars.
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
