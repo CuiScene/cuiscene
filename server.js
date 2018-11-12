@@ -1,6 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
-const routes = require('./controllers/recipe_entry_controller')
+const routes = require('./controllers/testing')
 
 const PORT = process.env.PORT || 8080
 
