@@ -1,5 +1,13 @@
 -- ****************** SqlDBM: MySQL ******************;
 -- ***************************************************;
+-- DROP DATABASE IF EXISTS g6xs2llrd7gfjp1t;
+
+-- CREATE DATABASE g6xs2llrd7gfjp1t;
+
+-- USE g6xs2llrd7gfjp1t;
+
+DROP DATABASE IF EXISTS cuiscene_db;
+
 CREATE DATABASE cuiscene_db;
 
 USE cuiscene_db;
@@ -28,7 +36,7 @@ PRIMARY KEY (`username_pk`)
 
 CREATE TABLE `restaurants`
 (
- `id`                 int NOT NULL ,
+ `id`                 int NOT NULL AUTO_INCREMENT,
  `restaurant_name_pk` varchar(45) NOT NULL ,
  `cuisine`            varchar(45) NOT NULL ,
  `location`           varchar(45) NOT NULL ,
@@ -57,7 +65,7 @@ CREATE TABLE `user_entries`
  `price`              decimal(3,2) NOT NULL ,
 PRIMARY KEY (`id`, `restaurant_name_pk`),
 KEY `fkIdx_27` (`username_fk`),
-CONSTRAINT `FK_27` FOREIGN KEY `fkIdx_27` (`username_fk`) REFERENCES `users` (`username_pk`)
+CONSTRAINT `FK_27` FOREIGN KEY `fkIdx_27` (`username_fk`) REFERENCES `users` (`username_pk`) ON UPDATE CASCADE
 ) ENGINE=INNODB;
 
 
@@ -69,7 +77,7 @@ CONSTRAINT `FK_27` FOREIGN KEY `fkIdx_27` (`username_fk`) REFERENCES `users` (`u
 
 CREATE TABLE `recipes`
 (
- `id`                   int NOT NULL ,
+ `id`                   int NOT NULL AUTO_INCREMENT,
  `recipe_name`          varchar(45) NOT NULL ,
  `username_pk_fk`       varchar(45) NOT NULL ,
  `recipe_cuisine`       varchar(45) NOT NULL ,
@@ -83,7 +91,7 @@ PRIMARY KEY (`id`, `recipe_name`, `username_pk_fk`),
 KEY `fkIdx_110` (`username_pk_fk`),
 CONSTRAINT `FK_110` FOREIGN KEY `fkIdx_110` (`username_pk_fk`) REFERENCES `users` (`username_pk`),
 KEY `fkIdx_116` (`restaurant_id_fk`, `restaurant_name_fk`),
-CONSTRAINT `FK_116` FOREIGN KEY `fkIdx_116` (`restaurant_id_fk`, `restaurant_name_fk`) REFERENCES `restaurants` (`id`, `restaurant_name_pk`)
+CONSTRAINT `FK_116` FOREIGN KEY `fkIdx_116` (`restaurant_id_fk`, `restaurant_name_fk`) REFERENCES `restaurants` (`id`, `restaurant_name_pk`) ON UPDATE CASCADE
 ) ENGINE=INNODB;
 
 
@@ -103,7 +111,7 @@ CREATE TABLE `recipe_ratings`
  `date_submitted` datetime NOT NULL ,
 PRIMARY KEY (`recipe_id_fk`, `recipe_name_fk`, `username_pk_fk`),
 KEY `fkIdx_97` (`recipe_id_fk`, `recipe_name_fk`, `username_pk_fk`),
-CONSTRAINT `FK_97` FOREIGN KEY `fkIdx_97` (`recipe_id_fk`, `recipe_name_fk`, `username_pk_fk`) REFERENCES `recipes` (`id`, `recipe_name`, `username_pk_fk`)
+CONSTRAINT `FK_97` FOREIGN KEY `fkIdx_97` (`recipe_id_fk`, `recipe_name_fk`, `username_pk_fk`) REFERENCES `recipes` (`id`, `recipe_name`, `username_pk_fk`) ON UPDATE CASCADE
 ) ENGINE=INNODB;
 
 
@@ -124,7 +132,7 @@ CREATE TABLE `recipe_details`
  `cooktime`          varchar(45) ,
 PRIMARY KEY (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`),
 KEY `fkIdx_55` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`),
-CONSTRAINT `FK_55` FOREIGN KEY `fkIdx_55` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`) REFERENCES `recipes` (`id`, `recipe_name`, `username_pk_fk`)
+CONSTRAINT `FK_55` FOREIGN KEY `fkIdx_55` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`) REFERENCES `recipes` (`id`, `recipe_name`, `username_pk_fk`) ON UPDATE CASCADE
 ) ENGINE=INNODB;
 
 
@@ -142,7 +150,7 @@ CREATE TABLE `recipe_instructions`
  `username_pk_fk`    varchar(45) NOT NULL ,
 PRIMARY KEY (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`),
 KEY `fkIdx_152` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`),
-CONSTRAINT `FK_152` FOREIGN KEY `fkIdx_152` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`) REFERENCES `recipe_details` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`)
+CONSTRAINT `FK_152` FOREIGN KEY `fkIdx_152` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`) REFERENCES `recipe_details` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`) ON UPDATE CASCADE
 ) ENGINE=INNODB;
 
 
@@ -161,7 +169,7 @@ CREATE TABLE `recipe_ingredients`
  `ingredient1_amount` varchar(45) NOT NULL ,
 PRIMARY KEY (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`),
 KEY `fkIdx_143` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`),
-CONSTRAINT `FK_143` FOREIGN KEY `fkIdx_143` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`) REFERENCES `recipe_details` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`)
+CONSTRAINT `FK_143` FOREIGN KEY `fkIdx_143` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`) REFERENCES `recipe_details` (`recipe_id_pk_fk`, `recipe_name_pk_fk`, `username_pk_fk`) ON UPDATE CASCADE
 ) ENGINE=INNODB;
 
 
