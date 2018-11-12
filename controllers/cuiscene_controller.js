@@ -30,6 +30,23 @@ router.post("/api/users", function(req, res) {
       res.json({ id: result.insertId });
     });
 });
+
+router.post("/api/users", function(req, res) {
+    cuiscene.insertNewUser([
+      "username_pk",
+      "birthday",
+      "restrictions",
+      "zipcode"
+    ], [
+      req.body.username_pk,
+      req.body.birthday,
+      req.body.restrictions,
+      req.body.zipcode
+    ], 
+    function(result) {
+      res.json({ id: result.insertId });
+    });
+});
   
 module.exports = router;
   
