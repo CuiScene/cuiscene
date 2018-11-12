@@ -1,5 +1,21 @@
 {{#each recipe_details}}
   
-  <p>Servings: {{this.servings}} | Serving Size: {{this.serving_size}} | Prep Time: {{this.preptime}} | Cook Time: {{this.cooktime}}</p>
+  <p>
+    {{#if servings}}
+      Servings: {{this.servings}} | 
+    {{/if}}
+    
+    {{#if serving_size}}
+      Serving Size: {{this.serving_size}} | 
+    {{/if}}
+    
+    {{#if preptime}}
+      Prep Time: {{this.preptime}} | 
+    {{/if}}
+    
+    {{#if cooktime}}
+      Cook Time: {{this.cooktime}}
+    {{/if}}
+  </p>
 
 {{/each}}

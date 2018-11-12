@@ -14,10 +14,12 @@
           {{/if}} 
           
           {{#if meal_time}} 
-            for {{this.meal_time}}  
+            for {{this.meal_time}} | 
           {{/if}}
           
-          | My Rating: {{this.rating}}
+          {{#if rating}}
+            My Rating: {{this.rating}}
+          {{/if}}
         </p>
         
         {{#if notes}}
