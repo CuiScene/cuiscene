@@ -9,7 +9,7 @@ if (process.env.JAWSDB_URL) {
     host: 'localhost',
     port: 8889,
     user: 'root',
-    password: '',
+    password: 'root',
     database: 'cuiscene_db'
   })
 }

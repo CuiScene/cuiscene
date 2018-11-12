@@ -1,6 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
-// const routes = require('./controllers/restaurants_controller.js')
+const routes = require('./controllers/recipe_entry_controller')
 
 const PORT = process.env.PORT || 8080
 
@@ -18,7 +18,7 @@ app.use(express.json())
 // Set Handlebars.
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
-// app.use(routes)
+app.use(routes)
 
 // Start our server so that it can begin listening to client requests.
 app.listen(PORT, function () {
