@@ -1,4 +1,4 @@
-const connection = require('config/connection.js')
+const connection = require('../config/connection.js')
 
 const orm = {
   insertOne: (table, cols, vals, cb) => {
