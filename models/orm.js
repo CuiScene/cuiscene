@@ -1,14 +1,29 @@
-const connection = require('../config/connection.js')
+const connection = require('../config/connection')
 
 const orm = {
-  insertOne: (table, cols, vals, cb) => {
-    const queryString = 'INSERT INTO ?? (??) VALUES (?)'
-    connection.query(queryString, [table, cols, vals], cb)
+  insertNewUser: function(cols, vals, cb) {
+    var queryString = "INSERT INTO users (username_pk, birthday, restrictions, zipcode) VALUES (";
+    
+    queryString += '"' + vals[0] + '"'+ ", " + '"'+ vals[1] + '"'+ ", " + '"'+ vals[2] + '"'+ ", " + '"'+ vals[3] + '"' + ")";
+    console.log(queryString);
+
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    });
   },
 
-  selectAllFromTable: (table, cb) => {
-    const queryString = 'SELECT * FROM ??'
-    connection.query(queryString, table, cb)
+  selectAllFromTable: function(tableInput, cb) {
+    var queryString = "SELECT * FROM " + tableInput + ";";
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
   },
 
   selectAllFromTableWhere: (table, whereCol, whereVal, cb) => {
