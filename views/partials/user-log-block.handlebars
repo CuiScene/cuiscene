@@ -1,21 +1,33 @@
-<h1>My Food Log</h1>
-
-  <div class="user_log"> 
+<div class="user_log"> 
     
-    {{#each user_entries}}
-      <div class="card">
+  {{#each user_entries}}
+    <div class="card">
+      
+      <div class="card-header">  
+        <h3>{{this.restaurant_name_pk}}</h3>
+      </div>
         
-        <div class="card-header">  
-          <h3>{{this.restaurant_name_pk}}</h3>
-        </div>
+      <div class="card-body"> 
+        <p>Ordered {{this.menu_item}} 
+          {{#if date}} 
+            on {{this.date}}
+          {{/if}} 
           
-        <div class="card-body"> 
-          <p>Ordered {{this.menu_item}} on {{this.date}} for {{this.meal_time}} | My Rating: {{this.rating}}</p>
+          {{#if meal_time}} 
+            for {{this.meal_time}}  
+          {{/if}}
+          
+          | My Rating: {{this.rating}}
+        </p>
+        
+        {{#if notes}}
           <p>Notes about {{this.menu_item}}: {{this.notes}}</p>
-        </div>
-
+        {{/if}}
+      
       </div>
 
-    {{/each}}
+    </div>
 
-  </div>
+  {{/each}}
+
+</div>
