@@ -9,7 +9,7 @@ var zomatoCitySearch = function(city) {
     .then(function(response) {
       console.log(response)
     });
-  }
+}
 
 $(function() {
   $(".create-form").on("submit", function(event) {
