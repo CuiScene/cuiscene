@@ -1,4 +1,6 @@
 <div class="recipe-log"> 
+
+  Test - Recipe-Block Partial Worked!
   
   {{#each recipes}}
     
@@ -6,10 +8,15 @@
       
       <div class="card-header">  
         <h3>{{this.recipe_name}}</h3>
+          <small>
+          {{#if recipe_date}}
+            Recipe Added: {{this.recipe_date}}
+          {{/if}}
+          </small>
       </div>
         
       <div class="card-body"> 
-        <p>Cuisine: 
+        <p class="STYLING">Cuisine: 
           {{#if recipe_cuisine}}
             {{this.recipe_cuisine}} | 
           {{/if}}

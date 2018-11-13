@@ -5,9 +5,9 @@ var router = express.Router();
 var cuiscene = require("../models/cuiscene")
 
 router.get("/", function(req, res) {
-    cuiscene.selectAllFromTable("users", function(data) {
+    cuiscene.selectAllFromTable("recipes", function(data) {
         var hbsObject = {
-            cuiscenes: data
+            recipes: data
         };
         console.log(hbsObject);
         res.render("index", hbsObject);
