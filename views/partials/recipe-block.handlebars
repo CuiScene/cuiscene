@@ -1,0 +1,44 @@
+<div class="recipe-log"> 
+  
+  {{#each recipes}}
+    
+    <div class="card">
+      
+      <div class="card-header">  
+        <h3>{{this.recipe_name}}</h3>
+      </div>
+        
+      <div class="card-body"> 
+        <p>Cuisine: 
+          {{#if recipe_cuisine}}
+            {{this.recipe_cuisine}} | 
+          {{/if}}
+
+          {{#if recipe_tags}}
+            Suits Dietary Needs: {{this.recipe_tags}} | 
+          {{/if}}
+          
+          {{#if recipe_rating}}
+            Rating: {{this.recipe_rating}}
+          {{/if}}
+        </p>
+        <p>
+          {{#if restaurant_menu_item}}
+            Dish Inspired By: {{this.restaurant_menu_item}} 
+          {{/if}}
+          
+          {{#if restaurant_name_fk}}
+            from {{restaurant_name_fk}} | 
+          {{/if}}
+          
+          {{#if recipe_date}}
+            Recipe Added: {{this.recipe_date}}
+          {{/if}}
+        </p>
+      </div>
+
+    </div>
+
+  {{/each}}
+
+</div>

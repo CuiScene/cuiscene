@@ -19,9 +19,10 @@
   },
   "homepage": "https://github.com/CuiScene/cuiscene#readme",
   "dependencies": {
-    "express": "^4.16.4",
-    "express-handlebars": "^3.0.0",
-    "kyanite": "^0.10.1",
-    "mysql": "^2.16.0"
+    "auth0-js": "^9.8.1",
+    "express": "4.16.4",
+    "express-handlebars": "3.0.0",
+    "kyanite": "0.10.1",
+    "mysql": "2.16.0"
   }
 }

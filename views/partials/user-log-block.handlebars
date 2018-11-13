@@ -1,0 +1,35 @@
+<div class="user_log"> 
+    
+  {{#each user_entries}}
+    <div class="card">
+      
+      <div class="card-header">  
+        <h3>{{this.restaurant_name_pk}}</h3>
+      </div>
+        
+      <div class="card-body"> 
+        <p>Ordered {{this.menu_item}} 
+          {{#if date}} 
+            on {{this.date}}
+          {{/if}} 
+          
+          {{#if meal_time}} 
+            for {{this.meal_time}} | 
+          {{/if}}
+          
+          {{#if rating}}
+            My Rating: {{this.rating}}
+          {{/if}}
+        </p>
+        
+        {{#if notes}}
+          <p>Notes about {{this.menu_item}}: {{this.notes}}</p>
+        {{/if}}
+      
+      </div>
+
+    </div>
+
+  {{/each}}
+
+</div>
