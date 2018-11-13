@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,63 +8,67 @@
     <title>CuiScene: Create a Profile</title>
 
     <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.5.0/modern-normalize.min.css"
-    integrity="sha256-N6+kUxTWxpqVK+BrPWt3t4jeOWPtp37RZEbm5n9X+8U=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.5.0/modern-normalize.min.css"
+        integrity="sha256-N6+kUxTWxpqVK+BrPWt3t4jeOWPtp37RZEbm5n9X+8U=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
 </head>
+
 <body>
-    <h1>CuiScene</h1>
-    <h4>Rate Restaurant Menu Items and Create Recipes Based Off the Menu Items</h4>
-
-    <form class="form">
-        <h3>Create a profile to save your ratings and recipes for later</h3>
-        <div class="form-group">
-            <label for="username">Create a Username:</label>
-            <input type="text" class="form-control" id="uname" placeholder="Username123">
-        </div>
-
-        <div class="form-group">
-            <label type="email" id="email">Email:</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="annie.body@gmail.com">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="text" class="form-control" id="password" placeholder="Password">
-        </div>
-
-        <div class="form-group">
-            <label for="zipcode">Zip Code:</label>
-            <input type="text" class="form-control" id="zip" placeholder="44102">
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class='col-sm-6'>
+    <div class="container">
+        <!-- <div class="row"> -->
+            <h1 class="text-center">CuiScene</h1>
+            <br>
+            <h4 class="font-weight-light text-center">Rate Restaurant Menu Items and Create Recipes Based Off the Menu Items</h4>
+        <!-- </div> -->
+        <div class="row">
+            <div class="wrapper">
+                <form class="form">
+                    <h3>Create a profile to save your ratings and recipes for later</h3>
                     <div class="form-group">
-                        <div class='input-group date' class="form-control" id='datetimepicker1'>
+                        <label for="username">Create a Username:</label>
+                        <input type="text" class="form-control" id="uname" placeholder="Username123">
+                    </div>
+
+                    <div class="form-group">
+                        <label type="email" id="email">Email:</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="annie.body@gmail.com">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="text" class="form-control" id="password" placeholder="Password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipcode">Zip Code:</label>
+                        <input type="text" class="form-control" id="zip" placeholder="44102">
+                    </div>
+
+                    <div class="form-group">
+                        <!-- <div class="input-group date" class="form-control" id='datetimepicker1'> -->
                             <label for="birthday">Birthdate:</label>
-                            <input type='text' class="form-control" id="bday" /> -->
-                            <span class="input-group-addon">
+                            <input type='text' class="form-control" id="bday">
+                            <!-- <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span> -->
-                        </div>    
-                    </div> 
-                </div>    
-            </div>    
-        </div> 
-        
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
+                        <!-- </div> -->
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
 
+        <!-- <button type="submit" class="btn btn-success">Submit</button>
+        </form> -->
     </div>
 
     <script type="text/javascript">
@@ -73,4 +78,5 @@
     </script>
 
 </body>
+
 </html>
