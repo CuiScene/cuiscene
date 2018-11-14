@@ -6,6 +6,7 @@ window.addEventListener('load', function () {
     clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
     responseType: 'token id_token',
     scope: 'openid profile',
+    // CHANGE TO PROFILE PAGE
     redirectUri: window.location.href
   })
 

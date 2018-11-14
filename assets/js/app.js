@@ -11,6 +11,29 @@ var zomatoCitySearch = function (city) {
       console.log(response)
     })
 }
+var nutritionix = function (food) {
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://trackapi.nutritionix.com/v2/natural/nutrients",
+    "method": "POST",
+    "headers": {
+    "content-type": "application/json",
+    "accept": "application/json",
+    "x-app-id": "c0d82573",
+    "x-app-key": "7aa35984f679d0c7be1c01a88ec527be",
+    "x-remote-user-id": "0",
+    "cache-control": "no-cache",
+    },
+    "processData": false,
+    "data": "{ \"query\":\"" + food + "\", \"timezone\": \"US/Eastern\", \"locale\": \"en_US\" }"
+  }
+
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
+}
 
 $(function () {
   $('.create-form').on('submit', function (event) {
@@ -39,18 +62,5 @@ $(function () {
 })
 
 zomatoCitySearch('cleveland')
+nutritionix("for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots")
 
-
-var edamamNutritionSearch = function (title, ingr) {
-  var queryurl = 'https://api.edamam.com/api/nutrition-details?app_id=$acb781d7&app_key=$46a9d8c42a9a6217ff47dae868a48873&title=$' + title + '&ingr=$' + ingr
-  $.post({
-    url: queryurl,
-    dataType: 'json',
-    contentType: 'application/json'
-  })
-    .then(function (response) {
-      console.log(response)
-    })
-}
-
-edamamNutritionSearch('buffalo chicken', ["chicken breast", "hot sauce", "butter"])

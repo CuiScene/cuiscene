@@ -22,84 +22,63 @@
     {{!--<img src="assets/loading.svg" alt="Loading spinner">--}}
   </div>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/">CuiScene</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/views/layouts/main.html" id="btn-home-view">Home<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Restaurants</a>
+          <a class="nav-link" href="/" id="btn-home-view">Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="views/layouts/main.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             My Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/views/layouts/user-recipe-add.html">Add Restaurant Experience</a>
-            <a class="dropdown-item" href="/views/layouts/user-log-add.html">Add Recipe</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="/tabs/user-log-add">Add Restaurant Experience</a>
+            <a class="dropdown-item" href="/tabs/user-recipe-add">Add Recipe</a>
           </div>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li> -->
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
-{{{body}}}
-  <div class="content">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Auth0 - JavaScript</a>
-
-          <button id="btn-home-view" class="btn btn-primary btn-margin">
-            Home
-          </button>
-
-          <button id="btn-login" class="btn btn-primary btn-margin">
+{{!-- <form class="form-inline my-2 my-lg-0">
+      <a class="btn btn-success my-2 my-sm-0" href="/"type="button">Sign Up</a>
+    </form> --}}
+    <button id="btn-login" class="btn btn-primary btn-margin" style="display: none;">
             Log In
           </button>
-
-          <button id="btn-logout" class="btn btn-primary btn-margin">
+          <button id="btn-logout" class="btn btn-primary btn-margin" style="display: inline-block;">
             Log Out
           </button>
-
-        </div>
-      </div>
+    </div>
+  </nav>
+  {{{body}}}
     </nav>
 
     <main class="container">
       <!-- main container -->
       <div id="home-view">
         <h4></h4>
-        
+
         <div class="tab-area">
 
-      </div>
-      <div id="profile-view" class="panel panel-default profile-area">
-        <div class="panel-heading">
-          <h3>Profile</h3>
         </div>
-        <div class="panel-body">
-          <img class="avatar" alt="avatar">
-          <div>
-            <label><i class="glyphicon glyphicon-user"></i>Nickname</label>
-            <h3 class="nickname"></h3>
+        <div id="profile-view" class="panel panel-default profile-area">
+          <div class="panel-heading">
+            <h3>Profile</h3>
           </div>
-          <pre class="full-profile"></pre>
+          <div class="panel-body">
+            <img class="avatar" alt="avatar">
+            <div>
+              <label><i class="glyphicon glyphicon-user"></i>Nickname</label>
+              <h3 class="nickname"></h3>
+            </div>
+            <pre class="full-profile"></pre>
+          </div>
         </div>
-      </div>
     </main>
   </div>
 
@@ -111,10 +90,6 @@
       <label for="ca"></label>
       <p>Username </p>
       <input class="addin" type="text" id="uname" name="username"><br><br>
-      <p>Birthday </p>
-      <input class="addin" type="text" id="bday" name="birthday"><br><br>
-      <p>Restrictions </p>
-      <input class="addin" type="text" id="restrict" name="restrictions"><br><br>
       <p>Zipcode </p>
       <input class="addin" type="text" id="zip" name="zipcode">
     </div>
