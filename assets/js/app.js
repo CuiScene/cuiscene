@@ -13,26 +13,25 @@ var zomatoCitySearch = function (city) {
 }
 var nutritionix = function (food) {
   var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://trackapi.nutritionix.com/v2/natural/nutrients",
-    "method": "POST",
-    "headers": {
-    "content-type": "application/json",
-    "accept": "application/json",
-    "x-app-id": "c0d82573",
-    "x-app-key": "7aa35984f679d0c7be1c01a88ec527be",
-    "x-remote-user-id": "0",
-    "cache-control": "no-cache",
+    'async': true,
+    'crossDomain': true,
+    'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
+    'method': 'POST',
+    'headers': {
+      'content-type': 'application/json',
+      'accept': 'application/json',
+      'x-app-id': 'c0d82573',
+      'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
+      'x-remote-user-id': '0',
+      'cache-control': 'no-cache'
     },
-    "processData": false,
-    "data": "{ \"query\":\"" + food + "\", \"timezone\": \"US/Eastern\", \"locale\": \"en_US\" }"
+    'processData': false,
+    'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
   }
 
-
   $.ajax(settings).done(function (response) {
-    console.log(response);
-  });
+    console.log(response)
+  })
 }
 
 $(function () {
@@ -62,5 +61,4 @@ $(function () {
 })
 
 zomatoCitySearch('cleveland')
-nutritionix("for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots")
-
+nutritionix('for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots')

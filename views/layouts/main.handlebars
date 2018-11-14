@@ -21,7 +21,7 @@
   <div id="loading">
     {{!--<img src="assets/loading.svg" alt="Loading spinner">--}}
   </div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-navbar">
     <a class="navbar-brand" href="/">CuiScene</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,8 +34,8 @@
           <a class="nav-link" href="/" id="btn-home-view">Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdown" role="button"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             My Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -44,42 +44,42 @@
           </div>
         </li>
       </ul>
-{{!-- <form class="form-inline my-2 my-lg-0">
-      <a class="btn btn-success my-2 my-sm-0" href="/"type="button">Sign Up</a>
-    </form> --}}
-    <button id="btn-login" class="btn btn-primary btn-margin" style="display: none;">
-            Log In
-          </button>
-          <button id="btn-logout" class="btn btn-primary btn-margin" style="display: inline-block;">
-            Log Out
-          </button>
+      {{!-- <form class="form-inline my-2 my-lg-0">
+        <a class="btn btn-success my-2 my-sm-0" href="/" type="button">Sign Up</a>
+      </form> --}}
+      <button id="btn-login" class="btn btn-primary btn-margin" style="display: none;">
+        Log In
+      </button>
+      <button id="btn-logout" class="btn btn-primary btn-margin" style="display: inline-block;">
+        Log Out
+      </button>
     </div>
   </nav>
   {{{body}}}
-    </nav>
+  </nav>
 
-    <main class="container">
-      <!-- main container -->
-      <div id="home-view">
-        <h4></h4>
+  <main class="container">
+    <!-- main container -->
+    <div id="home-view">
+      <h4></h4>
 
-        <div class="tab-area">
+      <div class="tab-area">
 
+      </div>
+      <div id="profile-view" class="panel panel-default profile-area">
+        <div class="panel-heading">
+          <h3>Profile</h3>
         </div>
-        <div id="profile-view" class="panel panel-default profile-area">
-          <div class="panel-heading">
-            <h3>Profile</h3>
+        <div class="panel-body">
+          <img class="avatar" alt="avatar">
+          <div>
+            <label><i class="glyphicon glyphicon-user"></i>Nickname</label>
+            <h3 class="nickname"></h3>
           </div>
-          <div class="panel-body">
-            <img class="avatar" alt="avatar">
-            <div>
-              <label><i class="glyphicon glyphicon-user"></i>Nickname</label>
-              <h3 class="nickname"></h3>
-            </div>
-            <pre class="full-profile"></pre>
-          </div>
+          <pre class="full-profile"></pre>
         </div>
-    </main>
+      </div>
+  </main>
   </div>
 
 

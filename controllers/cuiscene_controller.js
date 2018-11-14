@@ -6,7 +6,7 @@ const orm = require('../models/orm')
 
 // The main view is actually going to be restaurant ratings. As written above, we would be displaying all the user information to anyone who visits the site.
 
-router.get('/', (req, res) => {
+router.get('/views/profile', (req, res) => {
   orm.selectAllFromTable(
     // table to select from
     'recipes',
@@ -16,10 +16,9 @@ router.get('/', (req, res) => {
         throw err
       }
       console.log('test')
-      res.render('index', { recipes: data })
+      res.render('profile', { recipes: data })
     })
 })
-
 
 router.post('/api/users', (req, res) => {
   orm.insertOne(
