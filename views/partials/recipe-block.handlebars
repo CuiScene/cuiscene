@@ -18,13 +18,13 @@
       <div class="card-body"> 
         <p>Cuisine: 
           {{#if recipe_cuisine}}
-            {{this.recipe_cuisine}} | 
+            {{this.recipe_cuisine}}
           {{/if}}
-
+        </p><p>
           {{#if recipe_tags}}
-            Suits Dietary Needs: {{this.recipe_tags}} | 
+            Suits Dietary Needs: {{this.recipe_tags}}
           {{/if}}
-          
+          </p><p>
           {{#if recipe_rating}}
             Rating: {{this.recipe_rating}}
           {{/if}}
@@ -35,11 +35,7 @@
           {{/if}}
           
           {{#if restaurant_name_fk}}
-            from {{restaurant_name_fk}} | 
-          {{/if}}
-          
-          {{#if recipe_date}}
-            Recipe Added: {{this.recipe_date}}
+            from {{restaurant_name_fk}}
           {{/if}}
         </p>
       </div>
