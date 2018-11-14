@@ -6,3 +6,7 @@
     margin: 30px;
     border: 1px solid gray;
 }
+
+.avatar {
+    max-width: 200px;
+}
