@@ -12,6 +12,8 @@ CREATE DATABASE cuiscene_db;
 
 USE cuiscene_db;
 
+-- SELECT * FROM restaurants;
+
 -- ****************** SqlDBM: MySQL ******************;
 -- ***************************************************;
 

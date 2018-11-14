@@ -6,12 +6,13 @@ const cuiscene = require('../models/cuiscene')
 
 const orm = require('../models/orm')
 // router.get('/', function (req, res) {
-//   cuiscene.selectAllFromTable('users', function (data) {
+//   cuiscene.selectAllFromTable("recipes", function (data) {
 //     const hbsObject = {
-//       cuiscenes: data
+//       recipes: data
 //     }
 //         console.log(hbsObject)
-//         res.render('index', hbsObject)
+//         res.render("index", hbsObject)
+//         // console.log(hbsObject)
 //     })
 // })
 
@@ -20,13 +21,14 @@ const orm = require('../models/orm')
 router.get('/', (req, res) => {
   orm.selectAllFromTable(
     // table to select from
-    'restaurants',
+    'recipes',
     // callback function
     (err, data) => {
       if (err) {
         throw err
       }
-      res.render('index', { restaurants: data })
+      console.log('test')
+      res.render('index', { recipes: data })
     })
 })
 
