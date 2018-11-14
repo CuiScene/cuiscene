@@ -42,11 +42,11 @@ zomatoCitySearch('cleveland')
 
 
 var edamamNutritionSearch = function (title, ingr) {
-  var queryurl = 'https://api.edamam.com/api/nutrition-details?app_id=${acb781d7}&app_key=${46a9d8c42a9a6217ff47dae868a48873}&title=${' + title + '}&ingr=${' + ingr + '}'
-  $.ajax({
+  var queryurl = 'https://api.edamam.com/api/nutrition-details?app_id=$acb781d7&app_key=$46a9d8c42a9a6217ff47dae868a48873&title=$' + title + '&ingr=$' + ingr
+  $.post({
     url: queryurl,
-    type: 'POST',
     dataType: 'json',
+    contentType: 'application/json'
   })
     .then(function (response) {
       console.log(response)
