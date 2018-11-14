@@ -33,13 +33,13 @@
                     <a class="nav-link" href="#">Restaurants</a>
                 </li>
                 <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="/views/layouts/profile.html" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         My Profile<span class="sr-only">(current)</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/views/layouts/user-recipe-add.html">Add Restaurant Experience</a>
-                        <a class="dropdown-item" href="/views/layouts/user-log-add.html">Add Recipe</a>
+                        <a class="dropdown-item" href="#">Add Restaurant Experience</a>
+                        <a class="dropdown-item" href="#">Add Recipe</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
@@ -64,21 +64,6 @@
         </div>
     </div>
     <ul class="nav nav-tabs px-3 mx-2">
-<<<<<<< HEAD
-            <li class="nav-item">
-              <a class="nav-link active" href="/profile">My Recipes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/">Saved Recipes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Experiences</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Wishlist</a>
-            </li>
-          </ul>
-=======
         <li class="nav-item">
             <a class="nav-link active" href="/profile">My Recipes</a>
         </li>
@@ -92,7 +77,18 @@
             <a class="nav-link" href="#">Wishlist</a>
         </li>
     </ul>
->>>>>>> da0f2834e85f1565e6d7340f514a3a3527242ef2
+    <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">My Recipes</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Saved Recipes</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Restaurants</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+</div>
 </body>
 
 </html>
