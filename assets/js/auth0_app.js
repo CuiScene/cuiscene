@@ -76,7 +76,7 @@ window.addEventListener('load', function () {
   function displayButtons () {
     if (isAuthenticated()) {
       loginBtn.style.display = 'none'
-      main_navbar.style.display = 'none'
+      // main_navbar.style.display = 'none'
       logoutBtn.style.display = 'inline-block'
       loginStatus.innerHTML = 'You are logged in!'
     } else {

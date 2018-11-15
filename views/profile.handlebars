@@ -16,6 +16,7 @@
 </head>
 
 <body>
+  <div class="container" id="userProfileContainer">
   <div class="jumbotron jumbotron-fluid pt-1 pb-3">
     <div class="container full-profile" id="profile-view">
       <h2 class="display-4">My Profile</h2>
@@ -29,39 +30,64 @@
 {{!-- tabs --}}
   <ul class="nav nav-tabs" id="userProfile" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="userRecipe-tab" data-toggle="tab" href="#" role="tab" aria-controls="home"
+      <a class="nav-link active" id="user-recipe-tab" data-toggle="tab" href="#user-recipe-tab" role="tab" aria-controls="home"
         aria-selected="true">My Recipes</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="savedRecipe-tab" data-toggle="tab" href="#" role="tab" aria-controls="profile"
+      <a class="nav-link" id="saved-recipe-tab" data-toggle="tab" href="#saved-recipe-tab" role="tab" aria-controls="profile"
         aria-selected="false">Saved Recipes</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="userRestaurant-tab" data-toggle="tab" href="#" role="tab" aria-controls="messages"
+      <a class="nav-link" id="user-restaurant-tab" data-toggle="tab" href="#" role="tab" aria-controls="messages"
         aria-selected="false">My Restaurant Experiences</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="savedRestaurant-tab" data-toggle="tab" href="#" role="tab" aria-controls="settings"
+      <a class="nav-link" id="saved-restaurant-tab" data-toggle="tab" href="#" role="tab" aria-controls="settings"
         aria-selected="false">Saved Restaurants</a>
     </li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane active" id="userRecipe-tab" role="tabpanel" aria-labelledby="myRecipies-tab">        
-        {{#each recipes }}
+    <div class="tab-pane active" id="user-recipe" role="tabpanel" aria-labelledby="my-recipies">      
+      {{#each recipes }}
         {{> recipe-block }}
         {{/each}}</div>
-    <div class="tab-pane" id="savedRecipe-tab" role="tabpanel" aria-labelledby="savedRecipe-tab">...</div>
-    <div class="tab-pane" id="userRestaurant-tab" role="tabpanel" aria-labelledby="myRestaurant-tab">...</div>
-    <div class="tab-pane" id="savedRestaurant-tab" role="tabpanel" aria-labelledby="savedRestaurant-tab">...</div>
+    <div class="tab-pane" id="saved-recipe" role="tabpanel" aria-labelledby="saved-recipe">...</div>
+    <div class="tab-pane" id="user-restaurant" role="tabpanel" aria-labelledby="my-restaurant">...</div>
+    <div class="tab-pane" id="saved-restaurant" role="tabpanel" aria-labelledby="saved-restaurant">...</div>
+  </div>
   </div>
 
+{{!-- <div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+    <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+  </ul>
+    <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>HOME</h3>
+      <p>Some content.</p>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>Menu 1</h3>
+      <p>Some content in menu 1.</p>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Menu 2</h3>
+      <p>Some content in menu 2.</p>
+    </div>
+  </div>
+</div> --}}
   
-  <script>
-    $(function () {
-      $('#userRecipe-tab li:last-child a').tab('show')
-    })
-  </script>
+  {{!-- <script>
+  $(document).ready(function() {
+    $("#userProfile a[href='#user-recipe-tab']").tab('show');
+    $("#userProfile a[href='#saved-recipe-tab']").tab('show');
+    $("#userProfile a[href='#user-restaurant-tab']").tab('show');
+    $("#userProfile a[href='#saved-restaurant-tab']").tab('show');
+  })
+  </script> --}}
 </body>
 
 </html>
