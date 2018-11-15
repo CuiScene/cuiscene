@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -18,7 +19,83 @@
 
 <body>
 
-  {{{ body }}}
+  {{!-- <div id="loading">
+    <img src="assets/loading.svg" alt="Loading spinner">
+  </div> --}}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-navbar">
+    <a class="navbar-brand" href="/">CuiScene</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/" id="btn-home-view">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/views/profile" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            My Profile
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/tabs/user-log-add">Add Restaurant Experience</a>
+            <a class="dropdown-item" href="/tabs/user-recipe-add">Add Recipe</a>
+          </div>
+        </li>
+      </ul>
+      <button id="btn-login" class="btn btn-primary btn-margin" style="display: none;">
+        Log In
+      </button>
+      <button id="btn-logout" class="btn btn-primary btn-margin" style="display: inline-block;">
+        Log Out
+      </button>
+    </div>
+  </nav>
+  <main class="container">
+    <!-- main container -->
+    <div id="home-view">
+      <h4></h4>
+
+      <div class="tab-area">
+         {{{body}}}
+      </div>
+
+      {{!-- <div id="profile-view" class="panel panel-default profile-area">
+        <div class="panel-heading">
+          <h3>Profile</h3>
+        </div>
+        <div class="panel-body">
+          <img class="avatar" alt="avatar">
+          <div>
+            <label><i class="glyphicon glyphicon-user"></i>Nickname</label>
+            <h3 class="nickname"></h3>
+          </div>
+          <pre class="full-profile"></pre>
+        </div>
+      </div>
+    </main>
+  </div> --}}
+
+  {{!-- <h2 class="addtxt">Add a User Testing</h2>
+  <form class="create-form">
+
+    <div class="form-group">
+      <label for="ca"></label>
+      <p>Username </p>
+      <input class="addin" type="text" id="uname" name="username"><br><br>
+      <p>Zipcode </p>
+      <input class="addin" type="text" id="zip" name="zipcode">
+    </div>
+
+    <button class="btn addbtn btn-success" type="submit">Add User</button>
+  </form> --}}
+
+
+  <script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>
+  <script src="https://cdn.auth0.com/js/lock/11.11.0/lock.min.js"></script>
+
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
@@ -26,6 +103,7 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
+  <script src="js/auth0_app.js"></script>
   <script src="js/app.js"></script>
 
 </body>
