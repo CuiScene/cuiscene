@@ -6,8 +6,7 @@ window.addEventListener('load', function () {
     clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
     responseType: 'token id_token',
     scope: 'openid profile',
-    // CHANGE TO PROFILE PAGE
-    redirectUri: window.location.href + 'views/profile'
+    redirectUri: window.location.href
   })
 
   var loginBtn = document.getElementById('btn-login')
@@ -33,7 +32,7 @@ window.addEventListener('load', function () {
 
   logoutBtn.addEventListener('click', logout)
 
-  function handleAuthentication() {
+  function handleAuthentication () {
     webAuth.parseHash(function (err, authResult) {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = ''
@@ -49,7 +48,7 @@ window.addEventListener('load', function () {
     })
   }
 
-  function setSession(authResult) {
+  function setSession (authResult) {
     // Set the time that the Access Token will expire at
     var expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
@@ -59,7 +58,7 @@ window.addEventListener('load', function () {
     localStorage.setItem('expires_at', expiresAt)
   }
 
-  function logout() {
+  function logout () {
     // Remove tokens and expiry time from localStorage
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
@@ -67,14 +66,14 @@ window.addEventListener('load', function () {
     displayButtons()
   }
 
-  function isAuthenticated() {
+  function isAuthenticated () {
     // Check whether the current time is past the
     // Access Token's expiry time
     var expiresAt = JSON.parse(localStorage.getItem('expires_at'))
     return new Date().getTime() < expiresAt
   }
 
-  function displayButtons() {
+  function displayButtons () {
     if (isAuthenticated()) {
       loginBtn.style.display = 'none'
       main_navbar.style.display = 'none'
@@ -90,7 +89,7 @@ window.addEventListener('load', function () {
 
   // app.js
   var userProfile
-  function getProfile() {
+  function getProfile () {
     if (!userProfile) {
       var accessToken = localStorage.getItem('access_token')
 
@@ -112,7 +111,7 @@ window.addEventListener('load', function () {
     }
   }
 
-  function displayProfile() {
+  function displayProfile () {
     // display the profile
     document.querySelector('#profile-view .nickname').innerHTML =
       userProfile.nickname
