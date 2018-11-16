@@ -7,6 +7,9 @@ const orm = require('../models/orm')
 // The main view is actually going to be restaurant ratings. As written above, we would be displaying all the user information to anyone who visits the site.
 
 router
+  .get('https://apmtpc.auth0.com/userinfo', (req, res, next) => {
+    console.log(res)
+  })
   .get('/views/profile', (req, res) => {
     orm.selectAllFromTable(
       // table to select from
