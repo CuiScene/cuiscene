@@ -78,12 +78,12 @@ window.addEventListener('load', function () {
       loginBtn.style.display = 'none'
       main_navbar.style.display = 'none'
       logoutBtn.style.display = 'inline-block'
-      loginStatus.innerHTML = 'You are logged in!'
+     // loginStatus.innerHTML = 'You are logged in!'
     } else {
       loginBtn.style.display = 'inline-block'
       logoutBtn.style.display = 'none'
-      loginStatus.innerHTML =
-        'You are not logged in! Please log in to continue.'
+      //loginStatus.innerHTML =
+        //'You are not logged in! Please log in to continue.'
     }
   }
 
@@ -113,14 +113,14 @@ window.addEventListener('load', function () {
 
   function displayProfile () {
     // display the profile
-    document.querySelector('#profile-view .nickname').innerHTML =
-      userProfile.nickname
+    //document.querySelector('#profile-view .nickname').innerHTML =
+      //userProfile.nickname
 
-    document.querySelector(
-      '#profile-view .full-profile'
-    ).innerHTML = JSON.stringify(userProfile, null, 2)
+    //document.querySelector(
+      //'#profile-view .full-profile'
+    //).innerHTML = JSON.stringify(userProfile, null, 2)
 
-    document.querySelector('#profile-view img').src = userProfile.picture
+    //document.querySelector('#profile-view img').src = userProfile.picture
   }
 
   handleAuthentication()

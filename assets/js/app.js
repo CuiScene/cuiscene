@@ -60,5 +60,41 @@ $(function () {
   })
 })
 
-zomatoCitySearch('cleveland')
-nutritionix('for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots')
+$('.btn-addingr').on('click', function() {
+  var count = Number($(this).attr("data-count"))
+  count +=1
+  $(this).attr("data-count", count)
+  var newDiv = $("<div>")
+  var ping = $("<p>").text("Ingredient " + count)
+  var newin = $("<input>")
+  newin.attr("class", "ing" + count)
+  var pam = $("<p>").text("Amount")
+  var newin2 = $("<input>")
+  newin2.attr("class", "am" + count)
+  var nselect = $("<select>")
+  nselect.attr("class", "amounttype" + count)
+  var opt1 = $("<option>").attr("value", "cup").text("Cup")
+  var opt2 = $("<option>").attr("value", "tbs").text("TBS")
+  var opt3 = $("<option>").attr("value", "tsp").text("TSP")
+
+  nselect.append(opt1)
+  nselect.append(opt2)
+  nselect.append(opt3)
+
+  newDiv.append(ping)
+  newDiv.append(newin)
+  newDiv.append(pam)
+  newDiv.append(newin2)
+  newDiv.append(nselect)
+
+  $(".indiv").append(newDiv)
+})
+
+$('.btn-addrecipe').on('click', function() {
+  var count = Number($('.btn-addingr').attr("data-count"))
+  var searchstring = ""
+  for(i=1;i<count+1;i++) {
+    searchstring += $(".am" + i).val() + " " + $(".amounttype" + i).val() + " " + $(".ing" + i).val() + " " 
+  }
+  nutritionix(searchstring)
+})
