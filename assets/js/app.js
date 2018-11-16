@@ -129,7 +129,7 @@ $('.btn-addrecipe').on('click', function() {
   }
   nutritionix(searchstring)
 })
-=======zomatoCitySearch('cleveland')
+zomatoCitySearch('cleveland')
 zomatoSearch('valentinos')
 nutritionix('for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots')
 
