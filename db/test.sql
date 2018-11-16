@@ -1,3 +1,3 @@
-USE cuiscene_db
+USE cuiscene_db;
 
-select * from recipes
+select * from recipes;
