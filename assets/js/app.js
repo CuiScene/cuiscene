@@ -8,9 +8,28 @@ var zomatoCitySearch = function (city) {
     headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
   })
     .then(function (response) {
-      console.log(response)
+      console.log(response.location_suggestions[0])
+      // console.log(response[0])
     })
 }
+
+var zomatoSearch = function (restaurantSearch) {
+  var queryurl = 'https://developers.zomato.com/api/v2.1/search?q=' + restaurantSearch
+  $.ajax({
+    url: queryurl,
+    type: 'GET',
+    dataType: 'json',
+    headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
+  })
+    .then(function (response) {
+      console.log(response.restaurants[0])
+      // console.log(response[0])
+      console.log(response.restaurants[0].restaurant.name)
+      console.log(response.restaurants[0].restaurant.id)
+    })
+}
+
+
 var nutritionix = function (food) {
   var settings = {
     'async': true,
@@ -59,6 +78,7 @@ $(function () {
     )
   })
 })
+
 
 $('.btn-addingr').on('click', function() {
   var count = Number($(this).attr("data-count"))
@@ -109,3 +129,7 @@ $('.btn-addrecipe').on('click', function() {
   }
   nutritionix(searchstring)
 })
+=======zomatoCitySearch('cleveland')
+zomatoSearch('valentinos')
+nutritionix('for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots')
+

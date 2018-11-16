@@ -9,7 +9,15 @@
 
 .avatar {
     max-width: 200px;
-};
+}
+
+/* .tab-content.hide{
+    display: none;
+}
+
+.tab-content.active{
+    display: block;
+} */
 
 .ing1 {
     width: 100%;

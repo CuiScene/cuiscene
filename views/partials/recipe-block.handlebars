@@ -38,6 +38,22 @@
         from {{restaurant_name_fk}}
         {{/if}}
       </p>
+      PARTIALS FROM RECIPIES
+      <p>
+        {{#if recipe-details-subheader}}
+        Recipe Details: {{> recipe-details-subheader}}
+        {{/if}}
+      </p>
+      <p>
+        {{#if recipe-ingredients}}
+        Ingredients: {{> recipe-ingredients}}
+        {{/if}}
+      </p>
+      <p>
+        {{#if recipe-instructions}}
+        Instructions: {{> recipe-instructions}}
+        {{/if}}
+      </p>
     </div>
 
   </div>
