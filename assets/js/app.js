@@ -69,17 +69,24 @@ $('.btn-addingr').on('click', function() {
   var newin = $("<input>")
   newin.attr("class", "ing" + count)
   var pam = $("<p>").text("Amount")
-  var newin2 = $("<input>")
+  var newin2 = $("<select>")
   newin2.attr("class", "am" + count)
   var nselect = $("<select>")
   nselect.attr("class", "amounttype" + count)
   var opt1 = $("<option>").attr("value", "cup").text("Cup")
   var opt2 = $("<option>").attr("value", "tbs").text("TBS")
   var opt3 = $("<option>").attr("value", "tsp").text("TSP")
+  var opt4 = $("<option>").attr("value", "oz").text("oz")
+
+  for(i=1;i<11;i++) {
+    var nopt = $("<option>").attr("value", i).text(i)
+    newin2.append(nopt)
+  }
 
   nselect.append(opt1)
   nselect.append(opt2)
   nselect.append(opt3)
+  nselect.append(opt4)
 
   newDiv.append(ping)
   newDiv.append(newin)
@@ -91,6 +98,10 @@ $('.btn-addingr').on('click', function() {
 })
 
 $('.btn-addrecipe').on('click', function() {
+  if($(".ing1").val().trim() === ""){
+    console.log("ingredient 1 must have value")
+    return
+  }
   var count = Number($('.btn-addingr').attr("data-count"))
   var searchstring = ""
   for(i=1;i<count+1;i++) {
