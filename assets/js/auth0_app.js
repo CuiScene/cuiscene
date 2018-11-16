@@ -82,7 +82,7 @@ window.addEventListener('load', function () {
       profileDiv.style.display = 'inline-block'
       profileButton.style.display = 'inline-block'
       logoutBtn.style.display = 'inline-block'
-      loginStatus.innerHTML = 'You are logged in!'
+     // loginStatus.innerHTML = 'You are logged in!'
     } else {
       homeDiv.style.display = 'inline-block'
       profileDiv.style.display = 'none'
@@ -118,14 +118,14 @@ window.addEventListener('load', function () {
 
   function displayProfile() {
     // display the profile
-    document.querySelector('#profile-view .nickname').innerHTML =
-      userProfile.nickname
+    //document.querySelector('#profile-view .nickname').innerHTML =
+      //userProfile.nickname
 
-    document.querySelector(
-      '#profile-view .full-profile'
-    ).innerHTML = JSON.stringify(userProfile, null, 2)
+    //document.querySelector(
+      //'#profile-view .full-profile'
+    //).innerHTML = JSON.stringify(userProfile, null, 2)
 
-    document.querySelector('#profile-view img').src = userProfile.picture
+    //document.querySelector('#profile-view img').src = userProfile.picture
   }
 
   handleAuthentication()

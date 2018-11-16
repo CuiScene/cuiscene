@@ -8,9 +8,28 @@ var zomatoCitySearch = function (city) {
     headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
   })
     .then(function (response) {
-      console.log(response)
+      console.log(response.location_suggestions[0])
+      // console.log(response[0])
     })
 }
+
+var zomatoSearch = function (restaurantSearch) {
+  var queryurl = 'https://developers.zomato.com/api/v2.1/search?q=' + restaurantSearch
+  $.ajax({
+    url: queryurl,
+    type: 'GET',
+    dataType: 'json',
+    headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
+  })
+    .then(function (response) {
+      console.log(response.restaurants[0])
+      // console.log(response[0])
+      console.log(response.restaurants[0].restaurant.name)
+      console.log(response.restaurants[0].restaurant.id)
+    })
+}
+
+
 var nutritionix = function (food) {
   var settings = {
     'async': true,
@@ -60,5 +79,57 @@ $(function () {
   })
 })
 
-zomatoCitySearch('cleveland')
+
+$('.btn-addingr').on('click', function() {
+  var count = Number($(this).attr("data-count"))
+  count +=1
+  $(this).attr("data-count", count)
+  var newDiv = $("<div>")
+  var ping = $("<p>").text("Ingredient " + count)
+  var newin = $("<input>")
+  newin.attr("class", "ing" + count)
+  var pam = $("<p>").text("Amount")
+  var newin2 = $("<select>")
+  newin2.attr("class", "am" + count)
+  var nselect = $("<select>")
+  nselect.attr("class", "amounttype" + count)
+  var opt1 = $("<option>").attr("value", "cup").text("Cup")
+  var opt2 = $("<option>").attr("value", "tbs").text("TBS")
+  var opt3 = $("<option>").attr("value", "tsp").text("TSP")
+  var opt4 = $("<option>").attr("value", "oz").text("oz")
+
+  for(i=1;i<11;i++) {
+    var nopt = $("<option>").attr("value", i).text(i)
+    newin2.append(nopt)
+  }
+
+  nselect.append(opt1)
+  nselect.append(opt2)
+  nselect.append(opt3)
+  nselect.append(opt4)
+
+  newDiv.append(ping)
+  newDiv.append(newin)
+  newDiv.append(pam)
+  newDiv.append(newin2)
+  newDiv.append(nselect)
+
+  $(".indiv").append(newDiv)
+})
+
+$('.btn-addrecipe').on('click', function() {
+  if($(".ing1").val().trim() === ""){
+    console.log("ingredient 1 must have value")
+    return
+  }
+  var count = Number($('.btn-addingr').attr("data-count"))
+  var searchstring = ""
+  for(i=1;i<count+1;i++) {
+    searchstring += $(".am" + i).val() + " " + $(".amounttype" + i).val() + " " + $(".ing" + i).val() + " " 
+  }
+  nutritionix(searchstring)
+})
+=======zomatoCitySearch('cleveland')
+zomatoSearch('valentinos')
 nutritionix('for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots')
+

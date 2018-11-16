@@ -6,21 +6,20 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.5.0/modern-normalize.min.css"
     integrity="sha256-N6+kUxTWxpqVK+BrPWt3t4jeOWPtp37RZEbm5n9X+8U=" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
     crossorigin="anonymous">
+
   <link rel="stylesheet" href="../../css/style.css">
 
 </head>
 
 <body>
 
-  {{!-- <div id="loading">
-    <img src="assets/loading.svg" alt="Loading spinner">
-  </div> --}}
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-navbar">
     <a class="navbar-brand" href="/">CuiScene</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -33,15 +32,8 @@
         <li class="nav-item active">
           <a class="nav-link" href="/" id="btn-home-view">Home<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/views/profile" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            My Profile
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/tabs/user-log-add">Add Restaurant Experience</a>
-            <a class="dropdown-item" href="/tabs/user-recipe-add">Add Recipe</a>
-          </div>
+                <li class="nav-item active">
+          <a class="nav-link" href="/views/profile" id="btn-home-view">My Profile</a>
         </li>
       </ul>
       <button id="btn-login" class="btn btn-primary btn-margin" style="display: none;">
@@ -77,19 +69,33 @@
   </main>
   </div> --}}
 
-  {{!-- <h2 class="addtxt">Add a User Testing</h2>
-  <form class="create-form">
-
-    <div class="form-group">
-      <label for="ca"></label>
-      <p>Username </p>
-      <input class="addin" type="text" id="uname" name="username"><br><br>
-      <p>Zipcode </p>
-      <input class="addin" type="text" id="zip" name="zipcode">
-    </div>
-
-    <button class="btn addbtn btn-success" type="submit">Add User</button>
-  </form> --}}
+<div class="indiv">
+  <div class="div1">
+    <p class="hello">Ingredient 1</p>
+    <input type="input" name="ing1" class="ing1"><br>
+    <p>Amount</p>
+    <select class="am1">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+    <select class="amounttype1">
+      <option value="cup">Cup</option>
+      <option value="tbs">TBS</option>
+      <option value="tsp">TSP</option>
+      <option value="oz">oz</option>
+    </select>
+  </div>
+</div>
+<input type="button" value="Add another ingredient" class="btn-addingr" data-count=1><br><br>
+<input type="button" value="Submit recipe" class="btn-addrecipe"><br><br>
 
 
   <script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>
