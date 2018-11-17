@@ -47,6 +47,12 @@ app.set('view engine', 'handlebars')
 app.use(dbRoutes)
 app.use(viewRoutes)
 
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  next()
+})
+
 // Start our server so that it can begin listening to client requests.
 app.listen(PORT, function () {
   // Log (server-side) when our server has started

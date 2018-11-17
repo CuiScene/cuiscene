@@ -1,4 +1,3 @@
-
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
   var webAuth = new auth0.WebAuth({
@@ -6,11 +5,13 @@ window.addEventListener('load', function () {
     clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
     responseType: 'token id_token',
     scope: 'openid profile',
-    redirectUri: window.location.href
+    redirectUri: 'http://localhost:8080'
   })
 
   var loginBtn = document.getElementById('btn-login')
-  var main_navbar = this.document.getElementById('main-navbar')
+  var homeDiv = document.getElementById('homeDiv')
+  var profileDiv = document.getElementById('profileDiv')
+  var profileButton = document.getElementById('btn-profile')
 
   loginBtn.addEventListener('click', function (e) {
     e.preventDefault()
@@ -32,7 +33,7 @@ window.addEventListener('load', function () {
 
   logoutBtn.addEventListener('click', logout)
 
-  function handleAuthentication () {
+  function handleAuthentication() {
     webAuth.parseHash(function (err, authResult) {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = ''
@@ -48,7 +49,7 @@ window.addEventListener('load', function () {
     })
   }
 
-  function setSession (authResult) {
+  function setSession(authResult) {
     // Set the time that the Access Token will expire at
     var expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
@@ -58,7 +59,7 @@ window.addEventListener('load', function () {
     localStorage.setItem('expires_at', expiresAt)
   }
 
-  function logout () {
+  function logout() {
     // Remove tokens and expiry time from localStorage
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
@@ -66,30 +67,33 @@ window.addEventListener('load', function () {
     displayButtons()
   }
 
-  function isAuthenticated () {
+  function isAuthenticated() {
     // Check whether the current time is past the
     // Access Token's expiry time
     var expiresAt = JSON.parse(localStorage.getItem('expires_at'))
     return new Date().getTime() < expiresAt
   }
 
-  function displayButtons () {
+  function displayButtons() {
     if (isAuthenticated()) {
       loginBtn.style.display = 'none'
-      main_navbar.style.display = 'none'
+      homeDiv.style.display = 'none'
+      profileDiv.style.display = 'inline-block'
+      profileButton.style.display = 'inline-block'
       logoutBtn.style.display = 'inline-block'
-      loginStatus.innerHTML = 'You are logged in!'
+     // loginStatus.innerHTML = 'You are logged in!'
     } else {
+      homeDiv.style.display = 'inline-block'
+      profileDiv.style.display = 'none'
+      profileButton.style.display = 'none'
       loginBtn.style.display = 'inline-block'
       logoutBtn.style.display = 'none'
-      loginStatus.innerHTML =
-        'You are not logged in! Please log in to continue.'
     }
   }
 
   // app.js
   var userProfile
-  function getProfile () {
+  function getProfile() {
     if (!userProfile) {
       var accessToken = localStorage.getItem('access_token')
 
@@ -111,16 +115,16 @@ window.addEventListener('load', function () {
     }
   }
 
-  function displayProfile () {
+  function displayProfile() {
     // display the profile
-    document.querySelector('#profile-view .nickname').innerHTML =
-      userProfile.nickname
+    //document.querySelector('#profile-view .nickname').innerHTML =
+      //userProfile.nickname
 
-    document.querySelector(
-      '#profile-view .full-profile'
-    ).innerHTML = JSON.stringify(userProfile, null, 2)
+    //document.querySelector(
+      //'#profile-view .full-profile'
+    //).innerHTML = JSON.stringify(userProfile, null, 2)
 
-    document.querySelector('#profile-view img').src = userProfile.picture
+    //document.querySelector('#profile-view img').src = userProfile.picture
   }
 
   handleAuthentication()
