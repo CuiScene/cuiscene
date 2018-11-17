@@ -87,59 +87,10 @@ $("#search").on("click", function (event) {
 
 });
 
-var nutritionix = function (food) {
-  var settings = {
-    'async': true,
-    'crossDomain': true,
-    'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-    'method': 'POST',
-    'headers': {
-      'content-type': 'application/json',
-      'accept': 'application/json',
-      'x-app-id': 'c0d82573',
-      'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
-      'x-remote-user-id': '0',
-      'cache-control': 'no-cache'
-    },
-    'processData': false,
-    'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
-}
-  $.ajax(settings).done(function (response) {
-    console.log(response)
-  })
-}
-
-$(function () {
-  $('.create-form').on('submit', function (event) {
-    event.preventDefault()
-
-    var newUser = {
-      username_pk: $('#uname').val().trim(),
-      birthday: $('#bday').val().trim(),
-      restrictions: $('#restrict').val().trim(),
-      zipcode: $('#zip').val().trim()
-    }
-    console.log(newUser)
-    
-    // Send the POST request.
-    $.ajax('/api/users', {
-      type: 'POST',
-      data: newUser
-    }).then(
-      function () {
-        console.log('created new user')
-        // Reload the page to get the updated list
-        // location.reload();
-      }
-    )
-  })
-})
-
-// 'Add Ingredient' on click functionality
-$('.btn-addingr').on('click', function () {
-  var count = Number($(this).attr("data-count"))
+var addingredient = function() {
+  var count = Number($(".btn-addingr").attr("data-count"))
   count += 1
-  $(this).attr("data-count", count)
+  $(".btn-addingr").attr("data-count", count)
   var newDiv = $("<div>")
   var ping = $("<p class=\"ingtag\">").text("Ingredient " + count + ":")
   var newin = $("<input>")
@@ -174,23 +125,89 @@ $('.btn-addingr').on('click', function () {
   newDiv.append(namdiv)
 
   $(".indiv").append(newDiv)
+}
+var nutritionix = function (food) {
+  var settings = {
+    'async': true,
+    'crossDomain': true,
+    'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
+    'method': 'POST',
+    'headers': {
+      'content-type': 'application/json',
+      'accept': 'application/json',
+      'x-app-id': 'c0d82573',
+      'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
+      'x-remote-user-id': '0',
+      'cache-control': 'no-cache'
+    },
+    'processData': false,
+    'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
+}
+  $.ajax(settings).done(function (response) {
+    console.log(response)
+  }).fail(function(jqXHR, textStatus, errorThrown){
+    if(jqXHR.status == 404) {
+      $(".errorp").text("ERROR: Ingredients not found")
+      $(".errorp").css("display", "block")
+    }
+});
+}
+
+$(function () {
+  $('.create-form').on('submit', function (event) {
+    event.preventDefault()
+
+    var newUser = {
+      username_pk: $('#uname').val().trim(),
+      birthday: $('#bday').val().trim(),
+      restrictions: $('#restrict').val().trim(),
+      zipcode: $('#zip').val().trim()
+    }
+    console.log(newUser)
+    
+    // Send the POST request.
+    $.ajax('/api/users', {
+      type: 'POST',
+      data: newUser
+    }).then(
+      function () {
+        console.log('created new user')
+        // Reload the page to get the updated list
+        // location.reload();
+      }
+    )
+  })
+})
+
+// 'Add Ingredient' on click functionality
+$('.btn-addingr').on('click', function () {
+  addingredient();
 })
 
 
 // Matt's code for submit button on 'add recipe form'
 $('.btn-addrecipe').on('click', function() {
-  if($("#ing1").val().trim() === ""){
-    console.log("ingredient 1 must have value")
+  $(".errorp").css("display", "none");
+  if($(".ing1").val().trim() === ""){
+    $(".errorp").text("Ingredient 1 must have input")
+    $(".errorp").css("display", "block")
+    return
   }
   var count = Number($('.btn-addingr').attr("data-count"))
   var searchstring = ""
 
   for(i=1;i<count+1;i++) {
-    searchstring += $("#am" + i).val() + " " + $(".amounttype" + i).val() + " " + $("#ing" + i).val() + " " 
-    $().push("#am" + i).val()
+    searchstring += $(".am" + i).val() + " " + $(".amounttype" + i).val() + " " + $(".ing" + i).val() + " " 
+    //$().push(".am" + i).val()
   }
   nutritionix(searchstring)
+  $(".ing").val("")
 })
+
+addingredient()
+addingredient()
+addingredient()
+
 // zomatoCitySearch('cleveland')
 // zomatoSearch('barrio')
 
