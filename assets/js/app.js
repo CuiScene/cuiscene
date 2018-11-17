@@ -8,7 +8,6 @@ var zomatoSearch = function (restaurantSearch) {
       'user-key': '46a9d8c42a9a6217ff47dae868a48873'
     }
   }).then(function (response) {
-    console.log('response = ', response)
     updatePage(response)
   });
 }
@@ -250,5 +249,4 @@ addingredient()
 // });
 
 // Test calls of our APIs
-// zomatoSearch('valentinos')
 
