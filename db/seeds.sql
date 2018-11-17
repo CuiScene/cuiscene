@@ -96,33 +96,30 @@
 INSERT INTO recipe_ratings (recipe_id_fk,recipe_name_fk,recipe_rating,recipe_notes,date_submitted)
 VALUES ("1","Veggie Soup","4","Perfect temperature and lots of veggies but was under-seasoned.",CURRENT_TIMESTAMP);
 
-INSERT INTO recipe_details (recipe_id_pk_fk,recipe_name_pk_fk,servings,serving_size,preptime,cooktime)
-VALUES ("1","Veggie Soup","8","1 cup","15 minutes","20 minutes");
-
-INSERT INTO recipe_ingredients (recipe_id_pk_fk,recipe_name_pk_fk,ingredient1_name,ingredient1_amount)
-VALUES ("1","Veggie Soup","carrots","1 cup");
-VALUES ("1","Veggie Soup","celery, chopped","1 cup");
-VALUES ("1","Veggie Soup","peas, shelled","1 cup");
-VALUES ("1","Veggie Soup","broccoli florets","1 cup");
-VALUES ("1","Veggie Soup","cauliflower florets","1 cup");
-VALUES ("1","Veggie Soup","mushrooms, sliced","1 cup");
-VALUES ("1","Veggie Soup","onion, chopped","0.5 cup");
-VALUES ("1","Veggie Soup","garlic, minced","2 tablespoons");
-VALUES ("1","Veggie Soup","olive oil","1 tablespoon");
-VALUES ("1","Veggie Soup","red wine vinegar","1 teaspoon");
-VALUES ("1","Veggie Soup","canned tomatoes, undrained","24 ounces");
-VALUES ("1","Veggie Soup","vegetable broth","4 cup");
-VALUES ("1","Veggie Soup","thyme","0.5 teaspoon");
-VALUES ("1","Veggie Soup","salt","1 teaspoon");
-VALUES ("1","Veggie Soup","black pepper, ground","0.5 teaspoon");
-VALUES ("1","Veggie Soup","bay leaves, whole","2");
-UPDATE recipe_ingredients SET ingredient1_amount = 'carrots, chopped' WHERE recipe_id_pk_fk = '1'
-
-INSERT INTO recipe_instructions (recipe_id_pk_fk,recipe_name_pk_fk,step_one)
-VALUES ("1","Gather the ingredients and prep veggies.","Veggie Soup");
-VALUES ("1","Heat oil in a large soup or stock pot. Add the chopped onion, minced garlic, chopped celery, and sliced carrots. Sauté, stirring for 3 to 4 minutes, until onions are soft, but brown.","Veggie Soup");
-VALUES ("1","Add all other vegetables and heat for 4-5 minutes more.","Veggie Soup");
-VALUES ("1","Add salt, pepper, and thyme, stirring to coat the vegetables well.","Veggie Soup");
-VALUES ("1","Add bay leaf, vegetable broth, and undrained tomatoes. Bring to a boil, stir, reduce heat, and simmer until the vegetables are tender.","Veggie Soup");
-VALUES ("1","After 10-15 minutes of simmering, taste the soup and adjust seasonings as needed.","Veggie Soup");
-VALUES ("1","Remove the bay leaf and serve your homemade vegetable soup with a sprinkle of Parmesan cheese substitute and/or some crusty bread or crackers.","Veggie Soup");
+INSERT INTO recipe_details (recipe_id_pk_fk,recipe_name_pk_fk,servings,serving_size,preptime,cooktime,ingredients,instructions)
+VALUES ("1","Veggie Soup","8","1 cup","15 minutes","20 minutes",
+    '[ "1 cup chopped carrots", 
+        "1 cup chopped celery", 
+        "1 cup frozen peas", 
+        "1 cup broccoli florets", 
+        "1 cup cauliflower florets", 
+        "1 cup sliced mushrooms", 
+        "0.5 cup chopped onion", 
+        "2 tbsp minced garlic", 
+        "1 tbsp olive oil", 
+        "1 tsp red wine vinegar", 
+        "24 oz undrained canned tomatoes", 
+        "4 cup vegetable broth", 
+        "0.5 tsp thyme", 
+        "1 tsp salt", 
+        "0.5 tsp ground black pepper", 
+        "2 whole bay leaves"
+    ]', 
+    '["Gather the ingredients and prep veggies.",
+    "Heat oil in a large soup or stock pot. Add the chopped onion, minced garlic, chopped celery, and sliced carrots. Sauté, stirring for 3 to 4 minutes, until onions are soft, but brown.",
+    "Add all other vegetables and heat for 4-5 minutes more.",
+    "Add salt, pepper, and thyme, stirring to coat the vegetables well.",
+    "Add bay leaf, vegetable broth, and undrained tomatoes. Bring to a boil, stir, reduce heat, and simmer until the vegetables are tender.",
+    "After 10-15 minutes of simmering, taste the soup and adjust seasonings as needed.",
+    "Remove the bay leaf and serve your homemade vegetable soup with a sprinkle of Parmesan cheese substitute and/or some crusty bread or crackers.
+    ]');
