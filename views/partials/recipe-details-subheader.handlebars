@@ -1,6 +1,6 @@
 {{#each recipe_details}}
   
-  <p>
+  <div>
     {{#if servings}}
       Servings: {{this.servings}} | 
     {{/if}}
@@ -16,6 +16,7 @@
     {{#if cooktime}}
       Cook Time: {{this.cooktime}}
     {{/if}}
-  </p>
+  </div>
 
 {{/each}}
+

@@ -5,7 +5,7 @@
   <div class="card">
 
     <div class="card-header">
-      <h3>{{this.recipe_name}}</h3>
+      <h3>{{this.recipe_name_pk}}</h3>
       <small>
         {{#if recipe_date}}
         Recipe Added: {{this.recipe_date}}
@@ -14,6 +14,15 @@
     </div>
 
     <div class="card-body">
+      <p>
+        {{#if restaurant_menu_item}}
+        Dish Inspired By: {{this.restaurant_menu_item}}
+        {{/if}}
+
+        {{#if restaurant_name_fk}}
+        from {{restaurant_name_fk}}
+        {{/if}}
+      </p>
       <p>Cuisine:
         {{#if recipe_cuisine}}
         {{this.recipe_cuisine}}
@@ -29,13 +38,20 @@
         Rating: {{this.recipe_rating}}
         {{/if}}
       </p>
+      
       <p>
-        {{#if restaurant_menu_item}}
-        Dish Inspired By: {{this.restaurant_menu_item}}
+        {{#if recipe-details-subheader}}
+        Recipe Details: {{> recipe-details-subheader}}
         {{/if}}
-
-        {{#if restaurant_name_fk}}
-        from {{restaurant_name_fk}}
+      </p>
+      <p>
+        {{#if recipe-ingredients}}
+        Ingredients: {{> recipe-ingredients}}
+        {{/if}}
+      </p>
+      <p>
+        {{#if recipe-instructions}}
+        Instructions: {{> recipe-instructions}}
         {{/if}}
       </p>
     </div>

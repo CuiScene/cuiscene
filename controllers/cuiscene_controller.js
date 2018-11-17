@@ -7,7 +7,10 @@ const orm = require('../models/orm')
 // The main view is actually going to be restaurant ratings. As written above, we would be displaying all the user information to anyone who visits the site.
 
 router
-  .get('/views/profile', (req, res) => {
+  .get('https://apmtpc.auth0.com/userinfo', (req, res, next) => {
+    console.log(res)
+  })
+  .get('/', (req, res) => {
     orm.selectAllFromTable(
       // table to select from
       'recipes',
@@ -17,7 +20,7 @@ router
           throw err
         }
         console.log(data)
-        res.render('profile', { recipes: data })
+        res.render('index', { recipes: data })
       })
   })
   .get('/recipes', (req, res) => {
@@ -41,7 +44,7 @@ router.post('/api/users', (req, res) => {
     // table to insert Into
     'users',
     // columns to insert into, listed as an array of strings
-    ['username_pk', 'birthday', 'restrictions', 'zipcode'],
+    ['username_pk', 'date_created'],
     // values to insert....Object.values will return an array of the values from the form
     Object.values(req.body),
     // callback function
