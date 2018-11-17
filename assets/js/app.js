@@ -7,7 +7,7 @@ var zomatoSearch = function (restaurantSearch) {
     headers: {
       'user-key': '46a9d8c42a9a6217ff47dae868a48873'
     }
-  }).then(function(response) {
+  }).then(function (response) {
     console.log('response = ', response)
     updatePage(response)
   });
@@ -25,7 +25,7 @@ var updatePage = function (restaurantData) {
   //Loop through restaurants and display on page
   //Requirement: Repeating element
   for (var i = 0; i < 10; i++) {
-    
+
     var restaurant = restaurantData.restaurants[i].restaurant;
 
     // Create the  list group to contain the restaurants and add the restaurant content for each
@@ -35,12 +35,18 @@ var updatePage = function (restaurantData) {
     // Add the newly created element to the DOM
     $("#restaurant-list").append($restaurantList);
 
-    // If the restaurant has a headline, log and append to $restaurantList
+    // If the restaurant is available, log and append to $restaurantList
     var restaurantName = restaurant.name;
     var $restaurantListItem = $("<li class='list-group-item restaurantName'>");
     if (restaurantName) {
       $restaurantListItem.append(
-        "<a href='" + restaurant.web_url + "' target='_blank'><strong>" + restaurantName + "</strong></a>");
+        "<a href='" + restaurant.url + "' target='_blank'><strong>" + restaurantName + "</strong></a>");
+    }
+    var menu = restaurant.url;
+    if (menu) {
+      var menuLink = $("<a href='" + menu + "' target='_blank'>View Menu</a>");
+      menuLink.addClass("menuLink");
+      $restaurantListItem.append(menuLink);
     }
 
     // Append the ID to document if exists
@@ -56,16 +62,16 @@ var updatePage = function (restaurantData) {
     }
 
     // Append section to document if exists
-    var city = restaurant.location.city;
-    if (city) {
-      $restaurantListItem.append("<h6>Location: " + city + "</h6>");
+    var locality = restaurant.location.locality_verbose;
+    if (locality) {
+      $restaurantListItem.append("<h6>Location: " + locality + "</h6>");
     }
 
     // Append section to document if exists
-    // var cuisines = restaurant.cuisines;
-    // if (cuisines) {
-    //   $restaurantListItem.append("<h6>Cuisines: " + cuisines + "</h6>");
-    // }
+    var cuisines = restaurant.cuisines;
+    if (cuisines) {
+      $restaurantListItem.append("<h6>Cuisines: " + cuisines + "</h6>");
+    }
 
     // Append the restaurant
     $restaurantList.append($restaurantListItem);
@@ -85,6 +91,45 @@ $("#search").on("click", function (event) {
 
 });
 
+var addingredient = function() {
+  var count = Number($(".btn-addingr").attr("data-count"))
+  count += 1
+  $(".btn-addingr").attr("data-count", count)
+  var newDiv = $("<div>")
+  var ping = $("<p class=\"ingtag\">").text("Ingredient " + count + ":")
+  var newin = $("<input>")
+  var namdiv = $("<div class=\"amdiv\">")
+  newin.attr("class", "ing ing" + count)
+  var pam = $("<p class=\"amtag\">").text("Amount:")
+  var newin2 = $("<select class=>")
+  newin2.attr("class", "am am" + count)
+  var nselect = $("<select>")
+  nselect.attr("class", "am amounttype" + count)
+  var opt1 = $("<option>").attr("value", "cup").text("Cup")
+  var opt2 = $("<option>").attr("value", "tbs").text("TBS")
+  var opt3 = $("<option>").attr("value", "tsp").text("TSP")
+  var opt4 = $("<option>").attr("value", "oz").text("oz")
+
+  for (i = 1; i < 11; i++) {
+    var nopt = $("<option>").attr("value", i).text(i)
+    newin2.append(nopt)
+  }
+
+  nselect.append(opt1)
+  nselect.append(opt2)
+  nselect.append(opt3)
+  nselect.append(opt4)
+  
+  namdiv.append(pam)
+  namdiv.append(newin2)
+  namdiv.append(nselect)
+
+  newDiv.append(ping)
+  newDiv.append(newin)
+  newDiv.append(namdiv)
+
+  $(".indiv").append(newDiv)
+}
 var nutritionix = function (food) {
   var settings = {
     'async': true,
@@ -101,10 +146,18 @@ var nutritionix = function (food) {
     },
     'processData': false,
     'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
-}
+  }
   $.ajax(settings).done(function (response) {
-    console.log(response)
-  })
+    for(i=0;i<response.foods.length;i++) {
+      console.log(response.foods[i])
+      console.log(response.foods[i].nf_calories)
+    }
+  }).fail(function(jqXHR, textStatus, errorThrown){
+    if(jqXHR.status == 404) {
+      $(".errorp").text("ERROR: Ingredients not found")
+      $(".errorp").css("display", "block")
+    }
+});
 }
 
 $(function () {
@@ -118,7 +171,7 @@ $(function () {
       zipcode: $('#zip').val().trim()
     }
     console.log(newUser)
-    
+
     // Send the POST request.
     $.ajax('/api/users', {
       type: 'POST',
@@ -134,92 +187,68 @@ $(function () {
 })
 
 // 'Add Ingredient' on click functionality
-$('.btn-addingr').on('click', function() {
-
-  var count = Number($(this).attr("data-count"))
-  count += 1
-  $(this).attr("data-count", count)
-  var newDiv = $("<div>")
-  var ping = $("<p>").text("Ingredient " + count)
-  var newin = $("<input>")
-  newin.attr("id", "ing" + count)
-  var pam = $("<p>").text("Amount")
-  var newin2 = $("<select>")
-  newin2.attr("id", "am" + count)
-  var nselect = $("<select>")
-  nselect.attr("class", "amounttype" + count)
-  var opt1 = $("<option>").attr("value", "cups").text("cups")
-  var opt2 = $("<option>").attr("value", "tbsp").text("tbsp")
-  var opt3 = $("<option>").attr("value", "tsp").text("tsp")
-  var opt4 = $("<option>").attr("value", "oz").text("oz")
-
-  for (i = 1; i < 11; i++) {
-    var nopt = $("<option>").attr("value", i).text(i)
-    newin2.append(nopt)
-  }
-
-  nselect.append(opt1)
-  nselect.append(opt2)
-  nselect.append(opt3)
-  nselect.append(opt4)
-
-  newDiv.append(ping)
-  newDiv.append(newin)
-  newDiv.append(pam)
-  newDiv.append(newin2)
-  newDiv.append(nselect)
-
-  $(".create-recipe").append(newDiv)
+$('.btn-addingr').on('click', function () {
+  addingredient();
 })
 
 // 'Add Instructions' on click functionality
-$('.btn-addinst').on('click', function() {
+$('.btn-addinst').on('click', function () {
   var count = Number($(this).attr("data-count"))
-  count +=1
+  count += 1
   $(this).attr("data-count", count)
   var newDiv = $("<div>")
   var pinst = $("<p>").text("Step " + count)
   var newinst = $("<input>")
   newinst.attr("id", "inst" + count)
-  
+
   newDiv.append(pinst)
   newDiv.append(newinst)
 
-  $(".create-recipe").append(newDiv)
+  $(".indiv").append(newDiv)
 })
 
 
 // Matt's code for submit button on 'add recipe form'
 $('.btn-addrecipe').on('click', function() {
-  if($("#ing1").val().trim() === ""){
-    console.log("ingredient 1 must have value")
+  $(".errorp").css("display", "none");
+  if($(".ing1").val().trim() === ""){
+    $(".errorp").text("Ingredient 1 must have input")
+    $(".errorp").css("display", "block")
+    return
   }
   var count = Number($('.btn-addingr').attr("data-count"))
   var searchstring = ""
 
   for(i=1;i<count+1;i++) {
-    searchstring += $("#am" + i).val() + " " + $(".amounttype" + i).val() + " " + $("#ing" + i).val() + " " 
-    $().push("#am" + i).val()
+    searchstring += $(".am" + i).val() + " " + $(".amounttype" + i).val() + " " + $(".ing" + i).val() + " " 
+    //$().push(".am" + i).val()
   }
   nutritionix(searchstring)
+  $(".ing").val("")
 })
+
+addingredient()
+addingredient()
+addingredient()
+
+// zomatoCitySearch('cleveland')
+// zomatoSearch('barrio')
 
 // code from sample online for serializeArray()
 // $(document).ready(function() {
 //   $(".btn-addrecipe").click(function(event) {
 //     var newRecipe = $(".btn-addrecipe").serializeArray();
-    // newRecipe.push({
-    //   value: am1,
-    //   amount: amounttype1,
-    //   ingredient: ing1
-    // });
-    // jQuery.each( newRecipe, function( i, ingredients ) {
-    //   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
-    // });    
+// newRecipe.push({
+//   value: am1,
+//   amount: amounttype1,
+//   ingredient: ing1
+// });
+// jQuery.each( newRecipe, function( i, ingredients ) {
+//   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
+// });    
 //   });
 // });
 
 // Test calls of our APIs
 // zomatoSearch('valentinos')
 
-nutritionix('for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots')

@@ -10,9 +10,48 @@
 
 .avatar {
     max-width: 200px;
-};
+}
+
+.menuLink {
+    float: right;
+}
+
+.ingtag {
+    clear: both;
+    float: left;
+    margin-right: 5px;
+}
+
+.ing {
+    border-radius: 10px;
+    float: left;
+}
+.amdiv {
+    clear: both;
+}
+.amtag {
+    float: left;
+    margin-right: 32px;
+}
+.am {
+    float: left;
+    border-radius: 10px;
+}
+.btn-in {
+    clear: both;
+    float: left;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
 
 
+.btn-addrecipe {
+    background-color: springgreen;
+}
 
-
+.errorp {
+    clear: both;
+    display: none;
+    color: red;
+}
 
