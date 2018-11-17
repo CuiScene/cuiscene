@@ -1,31 +1,7 @@
-// var zomatoCitySearch = function (city) {
-//   var queryurl = 'https://developers.zomato.com/api/v2.1/cities?q=' + city
-//   $.ajax({
-//       url: queryurl,
-//       type: 'GET',
-//       dataType: 'json',
-//       headers: {
-//         'user-key': '46a9d8c42a9a6217ff47dae868a48873'
-//       }
-//     })
-//     .then(function (response) {
-//       console.log(response.location_suggestions[0])
-//       // console.log(response[0])
-//     })
-// }
 var zomatoSearch = function (restaurantSearch) {
-
-  //URL to API
-  var queryURL = "https://developers.zomato.com/api/v2.1/search?q=" + restaurantSearch;
-
-  //value to add
-  // console.log(queryURL)
-
-  //ajax request and then call updatePage function
-  console.log('query = '  + queryURL)
-
+  var queryurl = 'https://developers.zomato.com/api/v2.1/search?q=' + restaurantSearch
   $.ajax({
-    url: queryURL,
+    url: queryurl,
     type: 'GET',
     dataType: 'json',
     headers: {
@@ -94,6 +70,7 @@ var updatePage = function (restaurantData) {
     // Append the restaurant
     $restaurantList.append($restaurantListItem);
   }
+
 }
 
 $("#search").on("click", function (event) {
@@ -130,49 +107,50 @@ var nutritionix = function (food) {
   })
 }
 
-// $(function () {
-//   $('.create-form').on('submit', function (event) {
-//     // Make sure to preventDefault on a submit event.
-//     event.preventDefault()
+$(function () {
+  $('.create-form').on('submit', function (event) {
+    event.preventDefault()
 
-//     var newUser = {
-//       username_pk: $('#uname').val().trim(),
-//       birthday: $('#bday').val().trim(),
-//       restrictions: $('#restrict').val().trim(),
-//       zipcode: $('#zip').val().trim()
-//     }
-//     console.log(newUser)
-//     // Send the POST request.
-//     $.ajax('/api/users', {
-//       type: 'POST',
-//       data: newUser
-//     }).then(
-//       function () {
-//         console.log('created new user')
-//         // Reload the page to get the updated list
-//         // location.reload();
-//       }
-//     )
-//   })
-// })
+    var newUser = {
+      username_pk: $('#uname').val().trim(),
+      birthday: $('#bday').val().trim(),
+      restrictions: $('#restrict').val().trim(),
+      zipcode: $('#zip').val().trim()
+    }
+    console.log(newUser)
+    
+    // Send the POST request.
+    $.ajax('/api/users', {
+      type: 'POST',
+      data: newUser
+    }).then(
+      function () {
+        console.log('created new user')
+        // Reload the page to get the updated list
+        // location.reload();
+      }
+    )
+  })
+})
 
+// 'Add Ingredient' on click functionality
+$('.btn-addingr').on('click', function() {
 
-$('.btn-addingr').on('click', function () {
   var count = Number($(this).attr("data-count"))
   count += 1
   $(this).attr("data-count", count)
   var newDiv = $("<div>")
   var ping = $("<p>").text("Ingredient " + count)
   var newin = $("<input>")
-  newin.attr("class", "ing" + count)
+  newin.attr("id", "ing" + count)
   var pam = $("<p>").text("Amount")
   var newin2 = $("<select>")
-  newin2.attr("class", "am" + count)
+  newin2.attr("id", "am" + count)
   var nselect = $("<select>")
   nselect.attr("class", "amounttype" + count)
-  var opt1 = $("<option>").attr("value", "cup").text("Cup")
-  var opt2 = $("<option>").attr("value", "tbs").text("TBS")
-  var opt3 = $("<option>").attr("value", "tsp").text("TSP")
+  var opt1 = $("<option>").attr("value", "cups").text("cups")
+  var opt2 = $("<option>").attr("value", "tbsp").text("tbsp")
+  var opt3 = $("<option>").attr("value", "tsp").text("tsp")
   var opt4 = $("<option>").attr("value", "oz").text("oz")
 
   for (i = 1; i < 11; i++) {
@@ -191,21 +169,57 @@ $('.btn-addingr').on('click', function () {
   newDiv.append(newin2)
   newDiv.append(nselect)
 
-  $(".indiv").append(newDiv)
+  $(".create-recipe").append(newDiv)
 })
 
-$('.btn-addrecipe').on('click', function () {
-  if ($(".ing1").val().trim() === "") {
+// 'Add Instructions' on click functionality
+$('.btn-addinst').on('click', function() {
+  var count = Number($(this).attr("data-count"))
+  count +=1
+  $(this).attr("data-count", count)
+  var newDiv = $("<div>")
+  var pinst = $("<p>").text("Step " + count)
+  var newinst = $("<input>")
+  newinst.attr("id", "inst" + count)
+  
+  newDiv.append(pinst)
+  newDiv.append(newinst)
+
+  $(".create-recipe").append(newDiv)
+})
+
+
+// Matt's code for submit button on 'add recipe form'
+$('.btn-addrecipe').on('click', function() {
+  if($("#ing1").val().trim() === ""){
     console.log("ingredient 1 must have value")
-    return
   }
   var count = Number($('.btn-addingr').attr("data-count"))
   var searchstring = ""
-  for (i = 1; i < count + 1; i++) {
-    searchstring += $(".am" + i).val() + " " + $(".amounttype" + i).val() + " " + $(".ing" + i).val() + " "
+
+  for(i=1;i<count+1;i++) {
+    searchstring += $("#am" + i).val() + " " + $(".amounttype" + i).val() + " " + $("#ing" + i).val() + " " 
+    $().push("#am" + i).val()
   }
   nutritionix(searchstring)
 })
-// zomatoCitySearch('cleveland')
-// zomatoSearch('barrio')
+
+// code from sample online for serializeArray()
+// $(document).ready(function() {
+//   $(".btn-addrecipe").click(function(event) {
+//     var newRecipe = $(".btn-addrecipe").serializeArray();
+    // newRecipe.push({
+    //   value: am1,
+    //   amount: amounttype1,
+    //   ingredient: ing1
+    // });
+    // jQuery.each( newRecipe, function( i, ingredients ) {
+    //   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
+    // });    
+//   });
+// });
+
+// Test calls of our APIs
+// zomatoSearch('valentinos')
+
 nutritionix('for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots')
