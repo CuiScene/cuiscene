@@ -44,7 +44,7 @@ router.post('/api/users', (req, res) => {
     // table to insert Into
     'users',
     // columns to insert into, listed as an array of strings
-    ['username_pk', 'birthday', 'restrictions', 'zipcode'],
+    ['username_pk', 'date_created'],
     // values to insert....Object.values will return an array of the values from the form
     Object.values(req.body),
     // callback function

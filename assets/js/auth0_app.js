@@ -1,4 +1,3 @@
-
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
   var webAuth = new auth0.WebAuth({
