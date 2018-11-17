@@ -141,10 +141,7 @@ $(function () {
 
 // 'Add Ingredient' on click functionality
 $('.btn-addingr').on('click', function () {
-<<<<<<< HEAD
 
-=======
->>>>>>> d6c04799247f402f46a5e0d4272c952a392a54ba
   var count = Number($(this).attr("data-count"))
   count += 1
   $(this).attr("data-count", count)
@@ -179,7 +176,6 @@ $('.btn-addingr').on('click', function () {
 
   newDiv.append(ping)
   newDiv.append(newin)
-<<<<<<< HEAD
   newDiv.append(pam)
   newDiv.append(newin2)
   newDiv.append(nselect)
@@ -199,9 +195,7 @@ $('.btn-addinst').on('click', function () {
 
   newDiv.append(pinst)
   newDiv.append(newinst)
-=======
   newDiv.append(namdiv)
->>>>>>> d6c04799247f402f46a5e0d4272c952a392a54ba
 
   $(".indiv").append(newDiv)
 })
