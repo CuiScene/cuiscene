@@ -10,9 +10,11 @@
 
 .avatar {
     max-width: 200px;
-};
+}
 
-
+.menuLink {
+    float: right;
+}
 
 
 

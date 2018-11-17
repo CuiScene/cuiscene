@@ -7,7 +7,7 @@ var zomatoSearch = function (restaurantSearch) {
     headers: {
       'user-key': '46a9d8c42a9a6217ff47dae868a48873'
     }
-  }).then(function(response) {
+  }).then(function (response) {
     console.log('response = ', response)
     updatePage(response)
   });
@@ -25,7 +25,7 @@ var updatePage = function (restaurantData) {
   //Loop through restaurants and display on page
   //Requirement: Repeating element
   for (var i = 0; i < 10; i++) {
-    
+
     var restaurant = restaurantData.restaurants[i].restaurant;
 
     // Create the  list group to contain the restaurants and add the restaurant content for each
@@ -35,12 +35,18 @@ var updatePage = function (restaurantData) {
     // Add the newly created element to the DOM
     $("#restaurant-list").append($restaurantList);
 
-    // If the restaurant has a headline, log and append to $restaurantList
+    // If the restaurant is available, log and append to $restaurantList
     var restaurantName = restaurant.name;
     var $restaurantListItem = $("<li class='list-group-item restaurantName'>");
     if (restaurantName) {
       $restaurantListItem.append(
-        "<a href='" + restaurant.web_url + "' target='_blank'><strong>" + restaurantName + "</strong></a>");
+        "<a href='" + restaurant.url + "' target='_blank'><strong>" + restaurantName + "</strong></a>");
+    }
+    var menu = restaurant.url;
+    if (menu) {
+      var menuLink = $("<a href='" + menu + "' target='_blank'>View Menu</a>");
+      menuLink.addClass("menuLink");
+      $restaurantListItem.append(menuLink);
     }
 
     // Append the ID to document if exists
@@ -56,11 +62,9 @@ var updatePage = function (restaurantData) {
     }
 
     // Append section to document if exists
-    var city = restaurant.location.city;
-    var locality = restaurant.location.locality;
-    
-    if (city && locality) {
-      $restaurantListItem.append("<h6>Location: " + locality + "\|" + city + "</h6>");
+    var locality = restaurant.location.locality_verbose;
+    if (locality) {
+      $restaurantListItem.append("<h6>Location: " + locality + "</h6>");
     }
 
     // Append section to document if exists
@@ -103,7 +107,7 @@ var nutritionix = function (food) {
     },
     'processData': false,
     'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
-}
+  }
   $.ajax(settings).done(function (response) {
     console.log(response)
   })
@@ -120,7 +124,7 @@ $(function () {
       zipcode: $('#zip').val().trim()
     }
     console.log(newUser)
-    
+
     // Send the POST request.
     $.ajax('/api/users', {
       type: 'POST',
@@ -136,7 +140,7 @@ $(function () {
 })
 
 // 'Add Ingredient' on click functionality
-$('.btn-addingr').on('click', function() {
+$('.btn-addingr').on('click', function () {
 
   var count = Number($(this).attr("data-count"))
   count += 1
@@ -175,15 +179,15 @@ $('.btn-addingr').on('click', function() {
 })
 
 // 'Add Instructions' on click functionality
-$('.btn-addinst').on('click', function() {
+$('.btn-addinst').on('click', function () {
   var count = Number($(this).attr("data-count"))
-  count +=1
+  count += 1
   $(this).attr("data-count", count)
   var newDiv = $("<div>")
   var pinst = $("<p>").text("Step " + count)
   var newinst = $("<input>")
   newinst.attr("id", "inst" + count)
-  
+
   newDiv.append(pinst)
   newDiv.append(newinst)
 
@@ -192,15 +196,15 @@ $('.btn-addinst').on('click', function() {
 
 
 // Matt's code for submit button on 'add recipe form'
-$('.btn-addrecipe').on('click', function() {
-  if($("#ing1").val().trim() === ""){
+$('.btn-addrecipe').on('click', function () {
+  if ($("#ing1").val().trim() === "") {
     console.log("ingredient 1 must have value")
   }
   var count = Number($('.btn-addingr').attr("data-count"))
   var searchstring = ""
 
-  for(i=1;i<count+1;i++) {
-    searchstring += $("#am" + i).val() + " " + $(".amounttype" + i).val() + " " + $("#ing" + i).val() + " " 
+  for (i = 1; i < count + 1; i++) {
+    searchstring += $("#am" + i).val() + " " + $(".amounttype" + i).val() + " " + $("#ing" + i).val() + " "
     $().push("#am" + i).val()
   }
   nutritionix(searchstring)
@@ -210,14 +214,14 @@ $('.btn-addrecipe').on('click', function() {
 // $(document).ready(function() {
 //   $(".btn-addrecipe").click(function(event) {
 //     var newRecipe = $(".btn-addrecipe").serializeArray();
-    // newRecipe.push({
-    //   value: am1,
-    //   amount: amounttype1,
-    //   ingredient: ing1
-    // });
-    // jQuery.each( newRecipe, function( i, ingredients ) {
-    //   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
-    // });    
+// newRecipe.push({
+//   value: am1,
+//   amount: amounttype1,
+//   ingredient: ing1
+// });
+// jQuery.each( newRecipe, function( i, ingredients ) {
+//   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
+// });    
 //   });
 // });
 
