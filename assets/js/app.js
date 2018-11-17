@@ -49,7 +49,7 @@ var updatePage = function (restaurantData) {
   //Loop through restaurants and display on page
   //Requirement: Repeating element
   for (var i = 0; i < 10; i++) {
-    // helpppppppp meeeeeeeee-this isnt working anymore
+    
     var restaurant = restaurantData.restaurants[i].restaurant;
 
     // Create the  list group to contain the restaurants and add the restaurant content for each
@@ -78,6 +78,18 @@ var updatePage = function (restaurantData) {
     if (cuisines) {
       $restaurantListItem.append("<h6>Cuisines: " + cuisines + "</h6>");
     }
+
+    // Append section to document if exists
+    var city = restaurant.location.city;
+    if (city) {
+      $restaurantListItem.append("<h6>Location: " + city + "</h6>");
+    }
+
+    // Append section to document if exists
+    // var cuisines = restaurant.cuisines;
+    // if (cuisines) {
+    //   $restaurantListItem.append("<h6>Cuisines: " + cuisines + "</h6>");
+    // }
 
     // Append the restaurant
     $restaurantList.append($restaurantListItem);
