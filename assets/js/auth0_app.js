@@ -1,4 +1,3 @@
-
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
   var webAuth = new auth0.WebAuth({
@@ -6,11 +5,11 @@ window.addEventListener('load', function () {
     clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
     responseType: 'token id_token',
     scope: 'openid profile',
-    // CHANGE TO PROFILE PAGE
     redirectUri: window.location.href
   })
 
   var loginBtn = document.getElementById('btn-login')
+  var main_navbar = this.document.getElementById('main-navbar')
 
   loginBtn.addEventListener('click', function (e) {
     e.preventDefault()
@@ -42,9 +41,7 @@ window.addEventListener('load', function () {
       } else if (err) {
         homeView.style.display = 'inline-block'
         console.log(err)
-        alert(
-          'Error: ' + err.error + '. Check the console for further details.'
-        )
+        alert('Error: ' + err.error + '. Check the console for further details.')
       }
       displayButtons()
     })
@@ -78,13 +75,14 @@ window.addEventListener('load', function () {
   function displayButtons () {
     if (isAuthenticated()) {
       loginBtn.style.display = 'none'
+      // main_navbar.style.display = 'none'
       logoutBtn.style.display = 'inline-block'
-      loginStatus.innerHTML = 'You are logged in!'
+     // loginStatus.innerHTML = 'You are logged in!'
     } else {
       loginBtn.style.display = 'inline-block'
       logoutBtn.style.display = 'none'
-      loginStatus.innerHTML =
-        'You are not logged in! Please log in to continue.'
+      //loginStatus.innerHTML =
+        //'You are not logged in! Please log in to continue.'
     }
   }
 
@@ -114,14 +112,14 @@ window.addEventListener('load', function () {
 
   function displayProfile () {
     // display the profile
-    document.querySelector('#profile-view .nickname').innerHTML =
-      userProfile.nickname
+    //document.querySelector('#profile-view .nickname').innerHTML =
+      //userProfile.nickname
 
-    document.querySelector(
-      '#profile-view .full-profile'
-    ).innerHTML = JSON.stringify(userProfile, null, 2)
+    //document.querySelector(
+      //'#profile-view .full-profile'
+    //).innerHTML = JSON.stringify(userProfile, null, 2)
 
-    document.querySelector('#profile-view img').src = userProfile.picture
+    //document.querySelector('#profile-view img').src = userProfile.picture
   }
 
   handleAuthentication()

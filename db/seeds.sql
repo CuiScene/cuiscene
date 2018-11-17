@@ -1,4 +1,22 @@
-USE cuiscene_db;
+-- USE cuiscene_db;
+
+-- INSERT INTO users (username_pk, date_created)
+-- VALUES("User1", CURRENT_TIMESTAMP);
+-- INSERT INTO users (username_pk, date_created) 
+-- VALUES ('User2', CURRENT_TIMESTAMP);
+
+
+-- INSERT INTO restaurants (id, restaurant_name_pk, cuisine, location, rating) 
+-- VALUES (123, 'the jolly scholar', 'american', 'cleveland', null);
+-- INSERT INTO restaurants (id, restaurant_name_pk, cuisine, location, rating) 
+-- VALUES (12, 'barrio', 'mexican', 'cleveland', null);
+
+
+-- INSERT INTO recipes (id, recipe_name_pk, username_fk, restaurant_id_fk, restaurant_name_fk, recipe_cuisine, recipe_tags, restaurant_menu_item, recipe_rating, recipe_date) 
+-- VALUES (2, 'Test Sandwich', 'User1', 123, 'the jolly scholar', 'american', 'vegan', 'Test Sandwich', null, CURRENT_TIMESTAMP);
+-- INSERT INTO recipes (id, recipe_name_pk, username_fk, restaurant_id_fk, restaurant_name_fk, recipe_cuisine, recipe_tags, restaurant_menu_item, recipe_rating, recipe_date) 
+-- VALUES (1, 'Test Taco', 'User1', 12, 'barrio', 'mexican', 'vegan', 'Test Taco', null, CURRENT_TIMESTAMP);
+
 
 -- INSERT INTO users (username_pk,date_created)
 -- VALUES("User1",CURRENT_TIMESTAMP);

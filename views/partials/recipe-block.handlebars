@@ -1,47 +1,61 @@
-<div class="recipe-log"> 
+<div class="recipe-log">
 
   Test - Recipe-Block Partial Worked!
-  
-  {{#each recipes}}
-    
-    <div class="card">
-      
-      <div class="card-header">  
-        <h3>{{this.recipe_name}}</h3>
-          <small>
-          {{#if recipe_date}}
-            Recipe Added: {{this.recipe_date}}
-          {{/if}}
-          </small>
-      </div>
-        
-      <div class="card-body"> 
-        <p>Cuisine: 
-          {{#if recipe_cuisine}}
-            {{this.recipe_cuisine}}
-          {{/if}}
-        </p><p>
-          {{#if recipe_tags}}
-            Suits Dietary Needs: {{this.recipe_tags}}
-          {{/if}}
-          </p><p>
-          {{#if recipe_rating}}
-            Rating: {{this.recipe_rating}}
-          {{/if}}
-        </p>
-        <p>
-          {{#if restaurant_menu_item}}
-            Dish Inspired By: {{this.restaurant_menu_item}} 
-          {{/if}}
-          
-          {{#if restaurant_name_fk}}
-            from {{restaurant_name_fk}}
-          {{/if}}
-        </p>
-      </div>
 
+  <div class="card">
+
+    <div class="card-header">
+      <h3>{{this.recipe_name}}</h3>
+      <small>
+        {{#if recipe_date}}
+        Recipe Added: {{this.recipe_date}}
+        {{/if}}
+      </small>
     </div>
 
-  {{/each}}
+    <div class="card-body">
+      <p>Cuisine:
+        {{#if recipe_cuisine}}
+        {{this.recipe_cuisine}}
+        {{/if}}
+      </p>
+      <p>
+        {{#if recipe_tags}}
+        Suits Dietary Needs: {{this.recipe_tags}}
+        {{/if}}
+      </p>
+      <p>
+        {{#if recipe_rating}}
+        Rating: {{this.recipe_rating}}
+        {{/if}}
+      </p>
+      <p>
+        {{#if restaurant_menu_item}}
+        Dish Inspired By: {{this.restaurant_menu_item}}
+        {{/if}}
+
+        {{#if restaurant_name_fk}}
+        from {{restaurant_name_fk}}
+        {{/if}}
+      </p>
+      PARTIALS FROM RECIPIES
+      <p>
+        {{#if recipe-details-subheader}}
+        Recipe Details: {{> recipe-details-subheader}}
+        {{/if}}
+      </p>
+      <p>
+        {{#if recipe-ingredients}}
+        Ingredients: {{> recipe-ingredients}}
+        {{/if}}
+      </p>
+      <p>
+        {{#if recipe-instructions}}
+        Instructions: {{> recipe-instructions}}
+        {{/if}}
+      </p>
+    </div>
+
+  </div>
 
 </div>
