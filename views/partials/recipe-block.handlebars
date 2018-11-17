@@ -14,6 +14,15 @@
     </div>
 
     <div class="card-body">
+      <p>
+        {{#if restaurant_menu_item}}
+        Dish Inspired By: {{this.restaurant_menu_item}}
+        {{/if}}
+
+        {{#if restaurant_name_fk}}
+        from {{restaurant_name_fk}}
+        {{/if}}
+      </p>
       <p>Cuisine:
         {{#if recipe_cuisine}}
         {{this.recipe_cuisine}}
@@ -29,16 +38,7 @@
         Rating: {{this.recipe_rating}}
         {{/if}}
       </p>
-      <p>
-        {{#if restaurant_menu_item}}
-        Dish Inspired By: {{this.restaurant_menu_item}}
-        {{/if}}
-
-        {{#if restaurant_name_fk}}
-        from {{restaurant_name_fk}}
-        {{/if}}
-      </p>
-      PARTIALS FROM RECIPIES
+      
       <p>
         {{#if recipe-details-subheader}}
         Recipe Details: {{> recipe-details-subheader}}
