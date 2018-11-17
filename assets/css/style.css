@@ -48,3 +48,9 @@
     background-color: springgreen;
 }
 
+.errorp {
+    clear: both;
+    display: none;
+    color: red;
+}
+
