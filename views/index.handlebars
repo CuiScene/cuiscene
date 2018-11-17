@@ -16,6 +16,15 @@
 </head>
 
 <body>
+{{!-- RESTAURANT SEARCH --}}
+    <form class="form-inline row">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="restaurant-input" >
+        <button id="search" class="btn my-2 my-sm-0" type="submit" value="Search">Search</button>
+     </form>
+        <section id="restaurant-list">
+        </section>
+
+
 <div class="homeView"></div>
 
 <div class="profileView">
@@ -28,7 +37,9 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-recipies" role="tabpanel" aria-labelledby="nav-recipies-tab">
-    {{> recipe-block}}
+        {{#each recipes }}
+        {{> recipe-block }}
+        {{/each}}</div>
   </div>
   <div class="tab-pane fade" id="nav-saved-recipies" role="tabpanel" aria-labelledby="nav-saved-recipies-tab">INSERT SAVED RECIPIES</div>
   <div class="tab-pane fade" id="nav-restaurants" role="tabpanel" aria-labelledby="nav-restaurants-tab">INSERT USER RESTAURANT EXPERIENCES</div>
