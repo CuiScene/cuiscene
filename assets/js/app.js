@@ -57,15 +57,17 @@ var updatePage = function (restaurantData) {
 
     // Append section to document if exists
     var city = restaurant.location.city;
-    if (city) {
-      $restaurantListItem.append("<h6>Location: " + city + "</h6>");
+    var locality = restaurant.location.locality;
+    
+    if (city && locality) {
+      $restaurantListItem.append("<h6>Location: " + locality + "\|" + city + "</h6>");
     }
 
     // Append section to document if exists
-    // var cuisines = restaurant.cuisines;
-    // if (cuisines) {
-    //   $restaurantListItem.append("<h6>Cuisines: " + cuisines + "</h6>");
-    // }
+    var cuisines = restaurant.cuisines;
+    if (cuisines) {
+      $restaurantListItem.append("<h6>Cuisines: " + cuisines + "</h6>");
+    }
 
     // Append the restaurant
     $restaurantList.append($restaurantListItem);

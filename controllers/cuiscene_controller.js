@@ -10,7 +10,7 @@ router
   .get('https://apmtpc.auth0.com/userinfo', (req, res, next) => {
     console.log(res)
   })
-  .get('/views/profile', (req, res) => {
+  .get('/', (req, res) => {
     orm.selectAllFromTable(
       // table to select from
       'recipes',
@@ -20,7 +20,7 @@ router
           throw err
         }
         console.log(data)
-        res.render('profile', { recipes: data })
+        res.render('index', { recipes: data })
       })
   })
   .get('/recipes', (req, res) => {
