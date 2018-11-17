@@ -107,6 +107,7 @@ window.addEventListener('load', function () {
         }
         if (profile) {
           userProfile = profile
+          localStorage.setItem('nickname', userProfile.nickname)
           displayProfile()
         }
       })

@@ -1,32 +1,9 @@
-// var express = require('express')
-
-// var PORT = process.env.PORT || 8080
-
-// var app = express()
-
-// app.use(express.static('assets'))
-
-// app.use(express.urlencoded({ extended: true }))
-// app.use(express.json())
-
-// var exphbs = require('express-handlebars')
-
-// app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
-// app.set('view engine', 'handlebars')
-
-// var routes = require('./controllers/cuiscene_controller')
-
-// app.use(routes)
-
-// app.listen(PORT, function () {
-//   console.log('Server listening on: http://localhost:' + PORT)
-// })
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const dbRoutes = require('./controllers/cuiscene_controller')
 const viewRoutes = require('./controllers/routes_controller')
+const proxy = require('express-http-proxy')
 
 const PORT = process.env.PORT || 8080
 
@@ -47,11 +24,9 @@ app.set('view engine', 'handlebars')
 app.use(dbRoutes)
 app.use(viewRoutes)
 
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next()
-})
+// app.use('/userinfo', proxy('https://apmtpc.auth0.com', {
+//   proxyReqPathResolver: () => '/api/v2/users'
+// }))
 
 // Start our server so that it can begin listening to client requests.
 app.listen(PORT, function () {

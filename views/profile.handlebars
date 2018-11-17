@@ -17,79 +17,81 @@
 
 <body>
   <div class="container" id="userProfileContainer">
-  <div class="jumbotron jumbotron-fluid pt-1 pb-3">
-    <div class="container full-profile" id="profile-view">
-      <h2 class="display-4">My Profile</h2>
-      <h4 class="nickname align-bottom">Welcome: > nickname</h4>
-      <img class="img-thumbnail" id="avatar" alt="userPhoto" src="https://via.placeholder.com/150x150">
-      <hr class="my-4">
-      <a class="btn btn-primary btn-lg mx-2" href="#" role="button">Add Restaurant Experience</a>
-      <a class="btn btn-danger btn-lg mx-2" href="#" role="button">Add Recipe</a>
+    <div class="jumbotron jumbotron-fluid pt-1 pb-3">
+      <div class="container full-profile" id="profile-view">
+        <h2 class="display-4">My Profile</h2>
+        <h4 class="nickname align-bottom">Welcome: >insert nickname</h4>
+        <img class="img-thumbnail" id="avatar" alt="userPhoto" src="https://via.placeholder.com/150x150">
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg mx-2" href="#" role="button">Add Restaurant Experience</a>
+        <a class="btn btn-danger btn-lg mx-2" href="#" role="button">Add Recipe</a>
+      </div>
     </div>
-  </div>
-{{!-- tabs --}}
-  <ul class="nav nav-tabs" id="userProfile" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="user-recipe-tab" data-toggle="tab" href="#user-recipe-tab" role="tab" aria-controls="home"
-        aria-selected="true">My Recipes</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="saved-recipe-tab" data-toggle="tab" href="#saved-recipe-tab" role="tab" aria-controls="profile"
-        aria-selected="false">Saved Recipes</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="user-restaurant-tab" data-toggle="tab" href="#" role="tab" aria-controls="messages"
-        aria-selected="false">My Restaurant Experiences</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="saved-restaurant-tab" data-toggle="tab" href="#" role="tab" aria-controls="settings"
-        aria-selected="false">Saved Restaurants</a>
-    </li>
-  </ul>
+    {{!-- tabs --}}
+    <ul class="nav nav-tabs" id="userProfile" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="user-recipe-tab" data-toggle="tab" href="#user-recipe-tab" role="tab"
+          aria-controls="home" aria-selected="true">My Recipes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="saved-recipe-tab" data-toggle="tab" href="/profile/recipes/saved" role="tab"
+          aria-controls="profile" aria-selected="false">Saved Recipes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="user-restaurant-tab" data-toggle="tab" href="#" role="tab" aria-controls="messages"
+          aria-selected="false">My Restaurant Experiences</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="saved-restaurant-tab" data-toggle="tab" href="#" role="tab" aria-controls="settings"
+          aria-selected="false">Saved Restaurants</a>
+      </li>
+    </ul>
 
-  <div class="tab-content">
-    <div class="tab-pane active" id="user-recipe" role="tabpanel" aria-labelledby="my-recipes">      
-      {{#each recipes }}
+    <div class="tab-content">
+      <div class="tab-pane active" id="user-recipe" role="tabpanel" aria-labelledby="my-recipies">
+        {{#each recipes }}
         {{> recipe-block }}
-        {{/each}}
-        <button>{{>user-recipe-add}}</button>
-        {{!-- <a class="btn btn-danger btn-lg mx-2" href="partials/user-recipe-add.handlebars" role="button">Add Recipe</a> --}}
+        {{/each}}</div>
+      <div class="tab-pane" id="saved-recipe" role="tabpanel" aria-labelledby="saved-recipe">
+        {{#each savedRecipes }}
+        {{> recipe-block }}
+        {{/each}}</div>
     </div>
-    <div class="tab-pane" id="saved-recipe" role="tabpanel" aria-labelledby="saved-recipe">...</div>
     <div class="tab-pane" id="user-restaurant" role="tabpanel" aria-labelledby="my-restaurant">...</div>
     <div class="tab-pane" id="saved-restaurant" role="tabpanel" aria-labelledby="saved-restaurant">...</div>
   </div>
   </div>
 
-{{!-- <div class="container">
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-    <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-  </ul>
+  {{!-- <div class="container">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+      <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+      <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+    </ul>
     <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h3>HOME</h3>
-      <p>Some content.</p>
+      <div id="home" class="tab-pane fade in active">
+        <h3>HOME</h3>
+        <p>Some content.</p>
+      </div>
+      <div id="menu1" class="tab-pane fade">
+        <h3>Menu 1</h3>
+        <p>Some content in menu 1.</p>
+      </div>
+      <div id="menu2" class="tab-pane fade">
+        <h3>Menu 2</h3>
+        <p>Some content in menu 2.</p>
+      </div>
     </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>Menu 1</h3>
-      <p>Some content in menu 1.</p>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      <h3>Menu 2</h3>
-      <p>Some content in menu 2.</p>
-    </div>
-  </div>
-</div> --}}
-  
-  {{!-- <script>
-  $(document).ready(function() {
-    $("#userProfile a[href='#user-recipe-tab']").tab('show');
-    $("#userProfile a[href='#saved-recipe-tab']").tab('show');
-    $("#userProfile a[href='#user-restaurant-tab']").tab('show');
-    $("#userProfile a[href='#saved-restaurant-tab']").tab('show');
-  })
+  </div> --}}
+
+  {{!--
+  <script>
+    $(document).ready(function () {
+      $("#userProfile a[href='#user-recipe-tab']").tab('show');
+      $("#userProfile a[href='#saved-recipe-tab']").tab('show');
+      $("#userProfile a[href='#user-restaurant-tab']").tab('show');
+      $("#userProfile a[href='#saved-restaurant-tab']").tab('show');
+    })
   </script> --}}
 </body>
 
