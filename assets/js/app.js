@@ -16,15 +16,13 @@
 var zomatoSearch = function (restaurantSearch) {
 
   //URL to API
-  var queryURL = "https://developers.zomato.com/api/v2.1/search?q=";
+  var queryURL = "https://developers.zomato.com/api/v2.1/search?q=" + restaurantSearch;
 
   //value to add
-  var restaurantSearch = $("#restaurant-input").val()
-
-  //return full URL
-  queryURL += restaurantSearch;
+  // console.log(queryURL)
 
   //ajax request and then call updatePage function
+  console.log('query = '  + queryURL)
 
   $.ajax({
     url: queryURL,
@@ -33,17 +31,21 @@ var zomatoSearch = function (restaurantSearch) {
     headers: {
       'user-key': '46a9d8c42a9a6217ff47dae868a48873'
     }
-  }).then(updatePage);
+  }).then(function(response) {
+    console.log('response = ', response)
+    updatePage(response)
+  });
 }
 
-/**
- * takes API data (JSON/object) and turns it into elements on the page
- * @param {object} restaurantData - object containing zomato search API data
- */
+// /**
+//  * takes API data (JSON/object) and turns it into elements on the page
+// //  * @param {object} restaurantData - object containing zomato search API data
+//  */
 
 var updatePage = function (restaurantData) {
 
-  console.log(restaurantData)
+  console.log('a' + restaurantData)
+  console.log('b' + restaurantData.restaurants)
   //Loop through restaurants and display on page
   //Requirement: Repeating element
   for (var i = 0; i < 10; i++) {
@@ -68,7 +70,7 @@ var updatePage = function (restaurantData) {
     // Append the ID to document if exists
     var restaurantId = restaurant.id;
     if (restaurantId) {
-      $restaurantListItem.append("<h6>" + restaurantId + "</h6>");
+      $restaurantListItem.append("<h6> Zomato Restaurant ID:" + restaurantId + "</h6>");
     }
 
     // Append section to document if exists
@@ -88,8 +90,9 @@ $("#search").on("click", function (event) {
 
   //When user clicks search, reload the restaurants
   $("#restaurant-list").empty();
+  var restaurantSearch = $("#restaurant-input").val()
 
-  updatePage("barrio")
+  zomatoSearch(restaurantSearch)
 
 });
 
@@ -193,5 +196,5 @@ $('.btn-addrecipe').on('click', function () {
   nutritionix(searchstring)
 })
 // zomatoCitySearch('cleveland')
-zomatoSearch('barrio')
+// zomatoSearch('barrio')
 nutritionix('for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots')
