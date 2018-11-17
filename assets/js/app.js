@@ -8,7 +8,6 @@ var zomatoCitySearch = function (city) {
   })
     .then(function (response) {
       console.log(response.location_suggestions[0])
-      // console.log(response[0])
     })
 }
 
@@ -22,7 +21,6 @@ var zomatoSearch = function (restaurantSearch) {
   })
     .then(function (response) {
       console.log(response.restaurants[0])
-      // console.log(response[0])
       console.log(response.restaurants[0].restaurant.name)
       console.log(response.restaurants[0].restaurant.id)
     })
@@ -54,7 +52,6 @@ var nutritionix = function (food) {
 
 $(function () {
   $('.create-form').on('submit', function (event) {
-    // Make sure to preventDefault on a submit event.
     event.preventDefault()
 
     var newUser = {
@@ -64,6 +61,7 @@ $(function () {
       zipcode: $('#zip').val().trim()
     }
     console.log(newUser)
+    
     // Send the POST request.
     $.ajax('/api/users', {
       type: 'POST',
@@ -78,7 +76,7 @@ $(function () {
   })
 })
 
-
+// 'Add Ingredient' on click functionality
 $('.btn-addingr').on('click', function() {
   var count = Number($(this).attr("data-count"))
   count +=1
@@ -92,10 +90,10 @@ $('.btn-addingr').on('click', function() {
   newin2.attr("id", "am" + count)
   var nselect = $("<select>")
   nselect.attr("class", "amounttype" + count)
-  var opt1 = $("<option>").attr("value", "cup").text("CUP")
-  var opt2 = $("<option>").attr("value", "tbsp").text("TBSP")
-  var opt3 = $("<option>").attr("value", "tsp").text("TSP")
-  var opt4 = $("<option>").attr("value", "oz").text("OZ")
+  var opt1 = $("<option>").attr("value", "cups").text("cups")
+  var opt2 = $("<option>").attr("value", "tbsp").text("tbsp")
+  var opt3 = $("<option>").attr("value", "tsp").text("tsp")
+  var opt4 = $("<option>").attr("value", "oz").text("oz")
 
   for(i=1;i<11;i++) {
     var nopt = $("<option>").attr("value", i).text(i)
@@ -113,7 +111,23 @@ $('.btn-addingr').on('click', function() {
   newDiv.append(newin2)
   newDiv.append(nselect)
 
-  $(".indiv").append(newDiv)
+  $(".create-recipe").append(newDiv)
+})
+
+// 'Add Instructions' on click functionality
+$('.btn-addinst').on('click', function() {
+  var count = Number($(this).attr("data-count"))
+  count +=1
+  $(this).attr("data-count", count)
+  var newDiv = $("<div>")
+  var pinst = $("<p>").text("Step " + count)
+  var newinst = $("<input>")
+  newinst.attr("id", "inst" + count)
+  
+  newDiv.append(pinst)
+  newDiv.append(newinst)
+
+  $(".create-recipe").append(newDiv)
 })
 
 // Matt's code for submit button on 'add recipe form'
@@ -144,7 +158,6 @@ $('.btn-addrecipe').on('click', function() {
     // });    
 //   });
 // });
-
 
 // Test calls of our APIs
 zomatoCitySearch('cleveland')

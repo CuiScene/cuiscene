@@ -51,7 +51,10 @@
     <div class="tab-pane active" id="user-recipe" role="tabpanel" aria-labelledby="my-recipes">      
       {{#each recipes }}
         {{> recipe-block }}
-        {{/each}}</div>
+        {{/each}}
+        <button>{{>user-recipe-add}}</button>
+        {{!-- <a class="btn btn-danger btn-lg mx-2" href="partials/user-recipe-add.handlebars" role="button">Add Recipe</a> --}}
+    </div>
     <div class="tab-pane" id="saved-recipe" role="tabpanel" aria-labelledby="saved-recipe">...</div>
     <div class="tab-pane" id="user-restaurant" role="tabpanel" aria-labelledby="my-restaurant">...</div>
     <div class="tab-pane" id="saved-restaurant" role="tabpanel" aria-labelledby="saved-restaurant">...</div>
