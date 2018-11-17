@@ -134,6 +134,45 @@ $("#search").on("click", function (event) {
 
 });
 
+var addingredient = function() {
+  var count = Number($(".btn-addingr").attr("data-count"))
+  count += 1
+  $(".btn-addingr").attr("data-count", count)
+  var newDiv = $("<div>")
+  var ping = $("<p class=\"ingtag\">").text("Ingredient " + count + ":")
+  var newin = $("<input>")
+  var namdiv = $("<div class=\"amdiv\">")
+  newin.attr("class", "ing ing" + count)
+  var pam = $("<p class=\"amtag\">").text("Amount:")
+  var newin2 = $("<select class=>")
+  newin2.attr("class", "am am" + count)
+  var nselect = $("<select>")
+  nselect.attr("class", "am amounttype" + count)
+  var opt1 = $("<option>").attr("value", "cup").text("Cup")
+  var opt2 = $("<option>").attr("value", "tbs").text("TBS")
+  var opt3 = $("<option>").attr("value", "tsp").text("TSP")
+  var opt4 = $("<option>").attr("value", "oz").text("oz")
+
+  for (i = 1; i < 11; i++) {
+    var nopt = $("<option>").attr("value", i).text(i)
+    newin2.append(nopt)
+  }
+
+  nselect.append(opt1)
+  nselect.append(opt2)
+  nselect.append(opt3)
+  nselect.append(opt4)
+  
+  namdiv.append(pam)
+  namdiv.append(newin2)
+  namdiv.append(nselect)
+
+  newDiv.append(ping)
+  newDiv.append(newin)
+  newDiv.append(namdiv)
+
+  $(".indiv").append(newDiv)
+}
 var nutritionix = function (food) {
   var settings = {
     'async': true,
@@ -152,8 +191,16 @@ var nutritionix = function (food) {
     'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
   }
   $.ajax(settings).done(function (response) {
-    console.log(response)
-  })
+    for(i=0;i<response.foods.length;i++) {
+      console.log(response.foods[i])
+      console.log(response.foods[i].nf_calories)
+    }
+  }).fail(function(jqXHR, textStatus, errorThrown){
+    if(jqXHR.status == 404) {
+      $(".errorp").text("ERROR: Ingredients not found")
+      $(".errorp").css("display", "block")
+    }
+});
 }
 
 $(function () {
@@ -217,59 +264,7 @@ $(function () {
     }
 // 'Add Ingredient' on click functionality
 $('.btn-addingr').on('click', function () {
-<<<<<<< HEAD
-
-=======
->>>>>>> d6c04799247f402f46a5e0d4272c952a392a54ba
-  var count = Number($(this).attr("data-count"))
-  count += 1
-  $(this).attr("data-count", count)
-  var newDiv = $("<div>")
-  var ping = $("<p class=\"ingtag\">").text("Ingredient " + count + ":")
-  var newin = $("<input>")
-  var namdiv = $("<div class=\"amdiv\">")
-  newin.attr("class", "ing ing" + count)
-  var pam = $("<p class=\"amtag\">").text("Amount:")
-  var newin2 = $("<select class=>")
-  newin2.attr("class", "am am" + count)
-  var nselect = $("<select>")
-  nselect.attr("class", "am amounttype" + count)
-  var opt1 = $("<option>").attr("value", "cup").text("Cup")
-  var opt2 = $("<option>").attr("value", "tbs").text("TBS")
-  var opt3 = $("<option>").attr("value", "tsp").text("TSP")
-  var opt4 = $("<option>").attr("value", "oz").text("oz")
-
-    nselect.append(opt1)
-    nselect.append(opt2)
-    nselect.append(opt3)
-    nselect.append(opt4)
-  for (i = 1; i < 11; i++) {
-    var nopt = $("<option>").attr("value", i).text(i)
-    newin2.append(nopt)
-  }
-
-    newDiv.append(ping)
-    newDiv.append(newin)
-    newDiv.append(pam)
-    newDiv.append(newin2)
-    newDiv.append(nselect)
-  nselect.append(opt1)
-  nselect.append(opt2)
-  nselect.append(opt3)
-  nselect.append(opt4)
-  
-  namdiv.append(pam)
-  namdiv.append(newin2)
-  namdiv.append(nselect)
-
-  newDiv.append(ping)
-  newDiv.append(newin)
-<<<<<<< HEAD
-  newDiv.append(pam)
-  newDiv.append(newin2)
-  newDiv.append(nselect)
-
-  $(".create-recipe").append(newDiv)
+  addingredient();
 })
 
 // 'Add Instructions' on click functionality
@@ -284,9 +279,6 @@ $('.btn-addinst').on('click', function () {
 
   newDiv.append(pinst)
   newDiv.append(newinst)
-=======
-  newDiv.append(namdiv)
->>>>>>> d6c04799247f402f46a5e0d4272c952a392a54ba
 
   $('.btn-addrecipe').on('click', function () {
     return new Promise((resolve, reject) => {
@@ -308,19 +300,28 @@ $('.btn-addinst').on('click', function () {
   })
 
 // Matt's code for submit button on 'add recipe form'
-$('.btn-addrecipe').on('click', function () {
-  if ($("#ing1").val().trim() === "") {
-    console.log("ingredient 1 must have value")
+$('.btn-addrecipe').on('click', function() {
+  $(".errorp").css("display", "none");
+  if($(".ing1").val().trim() === ""){
+    $(".errorp").text("Ingredient 1 must have input")
+    $(".errorp").css("display", "block")
+    return
   }
   var count = Number($('.btn-addingr').attr("data-count"))
   var searchstring = ""
 
-  for (i = 1; i < count + 1; i++) {
-    searchstring += $("#am" + i).val() + " " + $(".amounttype" + i).val() + " " + $("#ing" + i).val() + " "
-    $().push("#am" + i).val()
+  for(i=1;i<count+1;i++) {
+    searchstring += $(".am" + i).val() + " " + $(".amounttype" + i).val() + " " + $(".ing" + i).val() + " " 
+    //$().push(".am" + i).val()
   }
   nutritionix(searchstring)
+  $(".ing").val("")
 })
+
+addingredient()
+addingredient()
+addingredient()
+
 // zomatoCitySearch('cleveland')
 // zomatoSearch('barrio')
 
