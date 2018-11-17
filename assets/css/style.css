@@ -12,6 +12,10 @@
     max-width: 200px;
 }
 
+.menuLink {
+    float: right;
+}
+
 .ingtag {
     clear: both;
     float: left;
