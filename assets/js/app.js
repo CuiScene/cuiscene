@@ -92,10 +92,10 @@ $('.btn-addingr').on('click', function() {
   newin2.attr("class", "am" + count)
   var nselect = $("<select>")
   nselect.attr("class", "amounttype" + count)
-  var opt1 = $("<option>").attr("value", "cup").text("Cup")
-  var opt2 = $("<option>").attr("value", "tbs").text("TBS")
+  var opt1 = $("<option>").attr("value", "cup").text("CUP")
+  var opt2 = $("<option>").attr("value", "tbs").text("TBSP")
   var opt3 = $("<option>").attr("value", "tsp").text("TSP")
-  var opt4 = $("<option>").attr("value", "oz").text("oz")
+  var opt4 = $("<option>").attr("value", "oz").text("OZ")
 
   for(i=1;i<11;i++) {
     var nopt = $("<option>").attr("value", i).text(i)
@@ -116,18 +116,37 @@ $('.btn-addingr').on('click', function() {
   $(".indiv").append(newDiv)
 })
 
+// Matt's code for submit button on 'add recipe form'
 $('.btn-addrecipe').on('click', function() {
   if($(".ing1").val().trim() === ""){
     console.log("ingredient 1 must have value")
-    return
   }
   var count = Number($('.btn-addingr').attr("data-count"))
   var searchstring = ""
   for(i=1;i<count+1;i++) {
     searchstring += $(".am" + i).val() + " " + $(".amounttype" + i).val() + " " + $(".ing" + i).val() + " " 
+    $().push(".am" + i).val()
   }
   nutritionix(searchstring)
 })
-=======zomatoCitySearch('cleveland')
+
+// code from sample online for serializeArray()
+// $(document).ready(function() {
+//   $(".btn-addrecipe").click(function(event) {
+//     var newRecipe = $(".btn-addrecipe").serializeArray();
+    // newRecipe.push({
+    //   value: am1,
+    //   amount: amounttype1,
+    //   ingredient: ing1
+    // });
+    // jQuery.each( newRecipe, function( i, ingredients ) {
+    //   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
+    // });    
+//   });
+// });
+
+
+// Test calls of our APIs
+zomatoCitySearch('cleveland')
 zomatoSearch('valentinos')
 nutritionix('for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots')
