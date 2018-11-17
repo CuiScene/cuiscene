@@ -148,7 +148,10 @@ var nutritionix = function (food) {
     'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
   }
   $.ajax(settings).done(function (response) {
-    console.log(response)
+    for(i=0;i<response.foods.length;i++) {
+      console.log(response.foods[i])
+      console.log(response.foods[i].nf_calories)
+    }
   }).fail(function(jqXHR, textStatus, errorThrown){
     if(jqXHR.status == 404) {
       $(".errorp").text("ERROR: Ingredients not found")
