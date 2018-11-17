@@ -124,8 +124,7 @@ var nutritionix = function (food) {
     },
     'processData': false,
     'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
-  }
-
+}
   $.ajax(settings).done(function (response) {
     console.log(response)
   })
