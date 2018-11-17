@@ -185,50 +185,7 @@ $(function () {
 
 // 'Add Ingredient' on click functionality
 $('.btn-addingr').on('click', function () {
-<<<<<<< HEAD
-
-  var count = Number($(this).attr("data-count"))
-  count += 1
-  $(this).attr("data-count", count)
-  var newDiv = $("<div>")
-  var ping = $("<p class=\"ingtag\">").text("Ingredient " + count + ":")
-  var newin = $("<input>")
-  var namdiv = $("<div class=\"amdiv\">")
-  newin.attr("class", "ing ing" + count)
-  var pam = $("<p class=\"amtag\">").text("Amount:")
-  var newin2 = $("<select class=>")
-  newin2.attr("class", "am am" + count)
-  var nselect = $("<select>")
-  nselect.attr("class", "am amounttype" + count)
-  var opt1 = $("<option>").attr("value", "cup").text("Cup")
-  var opt2 = $("<option>").attr("value", "tbs").text("TBS")
-  var opt3 = $("<option>").attr("value", "tsp").text("TSP")
-  var opt4 = $("<option>").attr("value", "oz").text("oz")
-
-  for (i = 1; i < 11; i++) {
-    var nopt = $("<option>").attr("value", i).text(i)
-    newin2.append(nopt)
-  }
-
-  nselect.append(opt1)
-  nselect.append(opt2)
-  nselect.append(opt3)
-  nselect.append(opt4)
-  
-  namdiv.append(pam)
-  namdiv.append(newin2)
-  namdiv.append(nselect)
-
-  newDiv.append(ping)
-  newDiv.append(newin)
-  newDiv.append(pam)
-  newDiv.append(newin2)
-  newDiv.append(nselect)
-
-  $(".create-recipe").append(newDiv)
-=======
   addingredient();
->>>>>>> 0bae627cf4ba4969243a88f4863222889ccdaf59
 })
 
 // 'Add Instructions' on click functionality
@@ -243,10 +200,6 @@ $('.btn-addinst').on('click', function () {
 
   newDiv.append(pinst)
   newDiv.append(newinst)
-<<<<<<< HEAD
-  newDiv.append(namdiv)
-=======
->>>>>>> 0bae627cf4ba4969243a88f4863222889ccdaf59
 
   $(".indiv").append(newDiv)
 })
