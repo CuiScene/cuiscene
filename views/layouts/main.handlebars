@@ -68,13 +68,14 @@
       </div>
   </main>
   </div> --}}
-
+<div class="fullindiv">
 <div class="indiv">
   <div class="div1">
-    <p class="hello">Ingredient 1</p>
-    <input type="input" name="ing1" class="ing1"><br>
-    <p>Amount</p>
-    <select class="am1">
+    <p class="ingtag">Ingredient 1:</p>
+    <input type="input" name="ing1" class="ing1 ing"><br>
+    <div class="amdiv">
+    <p class="am amtag">Amount:</p>
+    <select class="am am1">
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -86,16 +87,18 @@
       <option value="9">9</option>
       <option value="10">10</option>
     </select>
-    <select class="amounttype1">
+    <select class="am amounttype1">
       <option value="cup">Cup</option>
       <option value="tbs">TBS</option>
       <option value="tsp">TSP</option>
       <option value="oz">oz</option>
     </select>
+    </div>
   </div>
 </div>
-<input type="button" value="Add another ingredient" class="btn-addingr" data-count=1><br><br>
-<input type="button" value="Submit recipe" class="btn-addrecipe"><br><br>
+<input type="button" value="Add another ingredient" class="btn-in btn-addingr" data-count=1><br><br>
+<input type="button" value="Submit recipe" class="btn-in btn-addrecipe"><br><br>
+</div>
 
 
   <script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>

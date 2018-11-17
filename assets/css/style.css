@@ -19,8 +19,39 @@
     display: block;
 } */
 
-.ing1 {
-    width: 100%;
+.ingtag {
+    clear: both;
+    float: left;
+    margin-right: 5px;
+}
+.ing {
+    border-radius: 10px;
+    float: left;
+}
+.amdiv {
+    clear: both;
+}
+.amtag {
+    float: left;
+    margin-right: 32px;
+}
+.am {
+    float: left;
+    border-radius: 10px;
+}
+.btn-in {
+    clear: both;
+    float: left;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.fullindiv {
+    border: 2px solid springgreen;
+    width: 400px;
+    padding: 20px;
 }
 
+.btn-addrecipe {
+    background-color: springgreen;
+}
 
