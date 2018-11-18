@@ -1,3 +1,12 @@
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+}
+
+body {
+    font-family: 'Arimo', sans-serif;
+    font-size: 16px;
+}
 
 .form-group {
     width: 55%;
@@ -26,24 +35,27 @@
     border-radius: 10px;
     float: left;
 }
+
 .amdiv {
     clear: both;
 }
+
 .amtag {
     float: left;
     margin-right: 32px;
 }
+
 .am {
     float: left;
     border-radius: 10px;
 }
+
 .btn-in {
     clear: both;
     float: left;
     margin-bottom: 10px;
     border-radius: 10px;
 }
-
 
 .btn-addrecipe {
     background-color: springgreen;
