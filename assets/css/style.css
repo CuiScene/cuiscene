@@ -1,6 +1,11 @@
+h1 {
+    font-family: 'Parisienne', cursive;
+    font-size: 400%;
+}
 
-.form-group {
+.form-group, .indiv {
     width: 55%;
+    margin: 1rem auto
 }
 
 .card {

@@ -1,4 +1,7 @@
 $(document).ready(function () {
+  // defaults
+  $('.create-recipe').hide()
+
   const checkUser = x => {
     if (!k.or(k.isEmpty(x.nickname), k.isEmpty(x.image))) {
       $('#nickname').append(x.nickname + '!')
