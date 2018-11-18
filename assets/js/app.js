@@ -1,4 +1,11 @@
 $(document).ready(function () {
+  const checkUser = x => {
+    if (!k.or(k.isEmpty(x.nickname), k.isEmpty(x.image))) {
+      $('#nickname').append(x.nickname + '!')
+      $('#avatar').attr('src', x.image)
+    }
+  }
+
   var zomatoCitySearch = function (city) {
     var queryurl = 'https://developers.zomato.com/api/v2.1/cities?q=' + city
     $.ajax({
@@ -315,7 +322,5 @@ $(document).ready(function () {
     $('.ing').val('')
   })
 
-  addingredient()
-  addingredient()
-  addingredient()
+  checkUser(localStorage)
 })

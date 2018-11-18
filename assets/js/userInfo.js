@@ -6,8 +6,7 @@ $(document).ready(function () {
       type: 'POST',
       url: '/api/users/create',
       data: {
-        username_pk: localStorage.nickname,
-        date_created: timestamp
+        username_pk: localStorage.nickname
       }
     })
       .then(response => {
@@ -21,17 +20,12 @@ $(document).ready(function () {
       url: '/api/users'
     })
       .then(response => {
-        return new Promise((resolve, reject) => {
-          if (k.some(x => x.username_pk === user, response)) {
-            reject(Error)
-          } else {
-            resolve(
-              create(localStorage.nickname)
-            )
-          }
-        })
+        if (k.some(x => x.username_pk === user, response)) {
+          return user
+        } else {
+          create(user)
+        }
       })
   }
-
-  exists(localStorage.nickname)
+  // exists(localStorage.nickname)
 })

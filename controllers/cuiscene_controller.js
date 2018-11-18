@@ -58,15 +58,16 @@ router
         ['recipe_name_pk_fk', 'servings', 'serving_size', 'preptime', 'cooktime', 'ingredients', 'instructions'],
         [data.name, data.servings, data.size, data.prepTimeAmount, data.cookTimeAmount, data.ingredients, data.instructions]
       ))
+      .catch('error on insert')
   })
   .post('/api/users/create', (req, res) => {
     orm.insertOne(
       // table to insert Into
       'users',
       // columns to insert into, listed as an array of strings
-      ['username_pk', 'date_created'],
+      'username_pk',
       // values to insert....Object.values will return an array of the values from the form
-      Object.values(req.body),
+      req.body.username_pk,
       // callback function
       (error, result) => {
         if (error) {

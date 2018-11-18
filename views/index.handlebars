@@ -17,24 +17,26 @@
 
 <body>
 
-  <div class="homeView">
+  {{!-- <div class="homeView">
     {{!-- RESTAURANT SEARCH --}}
 
     <section id="restaurant-list">
     </section>
-  </div>
+  </div> --}}
 
   <div id="homeDiv"></div>
 
-  <div class="profileView" id="profileDiv">
-    <div class="jumbotron jumbotron-fluid pt-1 pb-3">
-      <div class="container-fluid full-profile" id="profile-view">
-        <h2 class="display-4">My Profile</h2>
-        <h4 class="nickname align-bottom">Welcome: > nickname</h4>
-        <img class="img-thumbnail" id="avatar" alt="userPhoto" src="https://via.placeholder.com/150x150">
-        <hr class="my-4">
-        <a class="btn btn-primary btn-lg mx-2" href="#" role="button">Add Restaurant Experience</a>
-        <a class="btn btn-danger btn-lg mx-2" href="#" role="button">Add Recipe</a>
+  <div class="profileView container-full-bg" id="profileDiv">
+    <div>
+      <div class="jumbotron pt-1 pb-3 profileView" id="profileDiv">
+        <div class="container-fluid full-profile" id="profile-view">
+          <h2 class="display-4">My Profile</h2>
+          <h4 class="align-bottom" id="nickname">Welcome </h4>
+          <img class="img-thumbnail" id="avatar" alt="userPhoto" src="https://via.placeholder.com/150x150">
+          <hr class="my-4">
+          <a class="btn btn-primary btn-lg mx-2" href="#" role="button">Add Restaurant Experience</a>
+          <a class="btn btn-danger btn-lg mx-2" href="#" role="button">Add Recipe</a>
+        </div>
       </div>
     </div>
     <div class="nav nav-tabs" id="nav-recipe-tab" role="tablist">

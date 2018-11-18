@@ -1,15 +1,16 @@
 const connection = require('../config/connection.js')
 
 const orm = {
-  insertOne: (table, cols, vals, cb) => new Promise((resolve, reject) => {
-    const queryString = 'INSERT INTO ?? (??) VALUES (?)'
-    connection.query(queryString, [table, cols, vals], (error, result) => {
-      if (error) {
-        return reject(error)
-      }
-      return resolve(result)
-    })
-  }),
+  insertOne: (table, cols, vals, cb) =>
+    new Promise((resolve, reject) => {
+      const queryString = 'INSERT INTO ?? (??) VALUES (?)'
+      connection.query(queryString, [table, cols, vals], (error, result) => {
+        if (error) {
+          throw error
+        }
+        return resolve(result)
+      })
+    }),
 
   selectAllFromTable: (table, cb) => {
     const queryString = 'SELECT * FROM ??'
