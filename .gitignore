@@ -3,3 +3,4 @@ npm-debug.log
 .DS_Store
 /*.env
 config/connection.js
+assets/js/auth0_app.js

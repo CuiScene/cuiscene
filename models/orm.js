@@ -4,17 +4,28 @@ const orm = {
   insertOne: (table, cols, vals, cb) =>
     new Promise((resolve, reject) => {
       const queryString = 'INSERT INTO ?? (??) VALUES (?)'
-      connection.query(queryString, [table, cols, vals], (error, result) => {
-        if (error) {
-          throw error
-        }
-        return resolve(result)
-      })
+      connection.query(queryString, [table, cols, vals],
+        (error, result) => {
+          if (error) {
+            return reject(error)
+          }
+          return resolve(result)
+        })
     }),
 
-  selectAllFromTable: (table, cb) => {
-    const queryString = 'SELECT * FROM ??'
-    connection.query(queryString, table, cb)
+  selectAllFromTable: (table) => {
+    console.log('before promise')
+    return new Promise((resolve, reject) => {
+      const queryString = 'SELECT * FROM ??'
+      connection.query(queryString, table,
+        (error, result) => {
+          if (error) {
+            return reject(error)
+          }
+          return resolve(result)
+        }
+      )
+    })
   },
 
   selectAllFromTableWhere: (table, whereCol, whereVal, cb) => {

@@ -4,6 +4,8 @@ const router = express.Router()
 
 const orm = require('../models/orm')
 
+const k = require('kyanite/dist/kyanite')
+
 // The main view is actually going to be restaurant ratings. As written above, we would be displaying all the user information to anyone who visits the site.
 
 router
@@ -19,17 +21,18 @@ router
     )
   })
   .get('/', (req, res) => {
-    orm.selectAllFromTable(
-      // table to select from
-      'recipes',
-      // callback function
-      (err, data) => {
-        if (err) {
-          throw err
-        }
-        console.log(data)
-        res.render('index', { recipes: data })
+    let recipeData = {}
+    let restaurantData = {}
+    orm.selectAllFromTable('restaurants')
+      .then(rows => {
+        restaurantData = k.amend(restaurantData, rows)
+        return orm.selectAllFromTable('recipes')
       })
+      .then(result => {
+        recipeData = k.amend(recipeData, result)
+        res.render('index', { recipes: recipeData, restaurants: restaurantData })
+      })
+      .catch(new Error('error getting data'))
   })
   .get('/profile/recipes/saved', (req, res) => {
     orm.selectAllFromTableOrderBy(
@@ -58,7 +61,7 @@ router
         ['recipe_name_pk_fk', 'servings', 'serving_size', 'preptime', 'cooktime', 'ingredients', 'instructions'],
         [data.name, data.servings, data.size, data.prepTimeAmount, data.cookTimeAmount, data.ingredients, data.instructions]
       ))
-      .catch('error on insert')
+      .catch(new Error('error on insert'))
   })
   .post('/api/users/create', (req, res) => {
     orm.insertOne(

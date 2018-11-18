@@ -1,0 +1,26 @@
+<div class="card">
+
+  <div class="card-header">
+    <h3>{{this.restaurant_name_pk}}</h3>
+  </div>
+
+  <div class="card-body">
+    <p>
+      {{#if cuisine}}
+      Cuisine: {{this.cuisine}}
+      {{/if}}
+    </p>
+    <p>
+      {{#if location}}
+      Location: {{this.location}}
+      {{/if}}
+    </p>
+    <p>Rating:
+      {{#if rating}}
+      {{this.rating}}
+      {{/if}}
+    </p>
+  </div>
+
+</div>
+<hr class="mr-5">

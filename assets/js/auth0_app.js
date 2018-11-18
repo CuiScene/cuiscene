@@ -32,20 +32,20 @@ const exists = user => {
 
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
-  // var webAuth = new auth0.WebAuth({
-  //   domain: process.env.AUTH0_DOMAIN,
-  //   clientID: process.env.AUTH0_CLIENT_ID,
-  //   responseType: 'token id_token',
-  //   scope: 'openid profile',
-  //   redirectUri: process.env.AUTH0_CALLBACK_URL
-  // })
   var webAuth = new auth0.WebAuth({
-    domain: 'quiet-rice-3540.auth0.com',
-    clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
+    domain: 'apmtpc.auth0.com',
+    clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
     responseType: 'token id_token',
     scope: 'openid profile',
-    redirectUri: 'https://cuiscene.herokuapp.com/'
+    redirectUri: 'http://localhost:8080'
   })
+  // var webAuth = new auth0.WebAuth({
+  //   domain: 'quiet-rice-3540.auth0.com',
+  //   clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
+  //   responseType: 'token id_token',
+  //   scope: 'openid profile',
+  //   redirectUri: 'https://cuiscene.herokuapp.com/'
+  // })
 
   var loginBtn = document.getElementById('btn-login')
   var homeDiv = document.getElementById('homeDiv')
@@ -73,7 +73,7 @@ window.addEventListener('load', function () {
 
   logoutBtn.addEventListener('click', logout)
 
-  function handleAuthentication() {
+  function handleAuthentication () {
     webAuth.parseHash(function (err, authResult) {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = ''
@@ -95,7 +95,7 @@ window.addEventListener('load', function () {
     })
   }
 
-  function setSession(authResult) {
+  function setSession (authResult) {
     // Set the time that the Access Token will expire at
     var expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
@@ -106,7 +106,7 @@ window.addEventListener('load', function () {
     getProfile()
   }
 
-  function logout() {
+  function logout () {
     // Remove tokens and expiry time from localStorage
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
@@ -115,14 +115,14 @@ window.addEventListener('load', function () {
     displayButtons()
   }
 
-  function isAuthenticated() {
+  function isAuthenticated () {
     // Check whether the current time is past the
     // Access Token's expiry time
     var expiresAt = JSON.parse(localStorage.getItem('expires_at'))
     return new Date().getTime() < expiresAt
   }
 
-  function displayButtons() {
+  function displayButtons () {
     if (isAuthenticated()) {
       loginBtn.style.display = 'none'
       homeDiv.style.display = 'none'
@@ -141,7 +141,7 @@ window.addEventListener('load', function () {
 
   // app.js
   var userProfile
-  function getProfile() {
+  function getProfile () {
     if (!userProfile) {
       var accessToken = localStorage.getItem('access_token')
       if (!accessToken) {
@@ -161,7 +161,7 @@ window.addEventListener('load', function () {
     }
   }
 
-  function displayProfile() {
+  function displayProfile () {
     // display the profile
     document.querySelector('#profile-view .nickname').innerHTML =
       userProfile.nickname
