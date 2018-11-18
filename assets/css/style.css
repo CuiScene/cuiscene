@@ -1,8 +1,14 @@
 h1 {
-    font-family: 'Parisienne', cursive;
-    font-size: 400%;
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
 }
 
+body {
+    font-family: 'Arimo', sans-serif;
+    font-size: 16px;
+}
+
+.form-group {
 .form-group, .indiv, #recipeBtnDiv {
     width: 55%;
     margin: 1rem auto
@@ -31,24 +37,27 @@ h1 {
     border-radius: 10px;
     float: left;
 }
+
 .amdiv {
     clear: both;
 }
+
 .amtag {
     float: left;
     margin-right: 32px;
 }
+
 .am {
     float: left;
     border-radius: 10px;
 }
+
 .btn-in {
     clear: both;
     float: left;
     margin-bottom: 10px;
     border-radius: 10px;
 }
-
 
 .btn-addrecipe {
     background-color: springgreen;
