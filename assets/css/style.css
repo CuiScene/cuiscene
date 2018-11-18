@@ -3,7 +3,7 @@ h1 {
     font-size: 400%;
 }
 
-.form-group, .indiv {
+.form-group, .indiv, #recipeBtnDiv {
     width: 55%;
     margin: 1rem auto
 }

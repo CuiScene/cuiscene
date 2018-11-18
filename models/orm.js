@@ -1,7 +1,7 @@
 const connection = require('../config/connection.js')
 
 const orm = {
-  insertOne: (table, cols, vals, cb) =>
+  insertOne: (table, cols, vals) =>
     new Promise((resolve, reject) => {
       const queryString = 'INSERT INTO ?? (??) VALUES (?)'
       connection.query(queryString, [table, cols, vals],
@@ -22,6 +22,7 @@ const orm = {
           if (error) {
             return reject(error)
           }
+          console.log('result', result)
           return resolve(result)
         }
       )

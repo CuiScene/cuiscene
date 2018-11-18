@@ -1,6 +1,7 @@
 const k = kyanite
 
 const create = user => {
+  console.log('In Create')
   $.ajax({
     type: 'POST',
     url: '/api/users/create',
@@ -9,18 +10,20 @@ const create = user => {
     }
   })
     .then(response => {
+      console.log('creating user')
       console.log(response)
     })
 }
 
 const exists = user => {
+  console.log('In Exists')
   $.ajax({
     type: 'GET',
     url: '/api/users'
   })
     .then(response => {
-      console.log(response)
-      console.log(user)
+      console.log('response', response)
+      console.log('user', user)
       if (k.some(x => x.username_pk === user, response)) {
         console.log(k.some(x => x.username_pk === user, response))
         return user
@@ -28,6 +31,7 @@ const exists = user => {
         create(user)
       }
     })
+    .catch(new Error('error in exists'))
 }
 
 // Code for Auth0 - DO NOT DELETE
@@ -74,13 +78,14 @@ window.addEventListener('load', function () {
   logoutBtn.addEventListener('click', logout)
 
   function handleAuthentication() {
+    console.log('in handle')
     webAuth.parseHash(function (err, authResult) {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = ''
         setSession(authResult)
         localStorage.nickname = authResult.idTokenPayload.nickname
         localStorage.image = authResult.idTokenPayload.picture
-        console.log(authResult)
+        console.log(localStorage)
         exists(localStorage.nickname)
         $('#nickname').append(localStorage.nickname + '!')
         $('#avatar').attr('src', localStorage.image)
