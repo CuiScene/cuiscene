@@ -32,21 +32,20 @@ const exists = user => {
 
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
-  const PORT = process.env.PORT || 8080
-  var webAuth = new auth0.WebAuth({
-    domain: process.env.AUTH0_DOMAIN,
-    clientID: process.env.AUTH0_CLIENT_ID,
-    responseType: 'token id_token',
-    scope: 'openid profile',
-    redirectUri: process.env.AUTH0_CALLBACK_URL
-  })
   // var webAuth = new auth0.WebAuth({
-  //   domain: 'apmtpc.auth0.com',
-  //   clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
+  //   domain: process.env.AUTH0_DOMAIN,
+  //   clientID: process.env.AUTH0_CLIENT_ID,
   //   responseType: 'token id_token',
   //   scope: 'openid profile',
-  //   redirectUri: 'http://localhost:' + PORT
+  //   redirectUri: process.env.AUTH0_CALLBACK_URL
   // })
+  var webAuth = new auth0.WebAuth({
+    domain: 'quiet-rice-3540.auth0.com',
+    clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
+    responseType: 'token id_token',
+    scope: 'openid profile',
+    redirectUri: 'https://cuiscene.herokuapp.com/callback'
+  })
 
   var loginBtn = document.getElementById('btn-login')
   var homeDiv = document.getElementById('homeDiv')
