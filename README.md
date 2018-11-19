@@ -24,7 +24,7 @@ They are able to search for restaurants, review menu items individually, add rec
 - Email: [kaylahimmelberger@gmail.com](mailto:kaylahimmelberger@gmail.com)
 # Design Process
 
-!!INSERT COPY HERE
+!!  INSERT COPY HERE  !!
 
 # Technologies Used
 - Handlebars ([Documentation](http://handlebarsjs.com/))
