@@ -18,8 +18,14 @@
 
 </head>
 
+<<<<<<< Updated upstream
 <body>
 
+{{!-- NEW NAVBAR --}}
+<nav class="navbar navbar-light bg-light">
+        <div class="float-left">
+=======
+<body onload="myFunction()" style="margin:0;" id="main-navbar">
 {{!-- NEW NAVBAR --}}
 <nav class="navbar navbar-light bg-light">
         <div class="float-left">
@@ -37,6 +43,25 @@
   </form>
 </nav>
 
+  {{!-- <div class="navbar navbar-light bg-light" id="main-navbar">
+    <div class="row" id="navbar-contents">
+      <div class="col-3 float-right">
+>>>>>>> Stashed changes
+        <button id="btn-login" class="btn btn-primary btn-margin" style="display: inline-block;">
+          Log In
+        </button>
+        <button id="btn-logout" class="float-left btn btn-primary btn-margin" style="display: none;">
+          Log Out
+        </button>
+      </div>
+<<<<<<< Updated upstream
+  <h1 class="text-center">CuiScene</h1>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="restaurant-input">
+    <button id="search" class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="submit">Search</button>
+  </form>
+</nav>
+
   <div class="container">
     <!-- main container -->
     <div id="home-view">
@@ -45,6 +70,39 @@
         {{{body}}}
       </div>
     </div>
+=======
+      <div class="col-5 mx-auto">
+        <h1 class="text-center">CuiScene</h1>
+      </div>
+      <div class="col-4">
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="restaurant-input">
+          <br>
+          <button id="search" class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="submit" value="Search">Search</button>
+        </form>
+      </div>
+    </div> --}}
+
+    {{!-- <a class="navbar-brand" href="/">CuiScene</a> --}}
+
+    {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/" id="btn-home-view">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/views/profile" id="btn-home-view">My Profile</a>
+        </li>
+      </ul>
+
+
+    </div>--}}
+>>>>>>> Stashed changes
   </div>
       {{!-- <div id="profile-view" class="panel panel-default profile-area">
         <div class="panel-heading">
