@@ -1,54 +1,3 @@
-
-var zomatoSearch = function (restaurantSearch) {
-  var queryurl = 'https://developers.zomato.com/api/v2.1/search?q=' + restaurantSearch
-  $.ajax({
-    url: queryurl,
-    type: 'GET',
-    dataType: 'json',
-    headers: {
-      'user-key': '46a9d8c42a9a6217ff47dae868a48873'
-    }
-  }).then(function (response) {
-    updatePage(response)
-  });
-}
-
-// /**
-//  * takes API data (JSON/object) and turns it into elements on the page
-// //  * @param {object} restaurantData - object containing zomato search API data
-//  */
-
-var updatePage = function (restaurantData) {
-
-  console.log('a' + restaurantData)
-  console.log('b' + restaurantData.restaurants)
-  //Loop through restaurants and display on page
-  //Requirement: Repeating element
-  for (var i = 0; i < 10; i++) {
-
-    var restaurant = restaurantData.restaurants[i].restaurant;
-
-    // Create the  list group to contain the restaurants and add the restaurant content for each
-    var $restaurantList = $("<ul>");
-    $restaurantList.addClass("list-group");
-
-    // Add the newly created element to the DOM
-    $("#restaurant-list").append($restaurantList);
-
-    // If the restaurant is available, log and append to $restaurantList
-    var restaurantName = restaurant.name;
-    var $restaurantListItem = $("<li class='list-group-item restaurantName'>");
-    if (restaurantName) {
-      $restaurantListItem.append(
-        "<a href='" + restaurant.url + "' target='_blank'><strong>" + restaurantName + "</strong></a>");
-    }
-    var menu = restaurant.url;
-    if (menu) {
-      var menuLink = $("<a href='" + menu + "' target='_blank'>View Menu</a>");
-      menuLink.addClass("menuLink");
-      $restaurantListItem.append(menuLink);
-    }
-
 $(document).ready(function () {
   // defaults
   $('.create-recipe').hide()
@@ -66,18 +15,18 @@ $(document).ready(function () {
     }
   }
 
-  var zomatoCitySearch = function (city) {
-    var queryurl = 'https://developers.zomato.com/api/v2.1/cities?q=' + city
-    $.ajax({
-      url: queryurl,
-      type: 'GET',
-      dataType: 'json',
-      headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
-    })
-      .then(function (response) {
-        console.log(response.location_suggestions[0])
-      })
-  }
+  // var zomatoCitySearch = function (city) {
+  //   var queryurl = 'https://developers.zomato.com/api/v2.1/cities?q=' + city
+  //   $.ajax({
+  //     url: queryurl,
+  //     type: 'GET',
+  //     dataType: 'json',
+  //     headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
+  //   })
+  //     .then(function (response) {
+  //       console.log(response.location_suggestions[0])
+  //     })
+  // }
 
   var zomatoSearch = function (restaurantSearch) {
     var queryurl = 'https://developers.zomato.com/api/v2.1/search?q=' + restaurantSearch
