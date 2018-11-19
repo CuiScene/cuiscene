@@ -8,22 +8,23 @@ They are able to search for restaurants, review menu items individually, add rec
 
 # Contributors
 **Erin Clancy** 
-[Github](https://github.com/noplanetnoparty/)
-Email: [eclancy11@gmail.com](mailto:eclancy11@gmail.com)
+- [Github](https://github.com/noplanetnoparty/)
+- Email: [eclancy11@gmail.com](mailto:eclancy11@gmail.com)
 
 **Matthew Frey**
-[GitHub](https://github.com/freym827)
-Email: [freym827@gmail.com](mailto:freym827@gmail.com)
+- [GitHub](https://github.com/freym827)
+- Email: [freym827@gmail.com](mailto:freym827@gmail.com)
 
 **Youssef Hamid**
-[Github](https://github.com/hamidyou)
-Email: [yhamid1982@gmail.com](mailto:yhamid1982@gmail.com)
+- [Github](https://github.com/hamidyou)
+- Email: [yhamid1982@gmail.com](mailto:yhamid1982@gmail.com)
 
 **Kayla Himmelberger**
-[Github](https://github.com/kaylahimmel)
-Email: [kaylahimmelberger@gmail.com](mailto:kaylahimmelberger@gmail.com)
+- [Github](https://github.com/kaylahimmel)
+- Email: [kaylahimmelberger@gmail.com](mailto:kaylahimmelberger@gmail.com)
 # Design Process
 
+!!INSERT COPY HERE
 
 # Technologies Used
 - Handlebars ([Documentation](http://handlebarsjs.com/))
