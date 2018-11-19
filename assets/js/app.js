@@ -91,7 +91,7 @@ $(document).ready(function () {
 
           // If the restaurant is available, log and append to $restaurantList
           var restaurantName = restaurant.name
-          var $restaurantListItem = $("<li class='list-group-item restaurantName'>")
+          var $restaurantListItem = $("<li class='list-group-item restaurantName text-capitalize'>")
           if (restaurantName) {
             $restaurantListItem.append(
               "<a href='" + restaurant.url + "' target='_blank'><strong>" + restaurantName + '</strong></a>')
@@ -131,6 +131,7 @@ $(document).ready(function () {
           $restaurantList.append($restaurantListItem)
         }
       }
+      updatePage();
     })
   })
 
