@@ -2,6 +2,7 @@ $(document).ready(function () {
   // defaults
   $('.create-recipe').hide()
 
+
   $('#btn-create-recipe').on('click', () => {
     $('.create-recipe').show()
     $('#profileTabs').hide()
@@ -14,18 +15,18 @@ $(document).ready(function () {
     }
   }
 
-  var zomatoCitySearch = function (city) {
-    var queryurl = 'https://developers.zomato.com/api/v2.1/cities?q=' + city
-    $.ajax({
-      url: queryurl,
-      type: 'GET',
-      dataType: 'json',
-      headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
-    })
-      .then(function (response) {
-        console.log(response.location_suggestions[0])
-      })
-  }
+  // var zomatoCitySearch = function (city) {
+  //   var queryurl = 'https://developers.zomato.com/api/v2.1/cities?q=' + city
+  //   $.ajax({
+  //     url: queryurl,
+  //     type: 'GET',
+  //     dataType: 'json',
+  //     headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
+  //   })
+  //     .then(function (response) {
+  //       console.log(response.location_suggestions[0])
+  //     })
+  // }
 
   var zomatoSearch = function (restaurantSearch) {
     var queryurl = 'https://developers.zomato.com/api/v2.1/search?q=' + restaurantSearch
@@ -242,6 +243,31 @@ $(document).ready(function () {
       })
   }
 
+
+addingredient()
+addingredient()
+addingredient()
+
+// zomatoCitySearch('cleveland')
+// zomatoSearch('barrio')
+
+// code from sample online for serializeArray()
+// $(document).ready(function() {
+//   $(".btn-addrecipe").click(function(event) {
+//     var newRecipe = $(".btn-addrecipe").serializeArray();
+// newRecipe.push({
+//   value: am1,
+//   amount: amounttype1,
+//   ingredient: ing1
+// });
+// jQuery.each( newRecipe, function( i, ingredients ) {
+//   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
+// });    
+//   });
+// });
+
+// Test calls of our APIs
+
   // Matt's code for submit button on 'add recipe form'
   $('#recipeForm').on('submit', event => {
     event.preventDefault()
@@ -278,6 +304,7 @@ $(document).ready(function () {
       ingredients: k.trim(searchstring),
       instructions: k.trim($('#instructions').val())
     }
+
 
     submitRecipe(dbQueryInfo)
     $('.create-recipe').hide()

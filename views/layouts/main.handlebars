@@ -32,11 +32,11 @@
 
 </head>
 
-<body onload="myFunction()" style="margin:0;">
 
-  <div class="navbar navbar-light bg-light" id="main-navbar">
-    <div class="row w-100" id="navbar-contents">
-      <div class="col-3 float-right">
+<body onload="myFunction()" style="margin:0;" id="main-navbar">
+{{!-- NEW NAVBAR --}}
+<nav class="navbar navbar-light bg-light">
+        <div class="float-left">
         <button id="btn-login" class="btn btn-primary btn-margin" style="display: inline-block;">
           Log In
         </button>
@@ -44,39 +44,27 @@
           Log Out
         </button>
       </div>
-      <div class="col-6 mx-auto">
-        <h1 class="text-center">CuiScene</h1>
-      </div>
-      <div class="col-3">
-        <form class="form-inline row float-right">
-          <button id="search" class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="submit" value="Search">Search</button>
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="restaurant-input">
-        </form>
+  <h1 class="text-center">CuiScene</h1>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="restaurant-input">
+    <button id="search" class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="submit">Search</button>
+  </form>
+</nav>
+
+  <div class="container">
+    <!-- main container -->
+    <div id="home-view">
+
+      <div class="tab-area">
+        {{{body}}}
       </div>
     </div>
 
-    {{!-- <a class="navbar-brand" href="/">CuiScene</a> --}}
-
-    {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/" id="btn-home-view">Home<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/views/profile" id="btn-home-view">My Profile</a>
-        </li>
-      </ul>
-
-
-    </div>--}}
   </div>
 
+
   <div id="loader"></div>
+
 
   <div class="container-fluid w-100 mx-auto" style="display:none;" id="myDiv" class="animate-bottom">
     <!-- main container -->
