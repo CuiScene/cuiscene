@@ -6,4 +6,4 @@ module.exports = router
 
 router
   .get('/', (req, res) => res.render('index'))
-  .get('/views/profile', (req, res) => res.render('profile'))
+  // .get('/views/profile', (req, res) => res.render('profile'))

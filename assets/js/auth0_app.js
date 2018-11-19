@@ -1,17 +1,64 @@
+const k = kyanite
+
+const create = user => {
+  $.ajax({
+    type: 'POST',
+    url: '/api/users/create',
+    data: {
+      username_pk: user
+    }
+  })
+    .then(response => {
+      console.log('creating user')
+    })
+}
+
+const exists = user => {
+  $.ajax({
+    type: 'GET',
+    url: '/api/users'
+  })
+    .then(response => {
+      if (k.some(x => x.username_pk === user, response)) {
+        return user
+      } else {
+        create(user)
+      }
+    })
+    .catch(new Error('error in exists'))
+}
+
+const getMyRecipes = x => {
+  $.ajax({
+    type: 'GET',
+    url: '/api/recipes/my',
+    data: x
+  })
+    .then(response => console.log('success'))
+}
+
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
+  // var webAuth = new auth0.WebAuth({
+  //   domain: 'apmtpc.auth0.com',
+  //   clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
+  //   responseType: 'token id_token',
+  //   scope: 'openid profile',
+  //   redirectUri: 'http://localhost:8080'
+  // })
   var webAuth = new auth0.WebAuth({
-    domain: 'apmtpc.auth0.com',
-    clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
+    domain: 'quiet-rice-3540.auth0.com',
+    clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
     responseType: 'token id_token',
     scope: 'openid profile',
-    redirectUri: 'http://localhost:8080'
+    redirectUri: 'https://cuiscene.herokuapp.com/'
   })
 
   var loginBtn = document.getElementById('btn-login')
   var homeDiv = document.getElementById('homeDiv')
   var profileDiv = document.getElementById('profileDiv')
-  var profileButton = document.getElementById('btn-profile')
+  var nickname = document.getElementById('nickname')
+  // var profileButton = document.getElementById('btn-profile')
 
   loginBtn.addEventListener('click', function (e) {
     e.preventDefault()
@@ -26,10 +73,10 @@ window.addEventListener('load', function () {
   var homeViewBtn = document.getElementById('btn-home-view')
   var logoutBtn = document.getElementById('btn-logout')
 
-  homeViewBtn.addEventListener('click', function () {
-    homeView.style.display = 'inline-block'
-    loginView.style.display = 'none'
-  })
+  // homeViewBtn.addEventListener('click', function () {
+  //   homeView.style.display = 'inline-block'
+  //   loginView.style.display = 'none'
+  // })
 
   logoutBtn.addEventListener('click', logout)
 
@@ -38,12 +85,16 @@ window.addEventListener('load', function () {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = ''
         setSession(authResult)
+        localStorage.nickname = authResult.idTokenPayload.nickname
+        localStorage.image = authResult.idTokenPayload.picture
+        exists(localStorage.nickname)
+        $('#nickname').append(localStorage.nickname + '!')
+        $('#avatar').attr('src', localStorage.image)
         loginBtn.style.display = 'none'
         homeView.style.display = 'inline-block'
       } else if (err) {
         homeView.style.display = 'inline-block'
         console.log(err)
-        alert('Error: ' + err.error + '. Check the console for further details.')
       }
       displayButtons()
     })
@@ -57,6 +108,7 @@ window.addEventListener('load', function () {
     localStorage.setItem('access_token', authResult.accessToken)
     localStorage.setItem('id_token', authResult.idToken)
     localStorage.setItem('expires_at', expiresAt)
+    getProfile()
   }
 
   function logout() {
@@ -64,6 +116,7 @@ window.addEventListener('load', function () {
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
+    localStorage.clear()
     displayButtons()
   }
 
@@ -79,13 +132,13 @@ window.addEventListener('load', function () {
       loginBtn.style.display = 'none'
       homeDiv.style.display = 'none'
       profileDiv.style.display = 'inline-block'
-      profileButton.style.display = 'inline-block'
+      // profileButton.style.display = 'inline-block'
       logoutBtn.style.display = 'inline-block'
-     // loginStatus.innerHTML = 'You are logged in!'
+      // loginStatus.innerHTML = 'You are logged in!'
     } else {
       homeDiv.style.display = 'inline-block'
       profileDiv.style.display = 'none'
-      profileButton.style.display = 'none'
+      // profileButton.style.display = 'none'
       loginBtn.style.display = 'inline-block'
       logoutBtn.style.display = 'none'
     }
@@ -96,17 +149,16 @@ window.addEventListener('load', function () {
   function getProfile() {
     if (!userProfile) {
       var accessToken = localStorage.getItem('access_token')
-
       if (!accessToken) {
         console.log('Access Token must exist to fetch profile')
       }
-
       webAuth.client.userInfo(accessToken, function (err, profile) {
         if (err) {
           throw err
         }
         if (profile) {
           userProfile = profile
+          getMyRecipes(userProfile)
           displayProfile()
         }
       })
@@ -117,14 +169,14 @@ window.addEventListener('load', function () {
 
   function displayProfile() {
     // display the profile
-    //document.querySelector('#profile-view .nickname').innerHTML =
-      //userProfile.nickname
+    document.querySelector('#profile-view .nickname').innerHTML =
+      userProfile.nickname
 
-    //document.querySelector(
-      //'#profile-view .full-profile'
-    //).innerHTML = JSON.stringify(userProfile, null, 2)
+    document.querySelector(
+      '#profile-view .full-profile'
+    ).innerHTML = JSON.stringify(userProfile, null, 2)
 
-    //document.querySelector('#profile-view img').src = userProfile.picture
+    document.querySelector('#profile-view img').src = userProfile.picture
   }
 
   handleAuthentication()
