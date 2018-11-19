@@ -40,6 +40,7 @@ $(document).ready(function () {
         console.log(response.restaurants[0])
         console.log(response.restaurants[0].restaurant.name)
         console.log(response.restaurants[0].restaurant.id)
+        console.log(response.restaurants[0].restaurant.photos_url)
       })
   }
 
@@ -81,7 +82,7 @@ $(document).ready(function () {
         // Requirement: Repeating element
         for (var i = 0; i < 10; i++) {
           var restaurant = restaurantData.restaurants[i].restaurant
-
+          console.log(restaurantData.restaurants[i].restaurant)
           // Create the  list group to contain the restaurants and add the restaurant content for each
           var $restaurantList = $('<ul>')
           $restaurantList.addClass('list-group')
@@ -131,7 +132,7 @@ $(document).ready(function () {
           $restaurantList.append($restaurantListItem)
         }
       }
-      updatePage();
+      // updatePage();
     })
   })
 
