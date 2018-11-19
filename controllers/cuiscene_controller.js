@@ -40,33 +40,29 @@ router
       })
       .catch(new Error('error getting data'))
   })
-  .get('/profile/recipes/saved', (req, res) => {
-    orm.selectAllFromTableOrderBy(
+  .get('/api/recipes/my', (req, res) => {
+    const user = req.body
+    orm.selectAllFromTableWhere(
       // table to select from
-      'recipes',
-      // columns to ORDER BY
-      ['recipe_rating', 'recipe_name_pk'],
-      // callback function
-      (err, data) => {
-        if (err) {
-          throw err
-        }
-        console.log(data)
-        res.render('profile', { savedRecipes: data })
-      })
+      'recipes', 'username_fk', user.nickname
+    )
+      .then(results => res.render('index', { recipes: results }))
   })
   .post('/api/recipes/create', (req, res) => {
     const data = req.body
+    console.log('post', data)
     orm.insertOne(
       'recipes',
-      ['recipe_name_pk', 'username_fk', 'restaurant_name_fk', 'recipe_cuisine', 'recipe_tags', 'restaurant_menu_item'],
-      [data.recipeName, localStorage.nickname, data.restaurantName, data.recipeCuisine, data.recipeTags, data.restaurantItem]
+      ['recipe_name_pk', 'username_fk', 'id', 'restaurant_name_fk', 'recipe_cuisine', 'recipe_tags', 'restaurant_menu_item'],
+      [data.recipeName, data.username, data.restaurantId, data.restaurantName, data.recipeCuisine, data.recipeTags, data.restaurantItem]
     )
       .then(() => orm.insertOne(
         'recipe_details',
-        ['recipe_name_pk_fk', 'servings', 'serving_size', 'preptime', 'cooktime', 'ingredients', 'instructions'],
-        [data.name, data.servings, data.size, data.prepTimeAmount, data.cookTimeAmount, data.ingredients, data.instructions]
+        ['recipe_name_pk_fk', 'servings', 'preptime', 'cooktime', 'ingredients', 'instructions'],
+        [data.recipeName, data.servings, data.prepTimeAmount, data.cookTimeAmount, data.ingredients, data.instructions]
       ))
+      .then(() => orm.selectAllFromTableWhere('recipes', 'username_fk', data.username))
+      .then(results => res.render('index', { recipes: results }))
       .catch(new Error('error on insert'))
   })
   .post('/api/users/create', (req, res) => {

@@ -1,27 +1,29 @@
 <div class="create-recipe text-center">
-  <form>
-
+  <form id="recipeForm" action="">
     <div class="form-group">
       <label for="recipeName">Recipe For:</label>
-      <input type="text" class="form-control" id="recipeName" placeholder="Roasted Veggies">
+      <input type="text" class="form-control" id="recipeName" placeholder="Roasted Veggies" required>
     </div>
 
     <div class="form-group">
       <label for="recipeCuisine">Cuisine Type:</label>
-      <input type="text" class="form-control" id="recipeCuisine" placeholder="Mediterranean">
+      <input type="text" class="form-control" id="recipeCuisine" placeholder="Mediterranean" required>
     </div>
 
     <div class="form-group">
       <label for="recipeTags">Suits Dietary Needs:</label>
-      <input type="text" class="form-control" id="recipeTags" placeholder="Vegan">
+      <input type="text" class="form-control" id="recipeTags" placeholder="Vegan" required>
     </div>
-
 
     <div class="form-group">
       <label for="restaurantItem">Menu Dish:</label>
-      <input type="text" class="form-control" id="restaurantItem" placeholder="Lamb Kabob">
+      <input type="text" class="form-control" id="restaurantItem" placeholder="Lamb Kabob" required>
       <label for="restaurantName">Inspired By:</label>
-      <input type="text" class="form-control" id="restaurantName" placeholder="Aladdin's">
+      <select type="text" class="form-control" id="restaurantName" placeholder="Aladdin's" required>
+        {{#each restaurants}}
+        {{> restaurant-select }}
+        {{/each}}
+      </select>
     </div>
 
     <div class="form-group">
@@ -37,14 +39,14 @@
         <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
-        <option value="11">10</option>
-        <option value="12">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="prepTime">Prep Time Needed:</label>
-      <input type="text" class="form-control" id="prepTime" placeholder="10">
+      <input type="text" class="form-control" id="prepTime" placeholder="10" required>
       <select class="form-control" id="prepTimeAmount">
         <option>minutes</option>
         <option>hours</option>
@@ -53,7 +55,7 @@
 
     <div class="form-group">
       <label for="cookTime">Cook Time Needed:</label>
-      <input type="text" class="form-control" id="cookTime" placeholder="50">
+      <input type="text" class="form-control" id="cookTime" placeholder="50" required>
       <select class="form-control" id="cookTimeAmount">
         <option>minutes</option>
         <option>hours</option>
@@ -89,9 +91,16 @@
         </div>
       </div>
     </div>
-    <div id="recipeBtnDiv">
+    <div class="recipeBtnDiv">
       <input type="button" value="Add another ingredient" class="btn-in btn-addingr" data-count=1><br><br>
-      <input type="button" value="Submit recipe" class="btn-in btn-addrecipe"><br><br>
+    </div>
+    <div class="form-group">
+      <label for="instructions">Instructions:</label>
+      <textarea type="text" class="form-control" id="instructions" placeholder="Type Instructions Here" required></textarea>
+    </div>
+
+    <div class="recipeBtnDiv">
+      <input type="submit" value="Submit recipe" class="btn-in btn-addrecipe"><br><br>
       <p class="errorp"></p>
     </div>
   </form>

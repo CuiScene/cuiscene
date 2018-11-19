@@ -34,22 +34,31 @@ const exists = user => {
     .catch(new Error('error in exists'))
 }
 
+const getMyRecipes = x => {
+  $.ajax({
+    type: 'GET',
+    url: '/api/recipes/my',
+    data: x
+  })
+    .then(response => console.log(response))
+}
+
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
-  // var webAuth = new auth0.WebAuth({
-  //   domain: 'apmtpc.auth0.com',
-  //   clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
-  //   responseType: 'token id_token',
-  //   scope: 'openid profile',
-  //   redirectUri: 'http://localhost:8080'
-  // })
   var webAuth = new auth0.WebAuth({
-    domain: 'quiet-rice-3540.auth0.com',
-    clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
+    domain: 'apmtpc.auth0.com',
+    clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
     responseType: 'token id_token',
     scope: 'openid profile',
-    redirectUri: 'https://cuiscene.herokuapp.com/'
+    redirectUri: 'http://localhost:8080'
   })
+  // var webAuth = new auth0.WebAuth({
+  //   domain: 'quiet-rice-3540.auth0.com',
+  //   clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
+  //   responseType: 'token id_token',
+  //   scope: 'openid profile',
+  //   redirectUri: 'https://cuiscene.herokuapp.com/'
+  // })
 
   var loginBtn = document.getElementById('btn-login')
   var homeDiv = document.getElementById('homeDiv')
@@ -158,6 +167,7 @@ window.addEventListener('load', function () {
         }
         if (profile) {
           userProfile = profile
+          getMyRecipes(userProfile)
           displayProfile()
         }
       })

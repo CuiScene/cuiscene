@@ -9,12 +9,12 @@ const orm = {
           if (error) {
             return reject(error)
           }
+          console.log('result', result)
           return resolve(result)
         })
     }),
 
   selectAllFromTable: (table) => {
-    console.log('before promise')
     return new Promise((resolve, reject) => {
       const queryString = 'SELECT * FROM ??'
       connection.query(queryString, table,
@@ -22,16 +22,24 @@ const orm = {
           if (error) {
             return reject(error)
           }
-          console.log('result', result)
           return resolve(result)
         }
       )
     })
   },
 
-  selectAllFromTableWhere: (table, whereCol, whereVal, cb) => {
-    const queryString = 'SELECT * FROM ?? WHERE ?? = ?'
-    connection.query(queryString, [table, whereCol, whereVal], cb)
+  selectAllFromTableWhere: (table, whereCol, whereVal) => {
+    return new Promise((resolve, reject) => {
+      const queryString = 'SELECT * FROM ?? WHERE ?? = ?'
+      connection.query(queryString, [table, whereCol, whereVal],
+        (error, result) => {
+          if (error) {
+            return reject(error)
+          }
+          return resolve(result)
+        }
+      )
+    })
   },
 
   selectAllFromTableOrderBy: (table, orderCols, cb) => {
