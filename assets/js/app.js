@@ -24,7 +24,6 @@ $(document).ready(function () {
     })
       .then(function (response) {
         console.log(response.location_suggestions[0])
-        // console.log(response[0])
       })
   }
 
@@ -38,7 +37,6 @@ $(document).ready(function () {
     })
       .then(function (response) {
         console.log(response.restaurants[0])
-        // console.log(response[0])
         console.log(response.restaurants[0].restaurant.name)
         console.log(response.restaurants[0].restaurant.id)
       })
@@ -214,43 +212,6 @@ $(document).ready(function () {
     })
   }
 
-  $(function () {
-    $('.create-form').on('submit', function (event) {
-      event.preventDefault()
-
-      var newUser = {
-        username_pk: $('#uname').val().trim(),
-        birthday: $('#bday').val().trim(),
-        restrictions: $('#restrict').val().trim(),
-        zipcode: $('#zip').val().trim()
-      }
-      console.log(newUser)
-
-      // Send the POST request.
-      $.ajax('/api/users', {
-        type: 'POST',
-        data: newUser
-      }).then(
-        function () {
-          console.log('created new user')
-          // Reload the page to get the updated list
-          // location.reload();
-        })
-      console.log(newUser)
-      // Send the POST request.
-      $.ajax('/api/users', {
-        type: 'POST',
-        data: newUser
-      }).then(
-        function () {
-          console.log('created new user')
-          // Reload the page to get the updated list
-          // location.reload();
-        }
-      )
-    })
-  })
-
   // 'Add Ingredient' on click functionality
   $('.btn-addingr').on('click', function () {
     addingredient()
@@ -271,8 +232,6 @@ $(document).ready(function () {
   })
 
   const submitRecipe = x => {
-    console.log('submitting recipe')
-    console.log(x)
     $.ajax({
       type: 'POST',
       url: '/api/recipes/create',
@@ -280,13 +239,11 @@ $(document).ready(function () {
     })
       .then(response => {
         console.log('recipe added successfully')
-        console.log(response)
       })
   }
 
   // Matt's code for submit button on 'add recipe form'
   $('#recipeForm').on('submit', event => {
-    console.log('submit fired')
     event.preventDefault()
 
     $('.errorp').css('display', 'none')
@@ -321,8 +278,6 @@ $(document).ready(function () {
       ingredients: k.trim(searchstring),
       instructions: k.trim($('#instructions').val())
     }
-
-    console.log('dbQueryInfo', dbQueryInfo)
 
     submitRecipe(dbQueryInfo)
     $('.create-recipe').hide()

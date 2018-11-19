@@ -1,7 +1,6 @@
 const k = kyanite
 
 const create = user => {
-  console.log('In Create')
   $.ajax({
     type: 'POST',
     url: '/api/users/create',
@@ -11,21 +10,16 @@ const create = user => {
   })
     .then(response => {
       console.log('creating user')
-      console.log(response)
     })
 }
 
 const exists = user => {
-  console.log('In Exists')
   $.ajax({
     type: 'GET',
     url: '/api/users'
   })
     .then(response => {
-      console.log('response', response)
-      console.log('user', user)
       if (k.some(x => x.username_pk === user, response)) {
-        console.log(k.some(x => x.username_pk === user, response))
         return user
       } else {
         create(user)
@@ -40,25 +34,25 @@ const getMyRecipes = x => {
     url: '/api/recipes/my',
     data: x
   })
-    .then(response => console.log(response))
+    .then(response => console.log('success'))
 }
 
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
-  var webAuth = new auth0.WebAuth({
-    domain: 'apmtpc.auth0.com',
-    clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
-    responseType: 'token id_token',
-    scope: 'openid profile',
-    redirectUri: 'http://localhost:8080'
-  })
   // var webAuth = new auth0.WebAuth({
-  //   domain: 'quiet-rice-3540.auth0.com',
-  //   clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
+  //   domain: 'apmtpc.auth0.com',
+  //   clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
   //   responseType: 'token id_token',
   //   scope: 'openid profile',
-  //   redirectUri: 'https://cuiscene.herokuapp.com/'
+  //   redirectUri: 'http://localhost:8080'
   // })
+  var webAuth = new auth0.WebAuth({
+    domain: 'quiet-rice-3540.auth0.com',
+    clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
+    responseType: 'token id_token',
+    scope: 'openid profile',
+    redirectUri: 'https://cuiscene.herokuapp.com/'
+  })
 
   var loginBtn = document.getElementById('btn-login')
   var homeDiv = document.getElementById('homeDiv')
@@ -87,14 +81,12 @@ window.addEventListener('load', function () {
   logoutBtn.addEventListener('click', logout)
 
   function handleAuthentication() {
-    console.log('in handle')
     webAuth.parseHash(function (err, authResult) {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = ''
         setSession(authResult)
         localStorage.nickname = authResult.idTokenPayload.nickname
         localStorage.image = authResult.idTokenPayload.picture
-        console.log(localStorage)
         exists(localStorage.nickname)
         $('#nickname').append(localStorage.nickname + '!')
         $('#avatar').attr('src', localStorage.image)
@@ -103,7 +95,6 @@ window.addEventListener('load', function () {
       } else if (err) {
         homeView.style.display = 'inline-block'
         console.log(err)
-        alert('Error: ' + err.error + '. Check the console for further details.')
       }
       displayButtons()
     })

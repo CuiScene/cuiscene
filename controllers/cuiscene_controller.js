@@ -10,18 +10,8 @@ const k = require('kyanite/dist/kyanite')
 
 router
   .get('/api/users', (req, res) => {
-    console.log('prior to orm in get route')
     orm.selectAllFromTable(
       'users'
-      // (err, data) => {
-      //   if (err) {
-      //     console.log('router error')
-      //     throw err
-      //   }
-      //   console.log('daata returned')
-      //   console.log('data', data)
-      //   res.send(data)
-      // }
     )
       .then(rows => res.send(rows))
       .catch(new Error('error...'))
@@ -50,7 +40,6 @@ router
   })
   .post('/api/recipes/create', (req, res) => {
     const data = req.body
-    console.log('post', data)
     orm.insertOne(
       'recipes',
       ['recipe_name_pk', 'username_fk', 'id', 'restaurant_name_fk', 'recipe_cuisine', 'recipe_tags', 'restaurant_menu_item'],

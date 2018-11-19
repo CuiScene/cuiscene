@@ -9,7 +9,6 @@ const orm = {
           if (error) {
             return reject(error)
           }
-          console.log('result', result)
           return resolve(result)
         })
     }),
