@@ -139,7 +139,7 @@ $(document).ready(function () {
           $restaurantList.append($restaurantListItem)
         }
       }
-      updatePage()
+      updatePage();
     })
   })
 

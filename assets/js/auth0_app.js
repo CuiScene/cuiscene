@@ -2,12 +2,12 @@ const k = kyanite
 
 const create = user => {
   $.ajax({
-    type: 'POST',
-    url: '/api/users/create',
-    data: {
-      username_pk: user
-    }
-  })
+      type: 'POST',
+      url: '/api/users/create',
+      data: {
+        username_pk: user
+      }
+    })
     .then(response => {
       console.log('creating user')
     })
@@ -15,9 +15,9 @@ const create = user => {
 
 const exists = user => {
   $.ajax({
-    type: 'GET',
-    url: '/api/users'
-  })
+      type: 'GET',
+      url: '/api/users'
+    })
     .then(response => {
       if (k.some(x => x.username_pk === user, response)) {
         return user
@@ -30,13 +30,13 @@ const exists = user => {
 
 const getMyRecipes = x => {
   $.ajax({
-    type: 'GET',
-    url: '/api/recipes/my',
-    data: x,
-    processData: false,
-    contentType: false,
-    dataType: 'json'
-  })
+      type: 'GET',
+      url: '/api/recipes/my',
+      data: x,
+      processData: false,
+      contentType: false,
+      dataType: 'json'
+    })
     .then(response => console.log('success'))
 }
 
@@ -77,7 +77,7 @@ window.addEventListener('load', function () {
   var logoutBtn = document.getElementById('btn-logout')
 
   // homeViewBtn.addEventListener('click', function () {
-  //   homeView.style.display = 'inline-block'
+  //   homeView.style.display = 'block'
   //   loginView.style.display = 'none'
   // })
 
@@ -91,12 +91,12 @@ window.addEventListener('load', function () {
         localStorage.nickname = authResult.idTokenPayload.nickname
         localStorage.image = authResult.idTokenPayload.picture
         exists(localStorage.nickname)
-        $('#nickname').append(localStorage.nickname + '!')
+        $('#nickname').append("<a href=''localStorage.nickname + '!'")
         $('#avatar').attr('src', localStorage.image)
         loginBtn.style.display = 'none'
-        homeView.style.display = 'inline-block'
+        homeView.style.display = 'block'
       } else if (err) {
-        homeView.style.display = 'inline-block'
+        homeView.style.display = 'block'
         console.log(err)
       }
       displayButtons()
@@ -134,21 +134,22 @@ window.addEventListener('load', function () {
     if (isAuthenticated()) {
       loginBtn.style.display = 'none'
       homeDiv.style.display = 'none'
-      profileDiv.style.display = 'inline-block'
-      // profileButton.style.display = 'inline-block'
-      logoutBtn.style.display = 'inline-block'
+      profileDiv.style.display = 'block'
+      // profileButton.style.display = 'block'
+      logoutBtn.style.display = 'block'
       // loginStatus.innerHTML = 'You are logged in!'
     } else {
-      homeDiv.style.display = 'inline-block'
+      homeDiv.style.display = 'block'
       profileDiv.style.display = 'none'
       // profileButton.style.display = 'none'
-      loginBtn.style.display = 'inline-block'
+      loginBtn.style.display = 'block'
       logoutBtn.style.display = 'none'
     }
   }
 
   // app.js
   var userProfile
+
   function getProfile() {
     if (!userProfile) {
       var accessToken = localStorage.getItem('access_token')
@@ -172,8 +173,9 @@ window.addEventListener('load', function () {
 
   function displayProfile() {
     // display the profile
-    document.querySelector('#profile-view .nickname').innerHTML =
-      userProfile.nickname
+    document.querySelector(
+      '#profile-view .nickname'
+      ).innerHTML = JSON.stringify(userProfile.nickname, string)
 
     document.querySelector(
       '#profile-view .full-profile'
