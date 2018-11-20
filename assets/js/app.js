@@ -2,7 +2,6 @@ $(document).ready(function () {
   // defaults
   $('.create-recipe').hide()
 
-
   $('#btn-create-recipe').on('click', () => {
     $('.create-recipe').show()
     $('#profileTabs').hide()
@@ -40,35 +39,36 @@ $(document).ready(function () {
         console.log(response.restaurants[0])
         console.log(response.restaurants[0].restaurant.name)
         console.log(response.restaurants[0].restaurant.id)
+        console.log(response.restaurants[0].restaurant.photos_url)
       })
   }
 
-  var nutritionix = function (food) {
-    var settings = {
-      'async': true,
-      'crossDomain': true,
-      'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-      'method': 'POST',
-      'headers': {
-        'content-type': 'application/json',
-        'accept': 'application/json',
-        'x-app-id': 'c0d82573',
-        'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
-        'x-remote-user-id': '0',
-        'cache-control': 'no-cache'
-      },
-      'processData': false,
-      'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
-    }
-      .then(function (response) {
-        console.log('response = ', response)
-        updatePage(response)
-      })
+  // var nutritionix = function (food) {
+  //   var settings = {
+  //     'async': true,
+  //     'crossDomain': true,
+  //     'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
+  //     'method': 'POST',
+  //     'headers': {
+  //       'content-type': 'application/json',
+  //       'accept': 'application/json',
+  //       'x-app-id': 'c0d82573',
+  //       'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
+  //       'x-remote-user-id': '0',
+  //       'cache-control': 'no-cache'
+  //     },
+  //     'processData': false,
+  //     'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
+  //   }
+  //     .then(function (response) {
+  //       console.log('response = ', response)
+  //       updatePage(response)
+  //     })
 
-    $.ajax(settings).done(function (response) {
-      console.log(response)
-    })
-  }
+  //   $.ajax(settings).done(function (response) {
+  //     console.log(response)
+  //   })
+  // }
 
   $(function () {
     $('.create-form').on('submit', function (event) {
@@ -81,7 +81,7 @@ $(document).ready(function () {
         // Requirement: Repeating element
         for (var i = 0; i < 10; i++) {
           var restaurant = restaurantData.restaurants[i].restaurant
-
+          console.log(restaurantData.restaurants[i].restaurant)
           // Create the  list group to contain the restaurants and add the restaurant content for each
           var $restaurantList = $('<ul>')
           $restaurantList.addClass('list-group')
@@ -91,7 +91,7 @@ $(document).ready(function () {
 
           // If the restaurant is available, log and append to $restaurantList
           var restaurantName = restaurant.name
-          var $restaurantListItem = $("<li class='list-group-item restaurantName'>")
+          var $restaurantListItem = $("<li class='list-group-item restaurantName text-capitalize'>")
           if (restaurantName) {
             $restaurantListItem.append(
               "<a href='" + restaurant.url + "' target='_blank'><strong>" + restaurantName + '</strong></a>')
@@ -99,7 +99,7 @@ $(document).ready(function () {
           var menu = restaurant.url
           if (menu) {
             var menuLink = $("<a href='" + menu + "' target='_blank'>View Menu</a>")
-            menuLink.addClass('menuLink')
+            menuLink.addClass('menuLink text-capitalize')
             $restaurantListItem.append(menuLink)
           }
 
@@ -112,37 +112,41 @@ $(document).ready(function () {
           // Append section to document if exists
           var cuisines = restaurant.cuisines
           if (cuisines) {
-            $restaurantListItem.append('<h6>Cuisines: ' + cuisines + '</h6>')
+            $restaurantListItem.append("<h6 class='text-capitalize'>Cuisines: " + cuisines + "</h6>")
           }
 
           // Append section to document if exists
           var locality = restaurant.location.locality_verbose
           if (locality) {
-            $restaurantListItem.append('<h6>Location: ' + locality + '</h6>')
+            $restaurantListItem.append("<h6 class='text-capitalize'>Location: " + locality + "</h6>")
           }
 
           // Append section to document if exists
-          var cuisines = restaurant.cuisines
-          if (cuisines) {
-            $restaurantListItem.append('<h6>Cuisines: ' + cuisines + '</h6>')
+          var photos = restaurant.photos_url
+          if (photos) {
+            $restaurantListItem.append('<h6 >PHOTO TEST: ' + photos + '</h6>')
           }
+
 
           // Append the restaurant
           $restaurantList.append($restaurantListItem)
         }
       }
+      updatePage();
     })
   })
 
-  $('#search').on('click', function (event) {
-    event.preventDefault()
+  $("#search").on("click", function (event) {
 
-    // When user clicks search, reload the restaurants
-    $('#restaurant-list').empty()
-    var restaurantSearch = $('#restaurant-input').val()
-
+    event.preventDefault();
+  
+    //When user clicks search, reload the restaurants
+    $("#restaurant-list").empty();
+    var restaurantSearch = $("#restaurant-input").val()
+  
     zomatoSearch(restaurantSearch)
-  })
+  
+  });
 
   var addingredient = function () {
     var count = Number($('.btn-addingr').attr('data-count'))
@@ -240,33 +244,42 @@ $(document).ready(function () {
     })
       .then(response => {
         console.log('recipe added successfully')
+        location.reload()
       })
   }
 
+  const getMyRecipes = x => {
+    $.ajax({
+      type: 'GET',
+      url: '/api/recipes/my',
+      data: x
+    })
+      .then(response => console.log('success'))
+  }
 
-addingredient()
-addingredient()
-addingredient()
+  addingredient()
+  addingredient()
+  addingredient()
 
-// zomatoCitySearch('cleveland')
-// zomatoSearch('barrio')
+  // zomatoCitySearch('cleveland')
+  // zomatoSearch('barrio')
 
-// code from sample online for serializeArray()
-// $(document).ready(function() {
-//   $(".btn-addrecipe").click(function(event) {
-//     var newRecipe = $(".btn-addrecipe").serializeArray();
-// newRecipe.push({
-//   value: am1,
-//   amount: amounttype1,
-//   ingredient: ing1
-// });
-// jQuery.each( newRecipe, function( i, ingredients ) {
-//   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
-// });    
-//   });
-// });
+  // code from sample online for serializeArray()
+  // $(document).ready(function() {
+  //   $(".btn-addrecipe").click(function(event) {
+  //     var newRecipe = $(".btn-addrecipe").serializeArray();
+  // newRecipe.push({
+  //   value: am1,
+  //   amount: amounttype1,
+  //   ingredient: ing1
+  // });
+  // jQuery.each( newRecipe, function( i, ingredients ) {
+  //   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
+  // });
+  //   });
+  // });
 
-// Test calls of our APIs
+  // Test calls of our APIs
 
   // Matt's code for submit button on 'add recipe form'
   $('#recipeForm').on('submit', event => {
@@ -304,7 +317,6 @@ addingredient()
       ingredients: k.trim(searchstring),
       instructions: k.trim($('#instructions').val())
     }
-
 
     submitRecipe(dbQueryInfo)
     $('.create-recipe').hide()

@@ -32,7 +32,10 @@ const getMyRecipes = x => {
   $.ajax({
     type: 'GET',
     url: '/api/recipes/my',
-    data: x
+    data: x,
+    processData: false,
+    contentType: false,
+    dataType: 'json'
   })
     .then(response => console.log('success'))
 }

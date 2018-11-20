@@ -34,41 +34,28 @@
 
 
 <body onload="myFunction()" style="margin:0;" id="main-navbar">
-{{!-- NEW NAVBAR --}}
-<nav class="navbar navbar-light bg-light">
-        <div class="float-left">
-        <button id="btn-login" class="btn btn-primary btn-margin" style="display: inline-block;">
-          Log In
-        </button>
-        <button id="btn-logout" class="float-left btn btn-primary btn-margin" style="display: none;">
-          Log Out
-        </button>
-      </div>
-  <h1 class="text-center">CuiScene</h1>
-  <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="restaurant-input">
-    <button id="search" class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="submit">Search</button>
-  </form>
-</nav>
-
-  <div class="container">
-    <!-- main container -->
-    <div id="home-view">
-
-      <div class="tab-area">
-        {{{body}}}
-      </div>
+  {{!-- NEW NAVBAR --}}
+  <nav class="navbar navbar-light bg-light">
+    <div class="float-left">
+      <button id="btn-login" class="btn btn-primary btn-margin" style="display: inline-block;">
+        Log In
+      </button>
+      <button id="btn-logout" class="float-left btn btn-primary btn-margin" style="display: none;">
+        Log Out
+      </button>
     </div>
-
-  </div>
-
+    <h1 class="text-center">CuiScene</h1>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="restaurant-input">
+      <button id="search" class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="submit">Search</button>
+    </form>
+  </nav>
 
   <div id="loader"></div>
 
-
   <div class="container-fluid w-100 mx-auto" style="display:none;" id="myDiv" class="animate-bottom">
     <!-- main container -->
-    <div class="container-fluid mx-auto" id="home-view">
+    <div class="container container-fluid" id="home-view">
       {{{body}}}
     </div>
   </div>
