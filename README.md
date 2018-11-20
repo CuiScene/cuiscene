@@ -1,5 +1,5 @@
 # CuiScene 
-![CuisScene App](https://github.com/CuiScene/cuiscene/tree/master/assets/images/login-screenshot.png "CuiScene App Login Page")
+![CuisScene App](https://github.com/CuiScene/cuiscene/blob/readme/assets/images/login-screenshot.png "CuiScene App Login Page")
 
 
 ***Restaurant Menu Review & Recipe Log App***
