@@ -71,17 +71,30 @@ router
       }
     )
   })
+  .post('/api/users', (req, res) => {
+    orm.insertOne(
+      // table to insert Into
+      'users',
+      // columns to insert into, listed as an array of strings
+      ['username_pk', 'date_created'],
+      // values to insert....Object.values will return an array of the values from the form
+      Object.values(req.body),
+      // callback function
+      result => res.json({ id: result.insertId })
+    )
+  })
+  .post('/api/userLog/create', (req, res) => {
+    const data = req.body
+    orm.insertOne(
+      'user_entries',
+      ['restaurant_name', 'date', 'meal_time', 'menu_item', 'notes', 'username_fk'],
+      [data.restName, data.date, data.meal, data.item, data.notes, data.username],
+      result => res.json({ id: result.insertId })
+    )
+      .then(() => orm.insertOne('restaurants', 'restaurant_name_pk', data.restName))
+      .then(() => orm.selectAllFromTableWhere('user_entries', 'username_fk', data.username))
+      .then(results => res.render('index', { log: results }))
+      .catch(new Error('error adding to log'))
+  })
 
-router.post('/api/users', (req, res) => {
-  orm.insertOne(
-    // table to insert Into
-    'users',
-    // columns to insert into, listed as an array of strings
-    ['username_pk', 'date_created'],
-    // values to insert....Object.values will return an array of the values from the form
-    Object.values(req.body),
-    // callback function
-    result => res.json({ id: result.insertId })
-  )
-})
 module.exports = router

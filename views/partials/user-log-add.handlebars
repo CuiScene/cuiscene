@@ -1,86 +1,44 @@
-<!doctype html>
-<html lang="en">
+<h1>Add a Food Review to Your Log</h1>
 
-<head>
-  <title>CuiScene</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<form class="user-log-entry my-5">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.5.0/modern-normalize.min.css"
-    integrity="sha256-N6+kUxTWxpqVK+BrPWt3t4jeOWPtp37RZEbm5n9X+8U=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <div class="form-group">
+    <label for="restaurantName">Restaurant Name:</label>
+    <input type="text" class="form-control" id="restName" placeholder="Barrio" required>
+  </div>
 
-</head>
+  <div class="form-group">
+    <label for="mealTime">Visited for:</label>
+    <select class="form-control" id="mealTime">
+      <option>Breakfast</option>
+      <option>Brunch</option>
+      <option>Lunch</option>
+      <option>Happy Hour</option>
+      <option>Dinner</option>
+      <option>Late Night</option>
+    </select>
+  </div>
 
-<body>
-  <h1>Add a Food Review to Your Log</h1>
+  <div class="form-group">
+    <label for="date">Date Visited:</label>
+    <input type="date" class="form-control" id="date" required>
+  </div>
 
-  <form>
-    
-    <div class="form-group">
-      <label for="restaurantName">Restaurant Name:</label>
-      <input type="text" class="form-control" id="restaurantName" placeholder="Barrio">
-    </div>
-
-    <div class="form-group">
-      <label for="mealTime">Visited for:</label>
-      <select class="form-control" id="mealTime">
-        <option>Breakfast</option>
-        <option>Brunch</option>
-        <option>Lunch</option>
-        <option>Happy Hour</option>
-        <option>Dinner</option>
-        <option>Late Night</option>
-      </select>
-    </div>
-
-    <div class="input-group date" id="datetimepicker1">
-      <label for="mealDate">Date Visited:</label>
-      <input type='text' class="form-control" id="mealDate">
-      <span class="input-group-addon">
-        <span class="glyphicon glyphicon-calendar"></span>
-      </span>
-    </div>
-
-    <div class="form-group">
-      <label for="menuItems">Food Ordered:</label>
-      <select class="form-control" id="menuItems">
-        <!-- Dynamically generate these options from the dailymenu API or change to a 
+  <div class="form-group">
+    <label for="menuItems">Food Ordered:</label>
+    <input type="text" class="form-control" id="menuItems" required>
+    {{!-- <select class="form-control" id="menuItems">
+      <!-- Dynamically generate these options from the dailymenu API or change to a 
         text input box if we can't get that to work -->
-        <option></option>
-      </select>
-    </div>
+      <option></option> --}}
+    </select>
+  </div>
 
-    <div class="form-group">
-      <label for="foodNotes">Food Notes:</label>
-      <input type="text" class="form-control" id="foodNotes" placeholder="Add comments for next visit.">
-    </div>
+  <div class="form-group">
+    <label for="foodNotes">Food Notes:</label>
+    <input type="text" class="form-control" id="foodNotes" placeholder="Add comments for next visit.">
+  </div>
 
-    <button type="submit">Submit</button>
+  <button type="submit">Submit</button>
 
-  </form>
-
-
-  <script type="text/javascript">
-      // function for calendar widget for date visited
-      $(function () {
-          $('#datetimepicker1').datetimepicker();
-      });
-  </script>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
-  <script src="js/auth0_app.js"></script>
-  <script src="js/app.js"></script>
-
-</body>
-
-</html>
+</form>

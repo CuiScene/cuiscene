@@ -1,10 +1,18 @@
 $(document).ready(function () {
   // defaults
   $('.create-recipe').hide()
+  $('.user-log-add').hide()
 
   $('#btn-create-recipe').on('click', () => {
     $('.create-recipe').show()
     $('#profileTabs').hide()
+    $('.user-log-add').hide()
+  })
+
+  $('#btn-user-log-add').on('click', () => {
+    $('.user-log-add').show()
+    $('#profileTabs').hide()
+    $('.create-recipe').hide()
   })
 
   const checkUser = x => {
@@ -112,13 +120,13 @@ $(document).ready(function () {
           // Append section to document if exists
           var cuisines = restaurant.cuisines
           if (cuisines) {
-            $restaurantListItem.append("<h6 class='text-capitalize'>Cuisines: " + cuisines + "</h6>")
+            $restaurantListItem.append("<h6 class='text-capitalize'>Cuisines: " + cuisines + '</h6>')
           }
 
           // Append section to document if exists
           var locality = restaurant.location.locality_verbose
           if (locality) {
-            $restaurantListItem.append("<h6 class='text-capitalize'>Location: " + locality + "</h6>")
+            $restaurantListItem.append("<h6 class='text-capitalize'>Location: " + locality + '</h6>')
           }
 
           // Append section to document if exists
@@ -127,26 +135,23 @@ $(document).ready(function () {
             $restaurantListItem.append('<h6 >PHOTO TEST: ' + photos + '</h6>')
           }
 
-
           // Append the restaurant
           $restaurantList.append($restaurantListItem)
         }
       }
-      updatePage();
+      updatePage()
     })
   })
 
-  $("#search").on("click", function (event) {
+  $('#search').on('click', function (event) {
+    event.preventDefault()
 
-    event.preventDefault();
-  
-    //When user clicks search, reload the restaurants
-    $("#restaurant-list").empty();
-    var restaurantSearch = $("#restaurant-input").val()
-  
+    // When user clicks search, reload the restaurants
+    $('#restaurant-list').empty()
+    var restaurantSearch = $('#restaurant-input').val()
+
     zomatoSearch(restaurantSearch)
-  
-  });
+  })
 
   var addingredient = function () {
     var count = Number($('.btn-addingr').attr('data-count'))
@@ -248,6 +253,18 @@ $(document).ready(function () {
       })
   }
 
+  const submitLog = x => {
+    $.ajax({
+      type: 'POST',
+      url: '/api/userLog/create',
+      data: x
+    })
+      .then(response => {
+        console.log('added to log successfully')
+        location.reload()
+      })
+  }
+
   const getMyRecipes = x => {
     $.ajax({
       type: 'GET',
@@ -261,27 +278,6 @@ $(document).ready(function () {
   addingredient()
   addingredient()
 
-  // zomatoCitySearch('cleveland')
-  // zomatoSearch('barrio')
-
-  // code from sample online for serializeArray()
-  // $(document).ready(function() {
-  //   $(".btn-addrecipe").click(function(event) {
-  //     var newRecipe = $(".btn-addrecipe").serializeArray();
-  // newRecipe.push({
-  //   value: am1,
-  //   amount: amounttype1,
-  //   ingredient: ing1
-  // });
-  // jQuery.each( newRecipe, function( i, ingredients ) {
-  //   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
-  // });
-  //   });
-  // });
-
-  // Test calls of our APIs
-
-  // Matt's code for submit button on 'add recipe form'
   $('#recipeForm').on('submit', event => {
     event.preventDefault()
 
@@ -304,7 +300,7 @@ $(document).ready(function () {
     var restaurantIdAndName = $('#restaurantName').val().split(' ')
 
     var dbQueryInfo = {
-      username: localStorage.nickname,
+      username: k.trim(localStorage.nickname),
       recipeName: k.trim($('#recipeName').val()),
       recipeCuisine: k.trim($('#recipeCuisine').val()),
       recipeTags: k.trim($('#recipeTags').val()),
@@ -320,6 +316,23 @@ $(document).ready(function () {
 
     submitRecipe(dbQueryInfo)
     $('.create-recipe').hide()
+    $('#profileTabs').show()
+  })
+
+  $('.user-log-entry').on('submit', event => {
+    event.preventDefault()
+
+    const dbQueryInfo = {
+      restName: k.trim($('#restName').val()),
+      date: $('#date').val(),
+      meal: k.trim($('#mealTime').val()),
+      item: k.trim($('#menuItems').val()),
+      notes: k.trim($('#foodNotes').val()) || 'n/a',
+      username: k.trim(localStorage.nickname)
+    }
+
+    submitLog(dbQueryInfo)
+    $('.user-log-add').hide()
     $('#profileTabs').show()
   })
 
