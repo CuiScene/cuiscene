@@ -100,7 +100,7 @@ $(document).ready(function () {
           var menu = restaurant.url
           if (menu) {
             var menuLink = $("<a href='" + menu + "' target='_blank'>View Menu</a>")
-            menuLink.addClass('menuLink')
+            menuLink.addClass('menuLink text-capitalize')
             $restaurantListItem.append(menuLink)
           }
 
@@ -113,38 +113,41 @@ $(document).ready(function () {
           // Append section to document if exists
           var cuisines = restaurant.cuisines
           if (cuisines) {
-            $restaurantListItem.append('<h6>Cuisines: ' + cuisines + '</h6>')
+            $restaurantListItem.append("<h6 class='text-capitalize'>Cuisines: " + cuisines + "</h6>")
           }
 
           // Append section to document if exists
           var locality = restaurant.location.locality_verbose
           if (locality) {
-            $restaurantListItem.append('<h6>Location: ' + locality + '</h6>')
+            $restaurantListItem.append("<h6 class='text-capitalize'>Location: " + locality + "</h6>")
           }
 
           // Append section to document if exists
-          var cuisines = restaurant.cuisines
-          if (cuisines) {
-            $restaurantListItem.append('<h6>Cuisines: ' + cuisines + '</h6>')
+          var photos = restaurant.photos_url
+          if (photos) {
+            $restaurantListItem.append('<h6 >PHOTO TEST: ' + photos + '</h6>')
           }
+
 
           // Append the restaurant
           $restaurantList.append($restaurantListItem)
         }
       }
-      // updatePage();
+      updatePage();
     })
   })
 
-  $('#search').on('click', function (event) {
-    event.preventDefault()
+  $("#search").on("click", function (event) {
 
-    // When user clicks search, reload the restaurants
-    $('#restaurant-list').empty()
-    var restaurantSearch = $('#restaurant-input').val()
-
+    event.preventDefault();
+  
+    //When user clicks search, reload the restaurants
+    $("#restaurant-list").empty();
+    var restaurantSearch = $("#restaurant-input").val()
+  
     zomatoSearch(restaurantSearch)
-  })
+  
+  });
 
   var addingredient = function () {
     var count = Number($('.btn-addingr').attr('data-count'))
