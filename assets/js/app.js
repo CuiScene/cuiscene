@@ -22,18 +22,18 @@ $(document).ready(function () {
     }
   }
 
-  // var zomatoCitySearch = function (city) {
-  //   var queryurl = 'https://developers.zomato.com/api/v2.1/cities?q=' + city
-  //   $.ajax({
-  //     url: queryurl,
-  //     type: 'GET',
-  //     dataType: 'json',
-  //     headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
-  //   })
-  //     .then(function (response) {
-  //       console.log(response.location_suggestions[0])
-  //     })
-  // }
+  var zomatoCitySearch = function (city) {
+    var queryurl = 'https://developers.zomato.com/api/v2.1/cities?q=' + city
+    $.ajax({
+      url: queryurl,
+      type: 'GET',
+      dataType: 'json',
+      headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
+    })
+      .then(function (response) {
+        console.log(response.location_suggestions[0])
+      })
+  }
 
   var zomatoSearch = function (restaurantSearch) {
     var queryurl = 'https://developers.zomato.com/api/v2.1/search?q=' + restaurantSearch
@@ -51,32 +51,32 @@ $(document).ready(function () {
       })
   }
 
-  // var nutritionix = function (food) {
-  //   var settings = {
-  //     'async': true,
-  //     'crossDomain': true,
-  //     'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-  //     'method': 'POST',
-  //     'headers': {
-  //       'content-type': 'application/json',
-  //       'accept': 'application/json',
-  //       'x-app-id': 'c0d82573',
-  //       'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
-  //       'x-remote-user-id': '0',
-  //       'cache-control': 'no-cache'
-  //     },
-  //     'processData': false,
-  //     'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
-  //   }
-  //     .then(function (response) {
-  //       console.log('response = ', response)
-  //       updatePage(response)
-  //     })
+  var nutritionix = function (food) {
+    var settings = {
+      'async': true,
+      'crossDomain': true,
+      'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
+      'method': 'POST',
+      'headers': {
+        'content-type': 'application/json',
+        'accept': 'application/json',
+        'x-app-id': 'c0d82573',
+        'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
+        'x-remote-user-id': '0',
+        'cache-control': 'no-cache'
+      },
+      'processData': false,
+      'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
+    }
+      .then(function (response) {
+        console.log('response = ', response)
+        updatePage(response)
+      })
 
-  //   $.ajax(settings).done(function (response) {
-  //     console.log(response)
-  //   })
-  // }
+    $.ajax(settings).done(function (response) {
+      console.log(response)
+    })
+  }
 
   $(function () {
     $('.create-form').on('submit', function (event) {
