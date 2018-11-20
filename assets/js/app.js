@@ -2,7 +2,6 @@ $(document).ready(function () {
   // defaults
   $('.create-recipe').hide()
 
-
   $('#btn-create-recipe').on('click', () => {
     $('.create-recipe').show()
     $('#profileTabs').hide()
@@ -43,32 +42,32 @@ $(document).ready(function () {
       })
   }
 
-  var nutritionix = function (food) {
-    var settings = {
-      'async': true,
-      'crossDomain': true,
-      'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-      'method': 'POST',
-      'headers': {
-        'content-type': 'application/json',
-        'accept': 'application/json',
-        'x-app-id': 'c0d82573',
-        'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
-        'x-remote-user-id': '0',
-        'cache-control': 'no-cache'
-      },
-      'processData': false,
-      'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
-    }
-      .then(function (response) {
-        console.log('response = ', response)
-        updatePage(response)
-      })
+  // var nutritionix = function (food) {
+  //   var settings = {
+  //     'async': true,
+  //     'crossDomain': true,
+  //     'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
+  //     'method': 'POST',
+  //     'headers': {
+  //       'content-type': 'application/json',
+  //       'accept': 'application/json',
+  //       'x-app-id': 'c0d82573',
+  //       'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
+  //       'x-remote-user-id': '0',
+  //       'cache-control': 'no-cache'
+  //     },
+  //     'processData': false,
+  //     'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
+  //   }
+  //     .then(function (response) {
+  //       console.log('response = ', response)
+  //       updatePage(response)
+  //     })
 
-    $.ajax(settings).done(function (response) {
-      console.log(response)
-    })
-  }
+  //   $.ajax(settings).done(function (response) {
+  //     console.log(response)
+  //   })
+  // }
 
   $(function () {
     $('.create-form').on('submit', function (event) {
@@ -240,33 +239,42 @@ $(document).ready(function () {
     })
       .then(response => {
         console.log('recipe added successfully')
+        location.reload()
       })
   }
 
+  const getMyRecipes = x => {
+    $.ajax({
+      type: 'GET',
+      url: '/api/recipes/my',
+      data: x
+    })
+      .then(response => console.log('success'))
+  }
 
-addingredient()
-addingredient()
-addingredient()
+  addingredient()
+  addingredient()
+  addingredient()
 
-// zomatoCitySearch('cleveland')
-// zomatoSearch('barrio')
+  // zomatoCitySearch('cleveland')
+  // zomatoSearch('barrio')
 
-// code from sample online for serializeArray()
-// $(document).ready(function() {
-//   $(".btn-addrecipe").click(function(event) {
-//     var newRecipe = $(".btn-addrecipe").serializeArray();
-// newRecipe.push({
-//   value: am1,
-//   amount: amounttype1,
-//   ingredient: ing1
-// });
-// jQuery.each( newRecipe, function( i, ingredients ) {
-//   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
-// });    
-//   });
-// });
+  // code from sample online for serializeArray()
+  // $(document).ready(function() {
+  //   $(".btn-addrecipe").click(function(event) {
+  //     var newRecipe = $(".btn-addrecipe").serializeArray();
+  // newRecipe.push({
+  //   value: am1,
+  //   amount: amounttype1,
+  //   ingredient: ing1
+  // });
+  // jQuery.each( newRecipe, function( i, ingredients ) {
+  //   $( ".tab-area" ).append( ingredients.value + ' ' + ingredients.amount + " " + ingredients.ingredient + "<br />");
+  // });
+  //   });
+  // });
 
-// Test calls of our APIs
+  // Test calls of our APIs
 
   // Matt's code for submit button on 'add recipe form'
   $('#recipeForm').on('submit', event => {
@@ -304,7 +312,6 @@ addingredient()
       ingredients: k.trim(searchstring),
       instructions: k.trim($('#instructions').val())
     }
-
 
     submitRecipe(dbQueryInfo)
     $('.create-recipe').hide()
