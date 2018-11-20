@@ -1,5 +1,4 @@
 # CuiScene 
-![Image of Cuiscene](https://via.placeholder.com/350x200)
 ![CuisScene App](https://github.com/CuiScene/cuiscene/tree/master/assets/images/login-screenshot.png "CuiScene App Login Page")
 
 
