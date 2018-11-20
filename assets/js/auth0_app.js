@@ -74,7 +74,7 @@ window.addEventListener('load', function () {
   var logoutBtn = document.getElementById('btn-logout')
 
   // homeViewBtn.addEventListener('click', function () {
-  //   homeView.style.display = 'inline-block'
+  //   homeView.style.display = 'block'
   //   loginView.style.display = 'none'
   // })
 
@@ -91,9 +91,9 @@ window.addEventListener('load', function () {
         $('#nickname').append(localStorage.nickname + '!')
         $('#avatar').attr('src', localStorage.image)
         loginBtn.style.display = 'none'
-        homeView.style.display = 'inline-block'
+        homeView.style.display = 'block'
       } else if (err) {
-        homeView.style.display = 'inline-block'
+        homeView.style.display = 'block'
         console.log(err)
       }
       displayButtons()
@@ -131,15 +131,15 @@ window.addEventListener('load', function () {
     if (isAuthenticated()) {
       loginBtn.style.display = 'none'
       homeDiv.style.display = 'none'
-      profileDiv.style.display = 'inline-block'
-      // profileButton.style.display = 'inline-block'
-      logoutBtn.style.display = 'inline-block'
+      profileDiv.style.display = 'block'
+      // profileButton.style.display = 'block'
+      logoutBtn.style.display = 'block'
       // loginStatus.innerHTML = 'You are logged in!'
     } else {
-      homeDiv.style.display = 'inline-block'
+      homeDiv.style.display = 'block'
       profileDiv.style.display = 'none'
       // profileButton.style.display = 'none'
-      loginBtn.style.display = 'inline-block'
+      loginBtn.style.display = 'block'
       logoutBtn.style.display = 'none'
     }
   }
