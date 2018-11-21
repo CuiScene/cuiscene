@@ -39,11 +39,13 @@ $(document).ready(function () {
   var zomatoSearch = function (restaurantSearch) {
     var queryurl = 'https://developers.zomato.com/api/v2.1/search?q=' + restaurantSearch
     $.ajax({
-      url: queryurl,
-      type: 'GET',
-      dataType: 'json',
-      headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
-    })
+        url: queryurl,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+          'user-key': '46a9d8c42a9a6217ff47dae868a48873'
+        }
+      })
       .then(function (response) {
         console.log(response.restaurants[0])
         console.log(response.restaurants[0].restaurant.name)
@@ -60,71 +62,67 @@ $(document).ready(function () {
       })
   }
 
-  // var nutritionix = function (food) {
-  //   var settings = {
-  //     'async': true,
-  //     'crossDomain': true,
-  //     'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-  //     'method': 'POST',
-  //     'headers': {
-  //       'content-type': 'application/json',
-  //       'accept': 'application/json',
-  //       'x-app-id': 'c0d82573',
-  //       'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
-  //       'x-remote-user-id': '0',
-  //       'cache-control': 'no-cache'
-  //     },
-  //     'processData': false,
-  //     'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
-  //   }
-  //     .then(function (response) {
-  //       console.log('response = ', response)
-  //       updatePage(response)
-  //     })
+  var nutritionix = function (food) {
+    var settings = {
+        'async': true,
+        'crossDomain': true,
+        'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
+        'method': 'POST',
+        'headers': {
+          'content-type': 'application/json',
+          'accept': 'application/json',
+          'x-app-id': 'c0d82573',
+          'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
+          'x-remote-user-id': '0',
+          'cache-control': 'no-cache'
+        },
+        'processData': false,
+        'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
+      }
+      .then(function (response) {
+        console.log('response = ', response)
+        updatePage(response)
+      })
 
   //   $.ajax(settings).done(function (response) {
   //     console.log(response)
   //   })
   // }
 
-  $(function () {
-    $('.create-form').on('submit', function (event) {
-      // Make sure to preventDefault on a submit event.
-      event.preventDefault()
-      var updatePage = function (restaurantData) {
-        console.log('a' + restaurantData)
-        console.log('b' + restaurantData.restaurants)
-        // Loop through restaurants and display on page
-        // Requirement: Repeating element
-        for (var i = 0; i < 10; i++) {
-          var restaurant = restaurantData.restaurants[i].restaurant
-          console.log(restaurantData.restaurants[i].restaurant)
-          // Create the  list group to contain the restaurants and add the restaurant content for each
-          var $restaurantList = $('<ul>')
-          $restaurantList.addClass('list-group')
+  var updatePage = function (restaurantData) {
+    console.log('a' + restaurantData)
+    console.log('b' + restaurantData.restaurants)
+    // Loop through restaurants and display on page
+    // Requirement: Repeating element
+    for (var i = 0; i < 10; i++) {
+      var restaurant = restaurantData.restaurants[i].restaurant
+      console.log(restaurantData.restaurants[i].restaurant)
+      // Create the  list group to contain the restaurants and add the restaurant content for each
+      var $restaurantList = $('<ul>')
+      $restaurantList.addClass('list-group')
 
-          // Add the newly created element to the DOM
-          $('#restaurant-list').append($restaurantList)
+      // Add the newly created element to the DOM
+      $('#restaurant-list').append($restaurantList)
 
-          // If the restaurant is available, log and append to $restaurantList
-          var restaurantName = restaurant.name
-          var $restaurantListItem = $("<li class='list-group-item restaurantName text-capitalize'>")
-          if (restaurantName) {
-            $restaurantListItem.append(
-              "<a href='" + restaurant.url + "' target='_blank'><strong>" + restaurantName + '</strong></a>')
-          }
-          var menu = restaurant.url
-          if (menu) {
-            var menuLink = $("<a href='" + menu + "' target='_blank'>View Menu</a>")
-            menuLink.addClass('menuLink text-capitalize')
-            $restaurantListItem.append(menuLink)
-          }
+      // If the restaurant is available, log and append to $restaurantList
+      var restaurantName = restaurant.name
+      var $restaurantListItem = $("<li class='list-group-item restaurantName text-capitalize'>")
+      if (restaurantName) {
+        $restaurantListItem.append(
+          "<a href='" + restaurant.url + "' target='_blank'><strong>" + restaurantName + '</strong></a>')
+      }
+      var menu = restaurant.url
+      if (menu) {
+        var menuLink = $("<a href='" + menu + "' target='_blank'>View Menu</a>")
+        menuLink.addClass('menuLink text-capitalize')
+        $restaurantListItem.append(menuLink)
+      }
 
-          // Append the ID to document if exists
-          var restaurantId = restaurant.id
-          if (restaurantId) {
-            $restaurantListItem.append('<h6> Zomato Restaurant ID:' + restaurantId + '</h6>')
-          }
+      // Append the ID to document if exists
+      var restaurantId = restaurant.id
+      if (restaurantId) {
+        $restaurantListItem.append('<h6> Zomato Restaurant ID:' + restaurantId + '</h6>')
+      }
 
           // Append section to document if exists
           var cuisines = restaurant.cuisines
@@ -138,11 +136,11 @@ $(document).ready(function () {
             $restaurantListItem.append("<h6 class='text-capitalize'>Location: " + locality + '</h6>')
           }
 
-          // Append section to document if exists
-          var photos = restaurant.photos_url
-          if (photos) {
-            $restaurantListItem.append('<h6 >PHOTO TEST: ' + photos + '</h6>')
-          }
+      // Append section to document if exists
+      var photos = restaurant.photos_url
+      if (photos) {
+        $restaurantListItem.append('<h6 >PHOTO TEST: ' + photos + '</h6>')
+      }
 
           // Append the restaurant
           $restaurantList.append($restaurantListItem)
@@ -252,10 +250,10 @@ $(document).ready(function () {
 
   const submitRecipe = x => {
     $.ajax({
-      type: 'POST',
-      url: '/api/recipes/create',
-      data: x
-    })
+        type: 'POST',
+        url: '/api/recipes/create',
+        data: x
+      })
       .then(response => {
         console.log('recipe added successfully')
         location.reload()
