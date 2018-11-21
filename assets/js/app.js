@@ -39,13 +39,13 @@ $(document).ready(function () {
   var zomatoSearch = function (restaurantSearch) {
     var queryurl = 'https://developers.zomato.com/api/v2.1/search?q=' + restaurantSearch
     $.ajax({
-        url: queryurl,
-        type: 'GET',
-        dataType: 'json',
-        headers: {
-          'user-key': '46a9d8c42a9a6217ff47dae868a48873'
-        }
-      })
+      url: queryurl,
+      type: 'GET',
+      dataType: 'json',
+      headers: {
+        'user-key': '46a9d8c42a9a6217ff47dae868a48873'
+      }
+    })
       .then(function (response) {
         console.log(response.restaurants[0])
         console.log(response.restaurants[0].restaurant.name)
@@ -64,21 +64,21 @@ $(document).ready(function () {
 
   var nutritionix = function (food) {
     var settings = {
-        'async': true,
-        'crossDomain': true,
-        'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-        'method': 'POST',
-        'headers': {
-          'content-type': 'application/json',
-          'accept': 'application/json',
-          'x-app-id': 'c0d82573',
-          'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
-          'x-remote-user-id': '0',
-          'cache-control': 'no-cache'
-        },
-        'processData': false,
-        'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
-      }
+      'async': true,
+      'crossDomain': true,
+      'url': 'https://trackapi.nutritionix.com/v2/natural/nutrients',
+      'method': 'POST',
+      'headers': {
+        'content-type': 'application/json',
+        'accept': 'application/json',
+        'x-app-id': 'c0d82573',
+        'x-app-key': '7aa35984f679d0c7be1c01a88ec527be',
+        'x-remote-user-id': '0',
+        'cache-control': 'no-cache'
+      },
+      'processData': false,
+      'data': '{ "query":"' + food + '", "timezone": "US/Eastern", "locale": "en_US" }'
+    }
       .then(function (response) {
         console.log('response = ', response)
         updatePage(response)
@@ -124,17 +124,17 @@ $(document).ready(function () {
         $restaurantListItem.append('<h6> Zomato Restaurant ID:' + restaurantId + '</h6>')
       }
 
-          // Append section to document if exists
-          var cuisines = restaurant.cuisines
-          if (cuisines) {
-            $restaurantListItem.append("<h6 class='text-capitalize'>Cuisines: " + cuisines + '</h6>')
-          }
+      // Append section to document if exists
+      var cuisines = restaurant.cuisines
+      if (cuisines) {
+        $restaurantListItem.append("<h6 class='text-capitalize'>Cuisines: " + cuisines + '</h6>')
+      }
 
-          // Append section to document if exists
-          var locality = restaurant.location.locality_verbose
-          if (locality) {
-            $restaurantListItem.append("<h6 class='text-capitalize'>Location: " + locality + '</h6>')
-          }
+      // Append section to document if exists
+      var locality = restaurant.location.locality_verbose
+      if (locality) {
+        $restaurantListItem.append("<h6 class='text-capitalize'>Location: " + locality + '</h6>')
+      }
 
       // Append section to document if exists
       var photos = restaurant.photos_url
@@ -142,13 +142,10 @@ $(document).ready(function () {
         $restaurantListItem.append('<h6 >PHOTO TEST: ' + photos + '</h6>')
       }
 
-          // Append the restaurant
-          $restaurantList.append($restaurantListItem)
-        }
-      }
-      updatePage();
-    })
-  })
+      // Append the restaurant
+      $restaurantList.append($restaurantListItem)
+    }
+  }
 
   $('#search').on('click', function (event) {
     event.preventDefault()
@@ -250,10 +247,10 @@ $(document).ready(function () {
 
   const submitRecipe = x => {
     $.ajax({
-        type: 'POST',
-        url: '/api/recipes/create',
-        data: x
-      })
+      type: 'POST',
+      url: '/api/recipes/create',
+      data: x
+    })
       .then(response => {
         console.log('recipe added successfully')
         location.reload()
