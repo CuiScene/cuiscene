@@ -187,7 +187,7 @@ window.addEventListener('load', function () {
     // display the profile
     document.querySelector(
       '#profile-view .nickname'
-    ).innerHTML = JSON.stringify(userProfile.nickname, string)
+    ).innerHTML = JSON.stringify(userProfile.nickname)
 
     document.querySelector(
       '#profile-view .full-profile'
