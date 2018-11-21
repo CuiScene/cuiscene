@@ -23,18 +23,18 @@ $(document).ready(function () {
     }
   }
 
-  // var zomatoCitySearch = function (city) {
-  //   var queryurl = 'https://developers.zomato.com/api/v2.1/cities?q=' + city
-  //   $.ajax({
-  //     url: queryurl,
-  //     type: 'GET',
-  //     dataType: 'json',
-  //     headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
-  //   })
-  //     .then(function (response) {
-  //       console.log(response.location_suggestions[0])
-  //     })
-  // }
+  var zomatoCitySearch = function (city) {
+    var queryurl = 'https://developers.zomato.com/api/v2.1/cities?q=' + city
+    $.ajax({
+      url: queryurl,
+      type: 'GET',
+      dataType: 'json',
+      headers: { 'user-key': '46a9d8c42a9a6217ff47dae868a48873' }
+    })
+      .then(function (response) {
+        console.log(response.location_suggestions[0])
+      })
+  }
 
   var zomatoSearch = function (restaurantSearch) {
     var queryurl = 'https://developers.zomato.com/api/v2.1/search?q=' + restaurantSearch
@@ -84,10 +84,10 @@ $(document).ready(function () {
         updatePage(response)
       })
 
-  //   $.ajax(settings).done(function (response) {
-  //     console.log(response)
-  //   })
-  // }
+    $.ajax(settings).done(function (response) {
+      console.log(response)
+    })
+  }
 
   var updatePage = function (restaurantData) {
     console.log('a' + restaurantData)
