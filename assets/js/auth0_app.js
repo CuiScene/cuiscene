@@ -9,7 +9,7 @@ const create = user => {
     }
   })
     .then(response => {
-      console.log(response)
+      console.log('creating user')
     })
 }
 
@@ -19,15 +19,25 @@ const exists = user => {
     url: '/api/users'
   })
     .then(response => {
-      console.log(response)
-      console.log(user)
       if (k.some(x => x.username_pk === user, response)) {
-        console.log(k.some(x => x.username_pk === user, response))
         return user
       } else {
         create(user)
       }
     })
+    .catch(new Error('error in exists'))
+}
+
+const getMyRecipes = x => {
+  $.ajax({
+    type: 'GET',
+    url: '/api/recipes/my',
+    data: x,
+    processData: false,
+    contentType: false,
+    dataType: 'json'
+  })
+    .then(response => console.log('success'))
 }
 
 // Code for Auth0 - DO NOT DELETE
@@ -66,21 +76,20 @@ window.addEventListener('load', function () {
   var homeViewBtn = document.getElementById('btn-home-view')
   var logoutBtn = document.getElementById('btn-logout')
 
-  homeViewBtn.addEventListener('click', function () {
-    homeView.style.display = 'inline-block'
-    loginView.style.display = 'none'
-  })
+  // homeViewBtn.addEventListener('click', function () {
+  //   homeView.style.display = 'inline-block'
+  //   loginView.style.display = 'none'
+  // })
 
   logoutBtn.addEventListener('click', logout)
 
-  function handleAuthentication () {
+  function handleAuthentication() {
     webAuth.parseHash(function (err, authResult) {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = ''
         setSession(authResult)
         localStorage.nickname = authResult.idTokenPayload.nickname
         localStorage.image = authResult.idTokenPayload.picture
-        console.log(authResult)
         exists(localStorage.nickname)
         $('#nickname').append(localStorage.nickname + '!')
         $('#avatar').attr('src', localStorage.image)
@@ -89,13 +98,12 @@ window.addEventListener('load', function () {
       } else if (err) {
         homeView.style.display = 'inline-block'
         console.log(err)
-        alert('Error: ' + err.error + '. Check the console for further details.')
       }
       displayButtons()
     })
   }
 
-  function setSession (authResult) {
+  function setSession(authResult) {
     // Set the time that the Access Token will expire at
     var expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
@@ -106,7 +114,7 @@ window.addEventListener('load', function () {
     getProfile()
   }
 
-  function logout () {
+  function logout() {
     // Remove tokens and expiry time from localStorage
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
@@ -115,14 +123,14 @@ window.addEventListener('load', function () {
     displayButtons()
   }
 
-  function isAuthenticated () {
+  function isAuthenticated() {
     // Check whether the current time is past the
     // Access Token's expiry time
     var expiresAt = JSON.parse(localStorage.getItem('expires_at'))
     return new Date().getTime() < expiresAt
   }
 
-  function displayButtons () {
+  function displayButtons() {
     if (isAuthenticated()) {
       loginBtn.style.display = 'none'
       homeDiv.style.display = 'none'
@@ -141,7 +149,7 @@ window.addEventListener('load', function () {
 
   // app.js
   var userProfile
-  function getProfile () {
+  function getProfile() {
     if (!userProfile) {
       var accessToken = localStorage.getItem('access_token')
       if (!accessToken) {
@@ -153,6 +161,7 @@ window.addEventListener('load', function () {
         }
         if (profile) {
           userProfile = profile
+          getMyRecipes(userProfile)
           displayProfile()
         }
       })
@@ -161,7 +170,7 @@ window.addEventListener('load', function () {
     }
   }
 
-  function displayProfile () {
+  function displayProfile() {
     // display the profile
     document.querySelector('#profile-view .nickname').innerHTML =
       userProfile.nickname

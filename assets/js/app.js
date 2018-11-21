@@ -1,4 +1,20 @@
 $(document).ready(function () {
+  // defaults
+  $('.create-recipe').hide()
+  $('.user-log-add').hide()
+
+  $('#btn-create-recipe').on('click', () => {
+    $('.create-recipe').show()
+    $('#profileTabs').hide()
+    $('.user-log-add').hide()
+  })
+
+  $('#btn-user-log-add').on('click', () => {
+    $('.user-log-add').show()
+    $('#profileTabs').hide()
+    $('.create-recipe').hide()
+  })
+
   const checkUser = x => {
     if (!k.or(k.isEmpty(x.nickname), k.isEmpty(x.image))) {
       $('#nickname').append(x.nickname + '!')
@@ -16,7 +32,6 @@ $(document).ready(function () {
     })
       .then(function (response) {
         console.log(response.location_suggestions[0])
-        // console.log(response[0])
       })
   }
 
@@ -30,9 +45,9 @@ $(document).ready(function () {
     })
       .then(function (response) {
         console.log(response.restaurants[0])
-        // console.log(response[0])
         console.log(response.restaurants[0].restaurant.name)
         console.log(response.restaurants[0].restaurant.id)
+        console.log(response.restaurants[0].restaurant.photos_url)
       })
   }
 
@@ -74,7 +89,7 @@ $(document).ready(function () {
         // Requirement: Repeating element
         for (var i = 0; i < 10; i++) {
           var restaurant = restaurantData.restaurants[i].restaurant
-
+          console.log(restaurantData.restaurants[i].restaurant)
           // Create the  list group to contain the restaurants and add the restaurant content for each
           var $restaurantList = $('<ul>')
           $restaurantList.addClass('list-group')
@@ -84,7 +99,7 @@ $(document).ready(function () {
 
           // If the restaurant is available, log and append to $restaurantList
           var restaurantName = restaurant.name
-          var $restaurantListItem = $("<li class='list-group-item restaurantName'>")
+          var $restaurantListItem = $("<li class='list-group-item restaurantName text-capitalize'>")
           if (restaurantName) {
             $restaurantListItem.append(
               "<a href='" + restaurant.url + "' target='_blank'><strong>" + restaurantName + '</strong></a>')
@@ -92,7 +107,7 @@ $(document).ready(function () {
           var menu = restaurant.url
           if (menu) {
             var menuLink = $("<a href='" + menu + "' target='_blank'>View Menu</a>")
-            menuLink.addClass('menuLink')
+            menuLink.addClass('menuLink text-capitalize')
             $restaurantListItem.append(menuLink)
           }
 
@@ -105,25 +120,26 @@ $(document).ready(function () {
           // Append section to document if exists
           var cuisines = restaurant.cuisines
           if (cuisines) {
-            $restaurantListItem.append('<h6>Cuisines: ' + cuisines + '</h6>')
+            $restaurantListItem.append("<h6 class='text-capitalize'>Cuisines: " + cuisines + '</h6>')
           }
 
           // Append section to document if exists
           var locality = restaurant.location.locality_verbose
           if (locality) {
-            $restaurantListItem.append('<h6>Location: ' + locality + '</h6>')
+            $restaurantListItem.append("<h6 class='text-capitalize'>Location: " + locality + '</h6>')
           }
 
           // Append section to document if exists
-          var cuisines = restaurant.cuisines
-          if (cuisines) {
-            $restaurantListItem.append('<h6>Cuisines: ' + cuisines + '</h6>')
+          var photos = restaurant.photos_url
+          if (photos) {
+            $restaurantListItem.append('<h6 >PHOTO TEST: ' + photos + '</h6>')
           }
 
           // Append the restaurant
           $restaurantList.append($restaurantListItem)
         }
       }
+      updatePage()
     })
   })
 
@@ -206,66 +222,6 @@ $(document).ready(function () {
     })
   }
 
-  $(function () {
-    $('.create-form').on('submit', function (event) {
-      event.preventDefault()
-
-      var newUser = {
-        username_pk: $('#uname').val().trim(),
-        birthday: $('#bday').val().trim(),
-        restrictions: $('#restrict').val().trim(),
-        zipcode: $('#zip').val().trim()
-      }
-      console.log(newUser)
-
-      // Send the POST request.
-      $.ajax('/api/users', {
-        type: 'POST',
-        data: newUser
-      }).then(
-        function () {
-          console.log('created new user')
-          // Reload the page to get the updated list
-          // location.reload();
-        })
-      console.log(newUser)
-      // Send the POST request.
-      $.ajax('/api/users', {
-        type: 'POST',
-        data: newUser
-      }).then(
-        function () {
-          console.log('created new user')
-          // Reload the page to get the updated list
-          // location.reload();
-        }
-      )
-    })
-  })
-
-  // $('.btn-addingr').on('click', function () {
-  //   var count = Number($(this).attr('data-count'))
-  //   count += 1
-  //   $(this).attr('data-count', count)
-  //   var newDiv = $('<div>')
-  //   var ping = $('<p>').text('Ingredient ' + count)
-  //   var newin = $('<input>')
-  //   newin.attr('class', 'ing' + count)
-  //   var pam = $('<p>').text('Amount')
-  //   var newin2 = $('<select>')
-  //   newin2.attr('class', 'am' + count)
-  //   var nselect = $('<select>')
-  //   nselect.attr('class', 'amounttype' + count)
-  //   var opt1 = $('<option>').attr('value', 'cup').text('Cup')
-  //   var opt2 = $('<option>').attr('value', 'tbs').text('TBS')
-  //   var opt3 = $('<option>').attr('value', 'tsp').text('TSP')
-  //   var opt4 = $('<option>').attr('value', 'oz').text('oz')
-
-  //   for (let i = 1; i < 11; i++) {
-  //     var nopt = $('<option>').attr('value', i).text(i)
-  //     newin2.append(nopt)
-  //   }
-  // })
   // 'Add Ingredient' on click functionality
   $('.btn-addingr').on('click', function () {
     addingredient()
@@ -285,26 +241,46 @@ $(document).ready(function () {
     newDiv.append(newinst)
   })
 
-  $('.btn-addrecipe').on('click', function () {
-    return new Promise((resolve, reject) => {
-      if ($('.ing1').val().trim() === '') {
-        console.log('ingredient 1 must have value')
-        return
-      }
-      var count = Number($('.btn-addingr').attr('data-count'))
-      var searchstring = ''
-      for (let i = 1; i < count + 1; i++) {
-        searchstring += $('.am' + i).val() + ' ' + $('.amounttype' + i).val() + ' ' + $('.ing' + i).val() + ' '
-      }
-      nutritionix(searchstring)
+  const submitRecipe = x => {
+    $.ajax({
+      type: 'POST',
+      url: '/api/recipes/create',
+      data: x
     })
-    // =======zomatoCitySearch('cleveland')
-    zomatoSearch('valentinos')
-    nutritionix('for breakfast i ate 2 eggs, 3 strips of bacon, and 5 pounds carrots')
-  })
+      .then(response => {
+        console.log('recipe added successfully')
+        location.reload()
+      })
+  }
 
-  // Matt's code for submit button on 'add recipe form'
-  $('.btn-addrecipe').on('click', function () {
+  const submitLog = x => {
+    $.ajax({
+      type: 'POST',
+      url: '/api/userLog/create',
+      data: x
+    })
+      .then(response => {
+        console.log('added to log successfully')
+        location.reload()
+      })
+  }
+
+  const getMyRecipes = x => {
+    $.ajax({
+      type: 'GET',
+      url: '/api/recipes/my',
+      data: x
+    })
+      .then(response => console.log('success'))
+  }
+
+  addingredient()
+  addingredient()
+  addingredient()
+
+  $('#recipeForm').on('submit', event => {
+    event.preventDefault()
+
     $('.errorp').css('display', 'none')
     if ($('.ing1').val().trim() === '') {
       $('.errorp').text('Ingredient 1 must have input')
@@ -320,6 +296,44 @@ $(document).ready(function () {
     }
     nutritionix(searchstring)
     $('.ing').val('')
+
+    var restaurantIdAndName = $('#restaurantName').val().split(' ')
+
+    var dbQueryInfo = {
+      username: k.trim(localStorage.nickname),
+      recipeName: k.trim($('#recipeName').val()),
+      recipeCuisine: k.trim($('#recipeCuisine').val()),
+      recipeTags: k.trim($('#recipeTags').val()),
+      restaurantItem: k.trim($('#restaurantItem').val()),
+      restaurantId: restaurantIdAndName[0],
+      restaurantName: restaurantIdAndName[1],
+      servings: $('#servings').val(),
+      prepTimeAmount: $('#prepTime').val() + $('#prepTimeAmount').val(),
+      cookTimeAmount: $('#cookTime').val() + $('#cookTimeAmount').val(),
+      ingredients: k.trim(searchstring),
+      instructions: k.trim($('#instructions').val())
+    }
+
+    submitRecipe(dbQueryInfo)
+    $('.create-recipe').hide()
+    $('#profileTabs').show()
+  })
+
+  $('.user-log-entry').on('submit', event => {
+    event.preventDefault()
+
+    const dbQueryInfo = {
+      restName: k.trim($('#restName').val()),
+      date: $('#date').val(),
+      meal: k.trim($('#mealTime').val()),
+      item: k.trim($('#menuItems').val()),
+      notes: k.trim($('#foodNotes').val()) || 'n/a',
+      username: k.trim(localStorage.nickname)
+    }
+
+    submitLog(dbQueryInfo)
+    $('.user-log-add').hide()
+    $('#profileTabs').show()
   })
 
   checkUser(localStorage)

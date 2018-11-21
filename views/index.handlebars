@@ -15,45 +15,46 @@
   </div>
 </div>
 
-<div class="profileView container-full-bg" id="profileDiv">
-  <div>
-    <div class="jumbotron pt-1 pb-3 profileView" id="profileDiv">
-      <div class="container-fluid full-profile" id="profile-view">
-        <h2 class="display-4">My Profile</h2>
-        <h4 class="align-bottom" id="nickname">Welcome </h4>
-        <img class="img-thumbnail" id="avatar" alt="userPhoto" src="https://via.placeholder.com/150x150">
-        <hr class="my-4">
-        <a class="btn btn-primary btn-lg mx-2" href="#" role="button">Add Restaurant Experience</a>
-        <a class="btn btn-danger btn-lg mx-2" href="#" role="button">Add Recipe</a>
+<div id="profileDiv">
+  <div class="jumbotron pt-1 pb-3 profileView">
+    <div class="container-fluid full-profile" id="profile-view">
+      <h2 class="display-4">My Profile</h2>
+      <h4 class="align-bottom" id="nickname">Welcome </h4>
+      <img class="img-thumbnail" id="avatar" alt="userPhoto" src="https://via.placeholder.com/150x150">
+      <hr class="my-4">
+      <a class="btn btn-primary btn-lg mx-2" href="#" role="button" id="btn-user-log-add">Add Restaurant Experience</a>
+      <a class="btn btn-danger btn-lg mx-2" href="#" role="button" id="btn-create-recipe">Add Recipe</a>
+    </div>
+  </div>
+
+  <div class="bg-light create-recipe">{{> user-recipe-add}}</div>
+  <div class="bg-light user-log-add">{{> user-log-add}}</div>
+
+  <div id="profileTabs">
+    <div class="nav nav-tabs" id="nav-recipe-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-recipes-tab" data-toggle="tab" href="#nav-recipes" role="tab"
+        aria-controls="nav-recipes" aria-selected="true">My Recipes</a>
+      <a class="nav-item nav-link" id="nav-saved-recipes-tab" data-toggle="tab" href="#nav-saved-recipes" role="tab"
+        aria-controls="nav-saved-recipes" aria-selected="false">Saved Recipes</a>
+      <a class="nav-item nav-link" id="nav-restaurants-tab" data-toggle="tab" href="#nav-restaurants" role="tab"
+        aria-controls="nav-restaurants" aria-selected="false">My Restaurant Reviews</a>
+      <a class="nav-item nav-link" id="nav-saved-restaurants-tab" data-toggle="tab" href="#nav-saved-restaurants" role="tab"
+        aria-controls="nav-saved-restaurants" aria-selected="false">Saved Restaurants</a>
+    </div>
+
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-recipes" role="tabpanel" aria-labelledby="nav-recipes-tab">
+        {{#each recipes }}
+        {{> recipe-block }}
+        {{/each}}
       </div>
+      <div class="tab-pane fade" id="nav-saved-recipes" role="tabpanel" aria-labelledby="nav-saved-recipes-tab">INSERT
+        SAVED RECIPIES</div>
+      <div class="tab-pane fade" id="nav-restaurants" role="tabpanel" aria-labelledby="nav-restaurants-tab">INSERT USER
+        RESTAURANT EXPERIENCES</div>
+      <div class="tab-pane fade" id="nav-saved-restaurants" role="tabpanel" aria-labelledby="nav-saved-restaurants-tab">INSERT
+        SAVED RESTAURANTS</div>
     </div>
-  </div>
-  <div class="nav nav-tabs" id="nav-recipe-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-recipies-tab" data-toggle="tab" href="#nav-recipies" role="tab"
-      aria-controls="nav-recipies" aria-selected="true">My Recipes</a>
-    <a class="nav-item nav-link" id="nav-saved-recipies-tab" data-toggle="tab" href="#nav-saved-recipies" role="tab"
-      aria-controls="nav-saved-recipies" aria-selected="false">Saved Recipes</a>
-    <a class="nav-item nav-link" id="nav-restaurants-tab" data-toggle="tab" href="#nav-restaurants" role="tab"
-      aria-controls="nav-restaurants" aria-selected="false">My Restaurant Reviews</a>
-    <a class="nav-item nav-link" id="nav-saved-restaurants-tab" data-toggle="tab" href="#nav-saved-restaurants" role="tab"
-      aria-controls="nav-saved-restaurants" aria-selected="false">Saved Restaurants</a>
-  </div>
-  </nav>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-recipies" role="tabpanel" aria-labelledby="nav-recipies-tab">
-      {{#each recipes }}
-      {{> recipe-block }}
-      {{/each}}
-      <button>{{> user-recipe-add}}</button>
-    </div>
-    <div class="tab-pane fade" id="nav-saved-recipies" role="tabpanel" aria-labelledby="nav-saved-recipies-tab">INSERT
-      SAVED RECIPIES</div>
-    <div class="tab-pane fade" id="nav-restaurants" role="tabpanel" aria-labelledby="nav-restaurants-tab">INSERT USER
-      RESTAURANT EXPERIENCES</div>
-    <div class="tab-pane fade" id="nav-saved-restaurants" role="tabpanel" aria-labelledby="nav-saved-restaurants-tab">INSERT
-      SAVED RESTAURANTS</div>
   </div>
 </div>
-</body>
-
-</html>

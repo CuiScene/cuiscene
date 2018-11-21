@@ -26,61 +26,36 @@
     crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/kyanite@0.10.1/dist/kyanite.min.js"></script>
 
-<link href="https://fonts.googleapis.com/css?family=Arimo|Pacifico" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arimo|Pacifico" rel="stylesheet">
 
   <link rel="stylesheet" href="../../css/style.css">
 
 </head>
 
-<body onload="myFunction()" style="margin:0;">
 
-  <div class="navbar navbar-light bg-light w-100" id="main-navbar">
-    <div class="row border border-black" id="navbar-contents">
-      <div class="col-3 float-left mx-3">
-        <form class="form-inline row mx-3">
-          <button id="search" class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="submit" value="Search">Search</button>
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="restaurant-input">
-        </form>
-      </div>
-      <div class="col-6">
-        <h1 class="text-center">CuiScene</h1>
-      </div>
-      <div class="col-3 float-right">
-        <button id="btn-login" class="btn btn-primary btn-margin" style="display: inline-block;">
-          Log In
-        </button>
-        <button id="btn-logout" class="btn btn-primary btn-margin" style="display: none;">
-          Log Out
-        </button>
-      </div>
+<body onload="myFunction()" style="margin:0;" id="main-navbar">
+  {{!-- NEW NAVBAR --}}
+  <nav class="navbar navbar-light bg-light">
+    <div class="float-left">
+      <button id="btn-login" class="btn btn-primary btn-margin" style="display: inline-block;">
+        Log In
+      </button>
+      <button id="btn-logout" class="float-left btn btn-primary btn-margin" style="display: none;">
+        Log Out
+      </button>
     </div>
-
-    {{!-- <a class="navbar-brand" href="/">CuiScene</a> --}}
-
-    {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/" id="btn-home-view">Home<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/views/profile" id="btn-home-view">My Profile</a>
-        </li>
-      </ul> --}}
-
-
-    </div>
-  </div>
+    <h1 class="text-center">CuiScene</h1>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="restaurant-input">
+      <button id="search" class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="submit">Search</button>
+    </form>
+  </nav>
 
   <div id="loader"></div>
 
-  <div class="container w-100" style="display:none;" id="myDiv" class="animate-bottom">
+  <div class="container-fluid w-100 mx-auto" style="display:none;" id="myDiv" class="animate-bottom">
     <!-- main container -->
-    <div class="container-fluid" id="home-view">
+    <div class="container container-fluid" id="home-view">
       {{{body}}}
     </div>
   </div>
