@@ -2,12 +2,12 @@ const k = kyanite
 
 const create = user => {
   $.ajax({
-      type: 'POST',
-      url: '/api/users/create',
-      data: {
-        username_pk: user
-      }
-    })
+    type: 'POST',
+    url: '/api/users/create',
+    data: {
+      username_pk: user
+    }
+  })
     .then(response => {
       console.log('creating user')
     })
@@ -15,9 +15,9 @@ const create = user => {
 
 const exists = user => {
   $.ajax({
-      type: 'GET',
-      url: '/api/users'
-    })
+    type: 'GET',
+    url: '/api/users'
+  })
     .then(response => {
       if (k.some(x => x.username_pk === user, response)) {
         return user
@@ -30,13 +30,13 @@ const exists = user => {
 
 const getMyRecipes = x => {
   $.ajax({
-      type: 'GET',
-      url: '/api/recipes/my',
-      data: x,
-      processData: false,
-      contentType: false,
-      dataType: 'json'
-    })
+    type: 'GET',
+    url: '/api/recipes/my',
+    data: x,
+    processData: false,
+    contentType: false,
+    dataType: 'json'
+  })
     .then(response => console.log('success'))
 }
 
@@ -54,13 +54,13 @@ const getMyLog = x => {
 
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
-//   var webAuth = new auth0.WebAuth({
-//     domain: 'apmtpc.auth0.com',
-//     clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
-//     responseType: 'token id_token',
-//     scope: 'openid profile',
-//     redirectUri: 'http://localhost:8080'
-//   })
+  //   var webAuth = new auth0.WebAuth({
+  //     domain: 'apmtpc.auth0.com',
+  //     clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
+  //     responseType: 'token id_token',
+  //     scope: 'openid profile',
+  //     redirectUri: 'http://localhost:8080'
+  //   })
   var webAuth = new auth0.WebAuth({
     domain: 'quiet-rice-3540.auth0.com',
     clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
@@ -175,6 +175,7 @@ window.addEventListener('load', function () {
         if (profile) {
           userProfile = profile
           displayProfile()
+          getMyRecipes(userProfile)
         }
       })
     } else {
@@ -186,7 +187,7 @@ window.addEventListener('load', function () {
     // display the profile
     document.querySelector(
       '#profile-view .nickname'
-      ).innerHTML = JSON.stringify(userProfile.nickname, string)
+    ).innerHTML = JSON.stringify(userProfile.nickname, string)
 
     document.querySelector(
       '#profile-view .full-profile'
