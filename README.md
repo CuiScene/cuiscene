@@ -1,5 +1,8 @@
 # CuiScene 
-![Image of Cuiscene](https://via.placeholder.com/350x200)
+![CuiScene App - Dashboard Image](https://github.com/CuiScene/cuiscene/blob/readme/assets/images/login-screenshot.png "CuiScene App Login Page")
+
+![CuiScene App - Restaurant Search Results Page](https://github.com/CuiScene/cuiscene/blob/readme/assets/images/restaurant-screenshot.png "CuiScene App Restaurant Search Results Page")
+
 
 ***Restaurant Menu Review & Recipe Log App***
 CuiScene is an application designed for users to discover more about the individual dishes they love from their favorite restaurants. 
@@ -22,9 +25,10 @@ They are able to search for restaurants, review menu items individually, add rec
 **Kayla Himmelberger**
 - [Github](https://github.com/kaylahimmel)
 - Email: [kaylahimmelberger@gmail.com](mailto:kaylahimmelberger@gmail.com)
-# Design Process
 
-!!  INSERT COPY HERE  !!
+# Design Process
+After narrowing down the functionality of our app, we set up the repository and branch protection rules, then created the folder and file structure. From there, we considered the info we wanted to collect and developed MySQL tables to house the data. Next we created a Heroku database and installed AuthO and JawsBD libraries to contain the data and allow for Gmail address authorization. We then imported the MySQL schema seed files, then proceeded to tie the database into our Javascript connection and ORM files. We also installed Kyanite to aid in transferring information safely from the database to our app and vice versa. We then set up our server files and made API calls using Ajax, and developed the JS functionality. Next up was creating the route controller files for our GET and POST requests to and from the database tables. From there, we moved onto the front end and created Handlebars partials and compiled blocks of Handlebars code  to call MySQL table data via our main.handlebars page. We finished the app by styling with Bootstrap CSS, our own CSS, and testing for bugs.
+
 
 # Technologies Used
 - Handlebars ([Documentation](http://handlebarsjs.com/))
