@@ -40,15 +40,27 @@ const getMyRecipes = x => {
     .then(response => console.log('success'))
 }
 
+const getMyLog = x => {
+  $.ajax({
+    type: 'GET',
+    url: '/api/experiences',
+    data: x,
+    processData: false,
+    contentType: false,
+    dataType: 'json'
+  })
+    .then(response => console.log('successful log get'))
+}
+
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
-  // var webAuth = new auth0.WebAuth({
-  //   domain: 'apmtpc.auth0.com',
-  //   clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
-  //   responseType: 'token id_token',
-  //   scope: 'openid profile',
-  //   redirectUri: 'http://localhost:8080'
-  // })
+//   var webAuth = new auth0.WebAuth({
+//     domain: 'apmtpc.auth0.com',
+//     clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
+//     responseType: 'token id_token',
+//     scope: 'openid profile',
+//     redirectUri: 'http://localhost:8080'
+//   })
   var webAuth = new auth0.WebAuth({
     domain: 'quiet-rice-3540.auth0.com',
     clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
@@ -162,7 +174,6 @@ window.addEventListener('load', function () {
         }
         if (profile) {
           userProfile = profile
-          getMyRecipes(userProfile)
           displayProfile()
         }
       })
@@ -186,4 +197,6 @@ window.addEventListener('load', function () {
 
   handleAuthentication()
   getProfile()
+
+  getMyLog(userProfile)
 })

@@ -38,6 +38,14 @@ router
     )
       .then(results => res.render('index', { recipes: results }))
   })
+  .get('/api/experiences', (req, res) => {
+    const user = req.body
+    orm.selectAllFromTableWhere(
+      // table to select from
+      'user_entries', 'username_fk', user.nickname
+    )
+      .then(results => res.render('index', { user_entries: results }))
+  })
   .post('/api/recipes/create', (req, res) => {
     const data = req.body
     orm.insertOne(
@@ -93,7 +101,7 @@ router
     )
       .then(() => orm.insertOne('restaurants', 'restaurant_name_pk', data.restName))
       .then(() => orm.selectAllFromTableWhere('user_entries', 'username_fk', data.username))
-      .then(results => res.render('index', { log: results }))
+      .then(results => res.render('index', { user_entries: results }))
       .catch(new Error('error adding to log'))
   })
 

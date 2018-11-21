@@ -35,8 +35,8 @@
 
 <body onload="myFunction()" style="margin:0;" id="main-navbar">
   {{!-- NEW NAVBAR --}}
-  <nav class="navbar navbar-light bg-light">
-    <div class="float-left">
+  <nav class="navbar navbar-light bg-light row">
+    <div class="float-left col-3">
       <button id="btn-login" class="btn btn-primary btn-margin" style="display: block;">
         Log In
       </button>
@@ -44,9 +44,9 @@
         Log Out
       </button>
     </div>
-    <h1 class="text-center">CuiScene</h1>
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="restaurant-input">
+    <h1 class="text-center col-6">CuiScene</h1>
+    <form class="form-inline col-3">
+      <input class="form-control mr-sm-2" type="search" placeholder="Restaurant Search" aria-label="Search" id="restaurant-input">
       <button id="search" class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="submit">Search</button>
     </form>
   </nav>
