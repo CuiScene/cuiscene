@@ -2,12 +2,12 @@ const k = kyanite
 
 const create = user => {
   $.ajax({
-    type: 'POST',
-    url: '/api/users/create',
-    data: {
-      username_pk: user
-    }
-  })
+      type: 'POST',
+      url: '/api/users/create',
+      data: {
+        username_pk: user
+      }
+    })
     .then(response => {
       console.log('creating user')
     })
@@ -15,9 +15,9 @@ const create = user => {
 
 const exists = user => {
   $.ajax({
-    type: 'GET',
-    url: '/api/users'
-  })
+      type: 'GET',
+      url: '/api/users'
+    })
     .then(response => {
       if (k.some(x => x.username_pk === user, response)) {
         return user
@@ -30,13 +30,13 @@ const exists = user => {
 
 const getMyRecipes = x => {
   $.ajax({
-    type: 'GET',
-    url: '/api/recipes/my',
-    data: x,
-    processData: false,
-    contentType: false,
-    dataType: 'json'
-  })
+      type: 'GET',
+      url: '/api/recipes/my',
+      data: x,
+      processData: false,
+      contentType: false,
+      dataType: 'json'
+    })
     .then(response => console.log('success'))
 }
 
@@ -54,20 +54,20 @@ const getMyLog = x => {
 
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
+//   var webAuth = new auth0.WebAuth({
+//     domain: 'apmtpc.auth0.com',
+//     clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
+//     responseType: 'token id_token',
+//     scope: 'openid profile',
+//     redirectUri: 'http://localhost:8080'
+//   })
   var webAuth = new auth0.WebAuth({
-    domain: 'apmtpc.auth0.com',
-    clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
+    domain: 'quiet-rice-3540.auth0.com',
+    clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
     responseType: 'token id_token',
     scope: 'openid profile',
-    redirectUri: 'http://localhost:8080'
+    redirectUri: 'https://cuiscene.herokuapp.com/'
   })
-  // var webAuth = new auth0.WebAuth({
-  //   domain: 'quiet-rice-3540.auth0.com',
-  //   clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
-  //   responseType: 'token id_token',
-  //   scope: 'openid profile',
-  //   redirectUri: 'https://cuiscene.herokuapp.com/'
-  // })
 
   var loginBtn = document.getElementById('btn-login')
   var homeDiv = document.getElementById('homeDiv')
@@ -103,7 +103,7 @@ window.addEventListener('load', function () {
         localStorage.nickname = authResult.idTokenPayload.nickname
         localStorage.image = authResult.idTokenPayload.picture
         exists(localStorage.nickname)
-        $('#nickname').append(localStorage.nickname + '!')
+        $('#nickname').append("<a href=''localStorage.nickname + '!'")
         $('#avatar').attr('src', localStorage.image)
         loginBtn.style.display = 'none'
         homeView.style.display = 'block'
@@ -161,6 +161,7 @@ window.addEventListener('load', function () {
 
   // app.js
   var userProfile
+
   function getProfile() {
     if (!userProfile) {
       var accessToken = localStorage.getItem('access_token')
@@ -183,8 +184,9 @@ window.addEventListener('load', function () {
 
   function displayProfile() {
     // display the profile
-    document.querySelector('#profile-view .nickname').innerHTML =
-      userProfile.nickname
+    document.querySelector(
+      '#profile-view .nickname'
+      ).innerHTML = JSON.stringify(userProfile.nickname, string)
 
     document.querySelector(
       '#profile-view .full-profile'
@@ -195,5 +197,6 @@ window.addEventListener('load', function () {
 
   handleAuthentication()
   getProfile()
+
   getMyLog(userProfile)
 })
