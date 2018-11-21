@@ -44,15 +44,23 @@
 
 
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="nav-recipes" role="tabpanel" aria-labelledby="nav-recipes-tab">
+      <div class="tab-pane fade show" id="nav-recipes" role="tabpanel">
         {{#each recipes }}
         {{> recipe-block }}
         {{/each}}
       </div>
+      <div class="tab-pane fade show" id="nav-restaurants" role="tabpanel">
+        {{#each restaurants }}
+        {{> restaurant-block }}
+        {{/each}}
+      </div>
       <div class="tab-pane fade" id="nav-saved-recipes" role="tabpanel" aria-labelledby="nav-saved-recipes-tab">INSERT
         SAVED RECIPIES</div>
-      <div class="tab-pane fade" id="nav-restaurants" role="tabpanel" aria-labelledby="nav-restaurants-tab">INSERT USER
-        RESTAURANT EXPERIENCES</div>
+      <div class="tab-pane fade" id="nav-restaurants" role="tabpanel" aria-labelledby="nav-restaurants-tab">
+        {{#each user_entries}}
+        {{> user-log-block}}
+        {{/each}}
+      </div>
       <div class="tab-pane fade" id="nav-saved-restaurants" role="tabpanel" aria-labelledby="nav-saved-restaurants-tab">INSERT
         SAVED RESTAURANTS</div>
     </div>

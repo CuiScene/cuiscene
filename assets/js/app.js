@@ -2,6 +2,7 @@ $(document).ready(function () {
   // defaults
   $('.create-recipe').hide()
   $('.user-log-add').hide()
+  $('.nav-recipes').show()
 
   $('#btn-create-recipe').on('click', () => {
     $('.create-recipe').show()
@@ -48,6 +49,14 @@ $(document).ready(function () {
         console.log(response.restaurants[0].restaurant.name)
         console.log(response.restaurants[0].restaurant.id)
         console.log(response.restaurants[0].restaurant.photos_url)
+        $('#nav-recipes').prepend(
+          `
+        <div class='border border-black'>
+        <h4>Your Search Returned:
+          <a href='${response.restaurants[0].restaurant.photos_url}' target='_blank'>${response.restaurants[0].restaurant.name}</a></h4>
+          </div>
+        `
+        )
       })
   }
 
@@ -263,15 +272,6 @@ $(document).ready(function () {
         console.log('added to log successfully')
         location.reload()
       })
-  }
-
-  const getMyRecipes = x => {
-    $.ajax({
-      type: 'GET',
-      url: '/api/recipes/my',
-      data: x
-    })
-      .then(response => console.log('success'))
   }
 
   addingredient()

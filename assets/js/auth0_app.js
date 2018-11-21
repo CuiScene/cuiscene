@@ -40,22 +40,34 @@ const getMyRecipes = x => {
     .then(response => console.log('success'))
 }
 
+const getMyLog = x => {
+  $.ajax({
+    type: 'GET',
+    url: '/api/experiences',
+    data: x,
+    processData: false,
+    contentType: false,
+    dataType: 'json'
+  })
+    .then(response => console.log('successful log get'))
+}
+
 // Code for Auth0 - DO NOT DELETE
 window.addEventListener('load', function () {
-  // var webAuth = new auth0.WebAuth({
-  //   domain: 'apmtpc.auth0.com',
-  //   clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
-  //   responseType: 'token id_token',
-  //   scope: 'openid profile',
-  //   redirectUri: 'http://localhost:8080'
-  // })
   var webAuth = new auth0.WebAuth({
-    domain: 'quiet-rice-3540.auth0.com',
-    clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
+    domain: 'apmtpc.auth0.com',
+    clientID: '046ZkHPSyfy19YrgJDHsxYgeXWWsq421',
     responseType: 'token id_token',
     scope: 'openid profile',
-    redirectUri: 'https://cuiscene.herokuapp.com/'
+    redirectUri: 'http://localhost:8080'
   })
+  // var webAuth = new auth0.WebAuth({
+  //   domain: 'quiet-rice-3540.auth0.com',
+  //   clientID: 'jfSExNcavMFSIrgdYONeMGaKx3eMr36m',
+  //   responseType: 'token id_token',
+  //   scope: 'openid profile',
+  //   redirectUri: 'https://cuiscene.herokuapp.com/'
+  // })
 
   var loginBtn = document.getElementById('btn-login')
   var homeDiv = document.getElementById('homeDiv')
@@ -135,6 +147,7 @@ window.addEventListener('load', function () {
       loginBtn.style.display = 'none'
       homeDiv.style.display = 'none'
       profileDiv.style.display = 'inline-block'
+      getMyRecipes(userProfile)
       // profileButton.style.display = 'inline-block'
       logoutBtn.style.display = 'inline-block'
       // loginStatus.innerHTML = 'You are logged in!'
@@ -161,7 +174,6 @@ window.addEventListener('load', function () {
         }
         if (profile) {
           userProfile = profile
-          getMyRecipes(userProfile)
           displayProfile()
         }
       })
@@ -184,4 +196,5 @@ window.addEventListener('load', function () {
 
   handleAuthentication()
   getProfile()
+  getMyLog(userProfile)
 })
