@@ -3,7 +3,7 @@
 ### Overview
 [CuiScene](https://cuiscene.herokuapp.com) is an application designed for users to discover more about the individual dishes they love from their favorite restaurants. Users are able to search for restaurants, review menu items, add recipes based off of restaurant menu items, view nutritional information for recipes, and save restaurants to a wishlist. 
 
-![CuiScene App - Restaurant Search Results Page](https://assets/images/cuiscene_home.png "CuiScene App Restaurant Search Results Page")
+![CuiScene App - Restaurant Search Results Page](assets/images/cuiscene_home.png)
 
 ### Contributors
 **Erin Clancy** 
