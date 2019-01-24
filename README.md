@@ -1,15 +1,12 @@
-# CuiScene 
-![CuiScene App - Dashboard Image](https://github.com/CuiScene/cuiscene/blob/readme/assets/images/login-screenshot.png "CuiScene App Login Page")
+![CuiScene](assets/images/cuiscene_logo.png) 
+#### Restaurant Menu Review & Recipe Log App
 
-![CuiScene App - Restaurant Search Results Page](https://github.com/CuiScene/cuiscene/blob/readme/assets/images/restaurant-screenshot.png "CuiScene App Restaurant Search Results Page")
+### Overview
+[CuiScene](https://cuiscene.herokuapp.com) is an application designed for users to discover more about the individual dishes they love from their favorite restaurants. Users are able to search for restaurants, review menu items, add recipes based off of restaurant menu items, view nutritional information for recipes, and save restaurants to a wishlist. 
 
+![CuiScene App - Restaurant Search Results Page](assets/images/cuiscene_home.png)
 
-***Restaurant Menu Review & Recipe Log App***
-CuiScene is an application designed for users to discover more about the individual dishes they love from their favorite restaurants. 
-
-They are able to search for restaurants, review menu items individually, add recipes for restaurant menu items, view nutritional information of recipes, and save restaurants they would like to visit or view later. 
-
-# Contributors
+### Contributors
 **Erin Clancy** 
 - [Github](https://github.com/noplanetnoparty/)
 - Email: [eclancy11@gmail.com](mailto:eclancy11@gmail.com)
@@ -26,58 +23,48 @@ They are able to search for restaurants, review menu items individually, add rec
 - [Github](https://github.com/kaylahimmel)
 - Email: [kaylahimmelberger@gmail.com](mailto:kaylahimmelberger@gmail.com)
 
-# Design Process
-After narrowing down the functionality of our app, we set up the repository and branch protection rules, then created the folder and file structure. From there, we considered the info we wanted to collect and developed MySQL tables to house the data. Next we created a Heroku database and installed AuthO and JawsBD libraries to contain the data and allow for Gmail address authorization. We then imported the MySQL schema seed files, then proceeded to tie the database into our Javascript connection and ORM files. We also installed Kyanite to aid in transferring information safely from the database to our app and vice versa. We then set up our server files and made API calls using Ajax, and developed the JS functionality. Next up was creating the route controller files for our GET and POST requests to and from the database tables. From there, we moved onto the front end and created Handlebars partials and compiled blocks of Handlebars code  to call MySQL table data via our main.handlebars page. We finished the app by styling with Bootstrap CSS, our own CSS, and testing for bugs.
+### Design Process
+After deciding the MVP in terms of functionality, we created our GitHub organization, repository, and set up branch protection rules. From there, team duties were assigned with:
+- Youssef handling the structure of the MySQL tables, Heroku deployment, and routing, 
+- Matt handling API calls and assisting with routing, 
+- Kayla handling creation of partials and layouts in Handlebars, debugging, and styling, and 
+- Erin handling layouts in Handlebars, debugging, and styling. 
+
+As a group, we determined what info to collect from users and pull in from the APIs, and how to best structure that data in our MySQL tables. Next up was the creation of our Heroku database, which required installation of the AuthO add-on for Gmail address authorization and the JawsBD add-on to connect the MySQL database with Heroku. 
+
+We then created and imported the MySQL schema seed files into Heroku, then proceeded to tie the database into our JavaScript connection and ORM files. We also installed Kyanite to aid in transferring information safely from the database to our app and vice versa. Server files were then created to make API calls using Ajax and to further develop the functionality. From there, we created route controller files for GET/POST requests to and from the database tables.
+
+The last step was completing the front end. This meant compiling the Handlebars partials, linking them to our layout file and tying in routes for the various pages, and making calls to get the MySQL table data. Last, but not least, we finished the app by styling with Bootstrap CSS, our own CSS, and performing plenty of testing.
 
 
-# Technologies Used
-- Handlebars ([Documentation](http://handlebarsjs.com/))
-- Node
-- Express
-- Javascript
-- JQuery
-- MySQL Database
+### Technologies Used
+- [Handlebars](http://handlebarsjs.com/))
+- [Node.js](https://nodejs.org/en/docs)
+- [Express.js](https://expressjs.com)
+- [Javascript](https://www.javascript.com)
+- [JQuery](https://jquery.com/)
+- [MySQL](https://github.com/mysqljs/mysql#readme)
+- [JawsDB](https://www.jawsdb.com/)
+- [Heroku](https://devcenter.heroku.com/)
+- [Bootstrap](https://getbootstrap.com)
+- [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - Custom ORM
-- Heroku
-- Bootstrap ([Documentation](https://getbootstrap.com/docs/4.1/getting-started/introduction/))
-- CSS
+
 
 **APIs**
-- Zomato Restaurant Search API ([Documentation](https://developers.zomato.com/documentation))
-- Nutritionix Nutritional Info API ([Documentation](https://docs.google.com/document/d/1_q-K-ObMTZvO0qUEAxROrN3bwMujwAN25sLHwJzliK0/edit))
+- [Zomato Restaurant Search API](https://developers.zomato.com/documentation))
+- [Nutritionix Nutritional Info API](https://docs.google.com/document/d/1_q-K-ObMTZvO0qUEAxROrN3bwMujwAN25sLHwJzliK0/edit))
 
 **Libraries**
-- AuthO ([Documentation](https://devcenter.heroku.com/articles/auth0))
-- Kyanite ([Documentation](http://kyanite.dusty.codes/))
-## Zomato API
-The Zomato API is being used to return information on specific restaurants. Users are able to **search Zomato for restaurants**, view restaurant details and add recipes for their favorite dishes. 
-
-**Data Collected:**
-- Name
-- Location
-- ID
-- Cuisine
-- Website URL
-
-[Documentation](https://developers.zomato.com/documentation)
-## Nutritionix API
-The Nutritionix API is being used to retrieve nutritional information (calories) for users when creating and/or viewing others recipes. 
-[Documentation](https://docs.google.com/document/d/1_q-K-ObMTZvO0qUEAxROrN3bwMujwAN25sLHwJzliK0/edit)
-## Handlebars
-Handlebars is being used to create the user interface/front-end of the application. Handlebar templates are utilized in collecting and displaying user information during the creation of new restaurant reviews, new recipes and maintaining the users log of saved items.
-[Documentation](http://handlebarsjs.com/)
-## AuthO 
-
-AuthO provides user authorization of Gmail addresses and Kyanite to safely work with data since it creates pipeable, pure, pre-curried functions.
-[Documentation](https://devcenter.heroku.com/articles/auth0)
-## Kyanite
-
-Kyanite is used to safely work with data since it creates pipeable, pure, pre-curried functions.
-[Documentation](http://kyanite.dusty.codes/)
+- [AuthO](https://devcenter.heroku.com/articles/auth0))
+- [Kyanite](http://kyanite.dusty.codes/))
 
 
-# Future Development
-- Allow users to upload photo of their recipe
-- Include photos from restaurant menus  
-- Offer search functionality by meal time as well as city/neighborhood    
+### Future Development
+- Allow users to upload photos of completed recipes
+- Include photos of the restaurant menu items  
+- Offer search functionality by meal time as well as city/neighborhood
 - Filter menu items by cuisine
+- Update styling with a more responsive design
+- Allow user to edit recipes and ratings after they've been added
+- Add collapsible menu to the navbar for smaller screen sizes
