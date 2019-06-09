@@ -1,4 +1,6 @@
 # CuiScene 
+[Visit CuiScene Application](https://cuiscene.herokuapp.com/)
+
 ![CuiScene App - Dashboard Image](https://github.com/CuiScene/cuiscene/blob/readme/assets/images/login-screenshot.png "CuiScene App Login Page")
 
 ![CuiScene App - Restaurant Search Results Page](https://github.com/CuiScene/cuiscene/blob/readme/assets/images/restaurant-screenshot.png "CuiScene App Restaurant Search Results Page")
